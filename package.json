@@ -1,0 +1,14 @@
+{
+  "name": "Proyecto1_ConsultadorClima",
+  "version": "1.0.0",
+  "description": "Aplicacion que consulta el clima de una ciudad",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
