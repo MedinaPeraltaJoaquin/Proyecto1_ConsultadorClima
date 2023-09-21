@@ -10,5 +10,8 @@
   "license": "",
   "dependencies": {
     "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "jasmine": "^5.1.0"
   }
 }
