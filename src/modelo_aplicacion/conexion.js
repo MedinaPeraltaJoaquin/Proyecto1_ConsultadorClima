@@ -3,13 +3,13 @@ const { MongoClient } = require('mongodb');
 /**
  * Método que inserta un elemento a una coleccion por medio de un cliente de mongoDB
  * 
- * @param {MongoClient} client 
+ * @param {MongoClient} cliente 
  * @param {String} baseDatos 
  * @param {String} coleccion 
- * @param {JSON} newList 
+ * @param {JSON} nuevoListado 
  */
-async function insertar(client,baseDatos,coleccion,nuevoListado){
-    const resultado = await client.db(baseDatos).collection(coleccion).insertOne(nuevoListado);
+async function insertar(cliente,baseDatos,coleccion,nuevoListado){
+    const resultado = await cliente.db(baseDatos).collection(coleccion).insertOne(nuevoListado);
 }
 
 
@@ -18,18 +18,18 @@ async function insertar(client,baseDatos,coleccion,nuevoListado){
  * Método que busca por medio de un filtro un objeto en una coleccion por medio de un 
  * cliente de mongoDB
  * 
- * @param {MongoClient} client 
+ * @param {MongoClient} cliente 
  * @param {String} baseDatos 
  * @param {String} coleccion 
  * @param {JSON} busqueda 
  * @returns un arreglo con todos los elementos que cumplen por el filtro, regresa un arreglo
  * vacio si no se encontro nada
  */
-async function consultSearch_baseDatos(client,baseDatos,coleccion,busqueda){
-    const resultado = await client.db(baseDatos).collection(coleccion).find(busqueda);
+async function busquedadeconsultaBD(cliente,baseDatos,coleccion,busqueda){
+    const resultado = await cliente.db(baseDatos).collection(coleccion).find(busqueda);
     const doc=[];
-    for await (const index of result){
-            doc.push(index);
+    for await (const indice of result){
+            doc.push(indice);
     }
     if(doc.length == 0){'mongodb'
         console.log("No se ha encontrado elementos")
@@ -46,14 +46,14 @@ async function consultSearch_baseDatos(client,baseDatos,coleccion,busqueda){
  * @param {String} IATA
  */
 async function insertarclima(baseDatos,coleccion,nuevaL,IATA){
-    const client = new MongoClient(uri);
+    const cliente = new MongoClient(uri);
     let registro = {
         "IATA" : IATA,
         "clima" : []
     };
 
     for(let i=0; i < nuevaL.list.length; i++){
-        let finjson = JSON.stringify("{'"+nuevaL.list[i].dt+"': {}}")
+        let finjson = JSON.parse("{'"+nuevaL.list[i].dt+"': {}}");
         let creador = {
                   "dt": nuevaL.list[i].dt,
                   "main": {
@@ -88,14 +88,14 @@ async function insertarclima(baseDatos,coleccion,nuevaL,IATA){
 
     try {
 
-        await client.connect();
+        await cliente.connect();
         console.log("Conexion exitosa");
-        const insertar = await insertar(client,baseDatos,coleccion,registro);
+        const insertar = await insertar(cliente,baseDatos,coleccion,registro);
 
     } catch (e) {
         console.error(e);
     } finally {
-        await client.close();
+        await cliente.close();
         console.log("Conexion cerrada");
     }
 
@@ -109,16 +109,16 @@ async function insertarclima(baseDatos,coleccion,nuevaL,IATA){
  * @param {JSON} ticketciudad
  */
 async function insertarciudadticket(baseDatos,coleccion,ticketciudad){
-    const client = new MongoClient(uri);
+    const cliente = new MongoClient(uri);
         try {
-            await client.connect();
+            await cliente.connect();
             console.log("Conexion exitosa")
-            const insertar = await consultSearch_baseDatos(client,baseDatos,coleccion,ticketciudad);
+            const insertar = await busquedadeconsultaBD(cliente,baseDatos,coleccion,ticketciudad);
     
         } catch (e) {
             console.error(e);
         } finally {
-            await client.close();
+            await cliente.close();
             console.log("Conexion cerrada");
         }
 }
@@ -127,15 +127,14 @@ async function insertarciudadticket(baseDatos,coleccion,ticketciudad){
 
 /**
  * Método que actualiza en la base de datos un apartado
- * "dt": nuevaL.list[i].dt,
- * @param {MongoClient} client 
+ * @param {MongoClient} cliente 
  * @param {String} baseDatos 
  * @param {String} coleccion 
  * @param {JSON} busqueda 
  * @param {JSON} actualizar 
  */
-async function updateSearch_baseDatos(client,baseDatos,coleccion, busqueda, actualizar){
-    await client.db(baseDatos).collection(coleccion).updateOne(busqueda,actualizar); //{ $set : { field : update}});
+async function updateSearch_baseDatos(cliente,baseDatos,coleccion, busqueda, actualizar){
+    await cliente.db(baseDatos).collection(coleccion).updateOne(busqueda,actualizar); //{ $set : { field : update}});
 }
 
 
@@ -152,22 +151,21 @@ async function updateSearch_baseDatos(client,baseDatos,coleccion, busqueda, actu
 // { "ticket " : "gvdgsvdgs"}
 // { "IATA" : "MEX"}
 // { $or : [{"IATA" : "MEX"},{"IATA" : "MTY"}]}
-
 async function consultaBD(uri,baseDatos,coleccion,busqueda){
     
-    const client = new MongoClient(uri);
+    const cliente = new MongoClient(uri);
     let consulta = [];
 
     try {
-        await client.connect();
+        await cliente.connect();
         console.log("Conexion exitosa")
-        const consulta = await consultSearch_baseDatos(client,baseDatos,coleccion,busqueda);
+        const consulta = await busquedadeconsultaBD(cliente,baseDatos,coleccion,busqueda);
         
 
     } catch (e) {
         console.error(e);
     } finally {
-        await client.close();
+        await cliente.close();
         console.log("Conexion cerrada");
     }
 
@@ -175,7 +173,17 @@ async function consultaBD(uri,baseDatos,coleccion,busqueda){
 }
 
 /**
- *  Funcion que devuelve el clima y IATA de la ciudad.
+ * Método que elimina una coleccion de la base de datos.
+ * @param {MongoClient} cliente
+ * @param {String} baseDatos
+ * @param {String} coleccion
+ */
+async function vacia(cliente,baseDatos,coleccion){
+    await cliente.db(baseDatos).collection(coleccion).deleteMany({});
+}
+
+/**
+ *  Método que devuelve el clima y IATA de la ciudad.
  * @param {String} uri 
  * @param {String} baseDatos 
  * @param {String} coleccion 
@@ -185,13 +193,13 @@ async function consultaBD(uri,baseDatos,coleccion,busqueda){
  */
 async function consultaClima(uri,baseDatos,coleccion,busqueda,fechaUnix){
     
-    const client = new MongoClient(uri);
+    const cliente = new MongoClient(uri);
     let consulta = [];
 
     try {
-        await client.connect();
+        await cliente.connect();
         console.log("Conexion exitosa")
-        const temp = await consultSearch_baseDatos(client,baseDatos,coleccion,busqueda);
+        const temp = await busquedadeconsultaBD(cliente,baseDatos,coleccion,busqueda);
         if(temp.length != 0){
             for(let i=0; i< temp.length; i++){
                 consulta.push({
@@ -206,7 +214,7 @@ async function consultaClima(uri,baseDatos,coleccion,busqueda,fechaUnix){
     } catch (e) {
         console.error(e);
     } finally {
-        await client.close();
+        await cliente.close();
         console.log("Conexion cerrada");
     }
 
@@ -214,9 +222,11 @@ async function consultaClima(uri,baseDatos,coleccion,busqueda,fechaUnix){
 }
 
 module.exports = {
-    consultaClima,insertarclima, insertarciudadticket, consultaBD
+    consultaClima,insertarclima, insertarciudadticket, consultaBD, vacia
 
 }
+
+
 
 /*const uri = "mongodb+srv://pruebaIGEF:IGEF2024@cluster0.mejzlcy.mongodb.net/?retryWrites=true&w=majority";
 const database = "practice_certificate_checker";
