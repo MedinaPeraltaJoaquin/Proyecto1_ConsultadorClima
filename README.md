@@ -1,6 +1,6 @@
 # Proyecto 1: Consulta de clima de aeropuerto
 Los Web Services permiten a las organizaciones intercambiar datos sin necesidad de conocer los detalles de sus respectivos Sistemas de Informacion.
-En este proyecto se deber ́a hacer uso de estas herramientas para llevar a cabo una aplicacion que consulte en tiempo real el clima de ciudades dadas.
+En este proyecto se debera hacer uso de estas herramientas para llevar a cabo una aplicacion que consulte en tiempo real el clima de ciudades dadas.
 
 # Objetivo: 
 Este proyecto se basa en la utilización de Web Services para desarrollar una aplicación innovadora que permite a los usuarios acceder en tiempo real a información climática de ciudades específicas. El objetivo principal es proporcionar datos precisos y actualizados sobre el clima de origen y destino para vuelos programados en el mismo día. Esta aplicación está diseñada con una interfaz intuitiva y accesible, dirigida tanto a usuarios técnicos como a aquellos que no tienen experiencia en programación.
@@ -23,3 +23,25 @@ En este proyecto, se trabajara con MERN stack, el cual esta pensado para aplicac
 - React: Es una libreria mantenida y desarrollada por Facebook para el desarrollo de frontend para darle más limpieza al código, organizacion y mejor interaccion entre el usuario y el servidor.
 
 - Node Js: Es un entorno de tiempo de ejecucion para la parte del servidor, basando su sintaxis en Javascript y en el control de eventos, y diseñado para la simplificacion de la comunicacion debido a que no tiene subprocesos y de esta manera aprovechar multiples nucleos en su entorno y compartir sockets entre procesos.
+  
+- Dotenv: Una herramienta de entorno que sirve para ocultar claves de acceso que no querriamos que fueran visibles, vease claves de api la uri de consulta de mongo, los identificadores de las colecciones, nombre de la base de datos etc.
+  
+- Jasmine: Una herramienta para los unit test en javascript que proporciona atajos para que el diseño de las pruebas sea mas facil. 
+
+# Entendiendo el problema:
+-¿Que es lo que queremos obtener?
+El clima de alguna ciudad dado un nombre de ciudad o un ticket o un un IATA.
+-¿Cuales son los datos que tenemos para obtenerlo?
+tenemos algunas bases de datos que tendran tickets asociados a ciudades en codigo IATA, y ciudades en codigo IATA.
+-¿Son suficientes?
+Sirven para poder trabajar y pensar en una solucion para el problema, asi que es un si.
+-¿Que hace que el resulado obtenido resuelva el problema?
+Que el programa sea capaz de mostrar dadas nuestras entradas un clima que el ususario indique y a su vez que el usuario pueda operar el programa sin problema.
+
+# Requisitos funcionales y no funcionales:
+-Funcionales: Se espera que el programa sea capaz de buscar el clima de una ciudad por su nombre, codiago IATA o ticket,
+el programa podra consultar el clima tato de la ciudad de origen como el de la ciudad de destino.
+-No funcionales: Se espera una eficiencia decente, una tolerancia a fallas robusta, se espera que sea amigable e ilustrativa para el ususario, que sea de facil escalabilidad y con alta seguridad gracias a el trabajo elegido con MERN.
+
+
+
