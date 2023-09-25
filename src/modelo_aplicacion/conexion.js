@@ -1,4 +1,5 @@
 const { MongoClient } = require('mongodb');
+require('dotenv').config();
 
 /**
  * Método que inserta un elemento a una coleccion por medio de un cliente de mongoDB
@@ -10,6 +11,7 @@ const { MongoClient } = require('mongodb');
  */
 async function insertar(cliente,baseDatos,coleccion,nuevoListado){
     const resultado = await cliente.db(baseDatos).collection(coleccion).insertOne(nuevoListado);
+    return resultado.acknowledged;
 }
 
 
@@ -22,17 +24,16 @@ async function insertar(cliente,baseDatos,coleccion,nuevoListado){
  * @param {String} baseDatos 
  * @param {String} coleccion 
  * @param {JSON} busqueda 
- * @returns un arreglo con todos los elementos que cumplen por el filtro, regresa un arreglo
- * vacio si no se encontro nada
+ *
  */
 async function busquedadeconsultaBD(cliente,baseDatos,coleccion,busqueda){
     const resultado = await cliente.db(baseDatos).collection(coleccion).find(busqueda);
     const doc=[];
-    for await (const indice of result){
+    for await (const indice of resultado){
             doc.push(indice);
     }
     if(doc.length == 0){'mongodb'
-        console.log("No se ha encontrado elementos")
+        console.log("No se ha encontrado elementos");
         throw new Error("No se ha encontrado elementos");
     }
     return doc;
@@ -46,24 +47,25 @@ async function busquedadeconsultaBD(cliente,baseDatos,coleccion,busqueda){
  * @param {String} IATA
  */
 async function insertarclima(baseDatos,coleccion,nuevaL,IATA){
+    const uri = proces.env.uri;
     const cliente = new MongoClient(uri);
+   
     let registro = {
         "IATA" : IATA,
-        "clima" : []
+        "clima" : {}
     };
 
     for(let i=0; i < nuevaL.list.length; i++){
-        let finjson = JSON.parse("{'"+nuevaL.list[i].dt+"': {}}");
         let creador = {
                   "dt": nuevaL.list[i].dt,
                   "main": {
                     "temperatura": nuevaL.list[i].main.temp,
                     "presion": nuevaL.list[i].main.pressure,
-                    "humedad": nuevaL.list[i].main.humifity
+                    "humedad": nuevaL.list[i].main.humidity
                   },
         
-                  "estado": nuevaL.list[i].weather.main,
-                  "descripcion": nuevaL.list[i].weather.description,
+                  "estado": nuevaL.list[i].weather[0].main,
+                  "descripcion": nuevaL.list[i].weather[0].description,
                   "viento": {
                     "velocidad": nuevaL.list[i].wind.speed,
                     "direccion": nuevaL.list[i].wind.deg,
@@ -73,100 +75,76 @@ async function insertarclima(baseDatos,coleccion,nuevaL,IATA){
                   "precipitacion": nuevaL.list[i].pop,
                   "lluvia": -1,
                   "nieve" : -1,
-                  "dt_txt": "nuevaL.dt_txt"
+                  "dt_txt": nuevaL.list[i].dt_txt
         };
 
-        if(nuevaL.list[i].rain !== null){
+        if(nuevaL.list[i].rain !== undefined){
             creador.lluvia = nuevaL.list[i].rain['3h'];
         }
-        if(nuevaL.list[i].snow !== null){
+        if(nuevaL.list[i].snow !== undefined){
             creador.nieve = nuevaL.list[i].snow['3h'];
         }
-        finjson[nuevaL.list[i].dt] = creador;
-        registro.clima.push(finjson);
+        registro.clima[nuevaL.list[i].dt]= creador;
     }
-
+    let insertado = false;
     try {
 
         await cliente.connect();
-        console.log("Conexion exitosa");
-        const insertar = await insertar(cliente,baseDatos,coleccion,registro);
+        insertado = await insertar(cliente,baseDatos,coleccion,registro);
 
     } catch (e) {
         console.error(e);
     } finally {
         await cliente.close();
-        console.log("Conexion cerrada");
     }
+    return insertado;
 
 }
 
 /**
- * Método que inserta las ciudades y tickes como clecciones de la base de datos.
+ * Método que inserta las ciudades y tickets como clecciones de la base de datos.
  * 
  * @param {String} baseDatos 
  * @param {String} coleccion
  * @param {JSON} ticketciudad
  */
 async function insertarciudadticket(baseDatos,coleccion,ticketciudad){
+    const uri = proces.env.uri;
     const cliente = new MongoClient(uri);
+    let insertado = false;
         try {
             await cliente.connect();
-            console.log("Conexion exitosa")
-            const insertar = await busquedadeconsultaBD(cliente,baseDatos,coleccion,ticketciudad);
+            insertado = await insertar(cliente,baseDatos,coleccion,ticketciudad);
     
         } catch (e) {
             console.error(e);
         } finally {
             await cliente.close();
-            console.log("Conexion cerrada");
         }
+        return insertado;
 }
-
-
-
-/**
- * Método que actualiza en la base de datos un apartado
- * @param {MongoClient} cliente 
- * @param {String} baseDatos 
- * @param {String} coleccion 
- * @param {JSON} busqueda 
- * @param {JSON} actualizar 
- */
-async function updateSearch_baseDatos(cliente,baseDatos,coleccion, busqueda, actualizar){
-    await cliente.db(baseDatos).collection(coleccion).updateOne(busqueda,actualizar); //{ $set : { field : update}});
-}
-
 
 /**
  * 
  * Método que busca un certificado por medio de un filtro en una base de datos de mongoDB
  * 
- * @param {String} uri 
  * @param {String} baseDatos 
  * @param {JSON} busqueda
- * @returns un JSON con todos los certificados encontrados por medio del filtro
  */
-
-// { "ticket " : "gvdgsvdgs"}
-// { "IATA" : "MEX"}
-// { $or : [{"IATA" : "MEX"},{"IATA" : "MTY"}]}
-async function consultaBD(uri,baseDatos,coleccion,busqueda){
-    
+async function consultaBD(baseDatos,coleccion,busqueda){
+    const uri = proces.env.uri;
     const cliente = new MongoClient(uri);
     let consulta = [];
 
     try {
         await cliente.connect();
-        console.log("Conexion exitosa")
-        const consulta = await busquedadeconsultaBD(cliente,baseDatos,coleccion,busqueda);
+        consulta = await busquedadeconsultaBD(cliente,baseDatos,coleccion,busqueda);
         
 
     } catch (e) {
         console.error(e);
     } finally {
         await cliente.close();
-        console.log("Conexion cerrada");
     }
 
     return consulta;
@@ -174,37 +152,46 @@ async function consultaBD(uri,baseDatos,coleccion,busqueda){
 
 /**
  * Método que elimina una coleccion de la base de datos.
- * @param {MongoClient} cliente
  * @param {String} baseDatos
  * @param {String} coleccion
+ * @param {JSON} filtro
  */
-async function vacia(cliente,baseDatos,coleccion){
-    await cliente.db(baseDatos).collection(coleccion).deleteMany({});
+async function vacia(baseDatos,coleccion,filtro){
+    const uri = proces.env.uri;
+    const cliente = new MongoClient(uri);
+    let eliminar = false;
+    try {
+        await cliente.connect();
+        let eliminado = await cliente.db(baseDatos).collection(coleccion).deleteMany(filtro);
+    } catch (e) {
+        console.error(e);
+    } finally {
+        await cliente.close();
+    }
+    return eliminar;
 }
 
 /**
  *  Método que devuelve el clima y IATA de la ciudad.
- * @param {String} uri 
  * @param {String} baseDatos 
  * @param {String} coleccion 
  * @param {JSON} busqueda 
  * @param {String} fechaUnix
  * @returns 
  */
-async function consultaClima(uri,baseDatos,coleccion,busqueda,fechaUnix){
-    
+async function consultaClima(baseDatos,coleccion,busqueda,fechaUnix){
+    const uri = proces.env.uri;
     const cliente = new MongoClient(uri);
     let consulta = [];
 
     try {
         await cliente.connect();
-        console.log("Conexion exitosa")
-        const temp = await busquedadeconsultaBD(cliente,baseDatos,coleccion,busqueda);
-        if(temp.length != 0){
-            for(let i=0; i< temp.length; i++){
+        const consultado = await busquedadeconsultaBD(cliente,baseDatos,coleccion,busqueda);
+        if(consultado.length != 0){
+            for(let i=0; i< consultado.length; i++){
                 consulta.push({
-                    "IATA": temp[i].IATA,
-                    "clima": temp[i].clima[fechaUnix]
+                    "IATA": consultado[i].IATA,
+                    "clima": consultado[i].clima[fechaUnix]
 
                 })
             }
@@ -215,19 +202,38 @@ async function consultaClima(uri,baseDatos,coleccion,busqueda,fechaUnix){
         console.error(e);
     } finally {
         await cliente.close();
-        console.log("Conexion cerrada");
     }
 
     return consulta;
 }
 
-module.exports = {
-    consultaClima,insertarclima, insertarciudadticket, consultaBD, vacia
+/**
+ * Método que inserta varios elementos a la base de datos 
+ * 
+ * @param {String} baseDatos 
+ * @param {String} coleccion 
+ * @param {JSON} nuevoListado 
+ */
+
+async function insertarVariosBD(baseDatos,coleccion,nuevoListado){
+    const uri = process.env.uri;
+    const cliente = new MongoClient(uri);
+    let insertado = false;
+    try {
+        await cliente.connect();
+        insertado = (await cliente.db(baseDatos).collection(coleccion).insertMany(nuevoListado)).acknowledged;
+        
+    } catch (e) {
+        console.error(e);
+    } finally {
+        await cliente.close();
+    }
+    return insertado;
 
 }
 
+module.exports = {
+    consultaClima,insertarclima, insertarciudadticket, consultaBD, vacia, insertarVariosBD
 
+}
 
-/*const uri = "mongodb+srv://pruebaIGEF:IGEF2024@cluster0.mejzlcy.mongodb.net/?retryWrites=true&w=majority";
-const database = "practice_certificate_checker";
-*/

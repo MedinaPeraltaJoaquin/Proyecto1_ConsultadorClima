@@ -1,31 +1,97 @@
-const { resolve } = require('path');
-const conexion = require('../modelo_aplicacion/conexion');
-var fs = require('fs');
+require('dotenv').config();
 
 /**
- * Método que actualiza los tickets por csv.
+ * Método que añade los datos de ticket y ciudad en la base datos desde un csv.
+ * @param {String} direccionCSV en donde se encuentra la informacion de los tickets.
  */
-async function actualizacsv(){
-
-}
-
-/**
- * Método que actualiza mongo
- */
-
-async function actualizamongo(){
-    let recuclim = conexion.consultaBD(uri,baseDatos,clima,busqueda);
-    JSON.stringify(recuclim);
-    fs.appendFile('clima.txt', recuclim);
-    await conexion.vacia(cliente,baseDatos,clima);
-    let ciudades = conexion.consultaBD(uri,baseDatos,ciudad,busqueda);
-    for(let i=0; i < ciudades.length; i++){
-        let respuesta = fetch("api.openweathermap.org/data/2.5/forecast?lat=ciudad.latitud&lon=ciudad.longitud&appid=60135e641ac6998ca2554e16d51046f8");
-        let climanuevo = respuesta.json();
-        conexion.insertarclima(baseDatos,coleccion,climanuevo,ciudades.IATA);
-        await petateate(2);
+async function agregaInformacionCSV(direccionCSV){
+    let csvToJson = requiere('convert-csv-to-json');
+    const conexion = require('./conexion');
+    const json = csvToJson.formatValueByType().fieldDelimiter(',').getJsonFromCsv(direccionCSV);
+    let ciudades = await conexion.consultaBD(process.env.base_datos,process.env.coleccion_ciudad,{});
+    await conexion.vacia(process.env.base_datos,process.env.coleccion_ciudad,{});
+    if(ciudades[0] == undefined){
+        ciudades[0] = {};
     }
 
+    if(ciudades[1] == undefined){
+        ciudades[1] = {"ciudades":[]};
+    }
+    let  ticketArreglo = [];
+    let tickets = {};
+
+    for(let i=0; i<json.length; i++){
+        const elemento = json[i];
+        tickets ={
+            "ticket" : elemento.num_ticket,
+            "ciudad_origen" : elemento.origin,
+            "ciudad_destino": elemento.destination,
+        }
+        ticketArreglo.push(tickets);
+        if(ciudades[0][elemento.origin] == undefined){
+            ciudades[0][elemento.origin] ={
+                "ciudad": "",
+                "coordenadas":{
+                "latitud": elemento.origin_latitude,
+                "longitud": elemento.origin_longitude
+            },
+            "IATA": elemento.origin
+        }
+        ciudades[1]["ciudades"].push(elemento.origin); 
+        }
+        if((ciudades[0][elemento.destination] == undefined)){
+            ciudades[0][elemento.destination] ={
+                "ciudad": "",
+                "coordenadas":{
+                "latitud": elemento.destination_latitude,
+                "longitud": elemento.destination_longitude
+            },
+            "IATA": elemento.destination
+        }
+        ciudades[1]["ciudades"].push(elemento.destination);
+        }
+    }
+    await conexion.insertarVariosBD(process.env.base_datos,process.env.coleccion_ciudad,ciudades);
+    return {
+        "ticketsAlta": ticketArreglo,
+        "ciudadesAlta": ciudades
+    };
+}
+
+
+
+/**
+ * Método que actuliza los climas de la base de datos.
+ */
+async function actualizaclimabd(){
+    const conexion = require('./conexion.js');
+    var fs = require('fs');
+    let recuclim = conexion.consultaBD(process.env.base_datos,process.env.coleccion_clima,{});
+    if(recuperaClima.length != 0){
+        fs.appendFile("./climaBD.json", JSON.stringify(recuperaClima), async function (err) {
+            if (err) throw err;
+            await conexion.vacia(process.env.base_datos,process.env.coleccion_clima,{});
+        });
+    }
+    let climas = [];
+    let ciudades = await conexion.consultaBD(process.env.base_datos,process.env.coleccion_ciudad,{});
+    if(ciudades.length == 0){
+        ciudades = [{},{"ciudades":[]}];
+    }
+    for(let i=0; i < ciudades[1]["ciudades"].length; i++){
+        const referencia = ciudades[1]["ciudades"][i];
+        const ciudad = ciudades[0][referencia];;
+        const clima = await realizaPeticion(ciudad);
+        if(clima != undefined){
+            let verificadoInsertar = await conexion.insertarclima(process.env.base_datos,process.env.coleccion_clima,clima,ciudad.IATA);
+            if(verificadoInsertar){
+                console.log(clima.list[0].dt)
+                climas.push(clima);
+            }      
+        }
+        await petateate(4);
+    }
+    return climas;
 }
 
 /**
@@ -36,3 +102,15 @@ async function actualizamongo(){
 async function petateate(duracion){
     return new Promise(resolve =>{setTimeout(()=>{resolve()},duracion*1000)});
 }
+
+/**
+ * Método auxiliar que realiza la peticion a la api de openweather.
+ * @param {String} ciudad.
+ */
+async function realizaPeticion(ciudad){
+    let url = "https://api.openweathermap.org/data/2.5/forecast?lat="+ciudad.coordenadas.latitud+"&lon="+ciudad.coordenadas.longitud+"&lang=es&appid="+process.env.api_openweather;
+    let respuesta = await fetch(url);
+    console.log(respuesta.status);
+    return respuesta.status != 200 ? undefined : await respuesta.json();
+}
+
