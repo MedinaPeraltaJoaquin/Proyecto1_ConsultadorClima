@@ -67,8 +67,8 @@ async function actualizaclimabd(){
     const conexion = require('./conexion.js');
     var fs = require('fs');
     let recuclim = conexion.consultaBD(process.env.base_datos,process.env.coleccion_clima,{});
-    if(recuperaClima.length != 0){
-        fs.appendFile("./climaBD.json", JSON.stringify(recuperaClima), async function (err) {
+    if(recuclim.length != 0){
+        fs.appendFile("./climaBD.json", JSON.stringify(recuclim), async function (err) {
             if (err) throw err;
             await conexion.vacia(process.env.base_datos,process.env.coleccion_clima,{});
         });
