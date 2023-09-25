@@ -85,7 +85,6 @@ async function actualizaclimabd(){
         if(clima != undefined){
             let verificadoInsertar = await conexion.insertarclima(process.env.base_datos,process.env.coleccion_clima,clima,ciudad.IATA);
             if(verificadoInsertar){
-                console.log(clima.list[0].dt)
                 climas.push(clima);
             }      
         }
@@ -110,7 +109,6 @@ async function petateate(duracion){
 async function realizaPeticion(ciudad){
     let url = "https://api.openweathermap.org/data/2.5/forecast?lat="+ciudad.coordenadas.latitud+"&lon="+ciudad.coordenadas.longitud+"&lang=es&appid="+process.env.api_openweather;
     let respuesta = await fetch(url);
-    console.log(respuesta.status);
     return respuesta.status != 200 ? undefined : await respuesta.json();
 }
 

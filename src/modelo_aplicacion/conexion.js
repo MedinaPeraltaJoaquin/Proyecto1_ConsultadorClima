@@ -33,7 +33,6 @@ async function busquedadeconsultaBD(cliente,baseDatos,coleccion,busqueda){
             doc.push(indice);
     }
     if(doc.length == 0){'mongodb'
-        console.log("No se ha encontrado elementos");
         throw new Error("No se ha encontrado elementos");
     }
     return doc;
