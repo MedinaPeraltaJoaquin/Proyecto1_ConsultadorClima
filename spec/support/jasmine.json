@@ -1,0 +1,19 @@
+{
+  "spec_dir": "spec",
+  "spec_files": [
+    "./test/*[sS]pec.js"
+  ],
+  "env": {
+    "stopSpecOnExpectationFailure": false,
+    "random": false,
+    "seed": null,
+    "failFast": null,
+    "failSpecWithNoExpectations": null,
+    "suppressLoadErrors": false,
+    "verbose": null,
+    "interactive": null,
+    "runner": "jasmine",
+    "clearReporters": true,
+    "includeStackTrace": true
+  }
+}

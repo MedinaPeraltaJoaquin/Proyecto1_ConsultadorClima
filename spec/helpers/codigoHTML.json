@@ -1,0 +1,52 @@
+{
+    "pruebaEncabezado" : {
+        "encabezado" : ["Ciudad de origen: Mexico","Ciudad de destino: Toluca","Ciudad consultada: Monterrey"],
+        "direccionImagen" : "../../public/assets/img/boleto.png",
+        "estado" : ["Esta el cielo claro","Esta lloviendo","Esta nublado"] 
+    },
+
+    "pruebaSeccion" : {
+        "encabezado" : ["Datos Generales","Caracteristicas de Viento","Otras Caracteristicas"],
+        "informacion" : [
+            {"Datos Generales" : [
+                "Temperatura: 20",
+                "Presion: 20",
+                "Humedad: 20"
+            ]},
+            {"Caracteristicas de Viento" : [
+                "Velocidad: 20",
+                "Direccion: 20",
+                "Rafagas: 20"
+            ]},
+            {"Otras Caracteristicas" : [
+                "Precipitacion: 20",
+                "Nivel de lluvia: 20",
+                "Nivel de nieve: 20",
+                "Visibilidad: 20"
+            ]}
+        ]
+    },
+
+    "PruebaIcono" : ["Temperatura: 20","Velocidad: 20","Visibilidad: 20"],
+    
+    "PruebaDireccionImagen" : {
+        "direccion" : [
+            "assets/img/estadoClima/Atmosphere.jpg",
+            "assets/img/estadoClima/Clear.jpg",
+            "assets/img/estadoClima/Clouds.jpg",
+            "assets/img/estadoClima/Drizzle.jpg",
+            "assets/img/estadoClima/Rain.jpg",
+            "assets/img/estadoClima/Snow.jpg",
+            "assets/img/estadoClima/Thunderstorm.jpg"
+        ],
+        "estado" : [
+            "Atmosphere",
+            "Clear",
+            "Clouds",
+            "Drizzle",
+            "Rain",
+            "Snow",
+            "Thunderstorm"
+        ]
+    }
+}
