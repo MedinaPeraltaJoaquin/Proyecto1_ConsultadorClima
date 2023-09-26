@@ -162,6 +162,7 @@ async function vacia(baseDatos,coleccion,filtro){
     try {
         await cliente.connect();
         let eliminado = await cliente.db(baseDatos).collection(coleccion).deleteMany(filtro);
+        elmiminar = eliminado.acknowledged;
     } catch (e) {
         console.error(e);
     } finally {
@@ -188,9 +189,10 @@ async function consultaClima(baseDatos,coleccion,busqueda,fechaUnix){
         const consultado = await busquedadeconsultaBD(cliente,baseDatos,coleccion,busqueda);
         if(consultado.length != 0){
             for(let i=0; i< consultado.length; i++){
+                let clima = consultado[i].clima[fechaUnix];
                 consulta.push({
                     "IATA": consultado[i].IATA,
-                    "clima": consultado[i].clima[fechaUnix]
+                    "clima": clima
 
                 })
             }
