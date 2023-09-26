@@ -3,33 +3,34 @@ const levenshtein = require('fast-levenshtein');
 const { MongoClient } = require('mongodb');
 require('dotenv').config();
 
-const url = process.env.MONGODB_URL;
-const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
+// Importa los métodos desde conexion.js
+const { consultaBD, insertarclima } = require('../modelo_aplicacion/conexion');
 
-// Método lógico para obtener clima por ticket
+const uri = process.env.uri;
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+// Función para obtener clima por ticket
 async function obtenerClimaPorTicket(req, res) {
     const { ticket, city } = req.body;
 
+    // Verifica si se proporcionó un número de ticket
     if (!ticket) {
         return res.status(400).json({ error: 'Por favor, ingrese el número de ticket.' });
     }
 
-    if (!city) {
-        return res.status(400).json({ error: 'Por favor, ingrese la ciudad.' });
-    }
-
     try {
         await client.connect();
-        const db = client.db(process.env.MONGODB_DATABASE);
-        const ticketsCollection = db.collection('tickets');
+        const db = client.db(process.env.base_datos);
+        const ticketsCollection = db.collection(process.env.coleccion_ticket);
 
         const ticketData = await ticketsCollection.findOne({ ticket: ticket });
 
+        // Verifica si se encontró el ticket en la base de datos
         if (!ticketData) {
             return res.status(400).json({ error: 'El ticket no se encontró en la base de datos.' });
         }
 
-        const apiKey = process.env.OPENWEATHERMAP_API_KEY;
+        const apiKey = process.env.api_openweather;
         const url = `https://api.openweathermap.org/data/2.5/weather?iata=${ticketData.iata}&appid=${apiKey}`;
 
         const response = await axios.get(url);
@@ -47,7 +48,16 @@ async function obtenerClimaPorTicket(req, res) {
         }
 
         data['lapso_de_tiempo'] = lapso;
-        res.status(200).json(data);
+
+        // Consulta el clima desde la base de datos usando la función de conexion.js
+        const climaData = await consultaBD(process.env.base_datos, process.env.coleccion_clima, {
+            IATA: ticketData.iata,
+            /* Agrega aquí cualquier otro filtro que necesites */
+        });
+
+        // Envia una respuesta JSON
+        res.status(200).json({ climaData, city });
+
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Ocurrió un error al procesar su solicitud. Por favor, inténtelo de nuevo más tarde.' });
@@ -56,18 +66,19 @@ async function obtenerClimaPorTicket(req, res) {
     }
 }
 
-// Método lógico para obtener clima por ciudad
+// Función para obtener clima por ciudad
 async function obtenerClimaPorCiudad(req, res) {
     const { city } = req.body;
 
+    // Verifica si se proporcionó el nombre de la ciudad
     if (!city) {
         return res.status(400).json({ error: 'Por favor, ingrese la ciudad.' });
     }
 
     try {
         await client.connect();
-        const db = client.db(process.env.MONGODB_DATABASE);
-        const collection = db.collection(process.env.MONGODB_COLLECTION);
+        const db = client.db(process.env.base_datos);
+        const collection = db.collection(process.env.coleccion_ciudad);
 
         let mejorCoincidencia = null;
         let distanciaMinima = Number.MAX_VALUE;
@@ -83,11 +94,12 @@ async function obtenerClimaPorCiudad(req, res) {
             }
         });
 
+        // Verifica si se encontró una ciudad coincidente
         if (!mejorCoincidencia) {
             return res.status(400).json({ error: 'No se encontró una ciudad coincidente.' });
         }
 
-        const apiKey = process.env.OPENWEATHERMAP_API_KEY;
+        const apiKey = process.env.api_openweather;
         const url = `https://api.openweathermap.org/data/2.5/weather?iata=${mejorCoincidencia.iata}&appid=${apiKey}`;
 
         const response = await axios.get(url);
@@ -105,7 +117,15 @@ async function obtenerClimaPorCiudad(req, res) {
         }
 
         data['lapso_de_tiempo'] = lapso;
-        res.status(200).json(data);
+
+        // Consulta el clima desde la base de datos usando la función de conexion.js
+        const climaData = await consultaBD(process.env.base_datos, process.env.coleccion_clima, {
+            IATA: mejorCoincidencia.iata,
+        });
+
+        // Envia una respuesta JSON
+        res.status(200).json({ climaData, city });
+
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Ocurrió un error al procesar su solicitud. Por favor, inténtelo de nuevo más tarde.' });
