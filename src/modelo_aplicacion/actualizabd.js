@@ -36,7 +36,7 @@ async function agregaInformacionCSV(direccionCSV){
                 "longitud": elemento.origin_longitude
             },
             "IATA": elemento.origin
-        }
+        };
         ciudades[1]["ciudades"].push(elemento.origin); 
         }
         if((ciudades[0][elemento.destination] == undefined)){
@@ -51,6 +51,7 @@ async function agregaInformacionCSV(direccionCSV){
         ciudades[1]["ciudades"].push(elemento.destination);
         }
     }
+    await conexion.insertarVariosBD(process.env.base_datos,process.env.coleccion_ticket,ticketArreglo);
     await conexion.insertarVariosBD(process.env.base_datos,process.env.coleccion_ciudad,ciudades);
     return {
         "ticketsAlta": ticketArreglo,
@@ -62,13 +63,16 @@ async function agregaInformacionCSV(direccionCSV){
 
 /**
  * Método que actuliza los climas de la base de datos.
+ * @param {String} guardainfo
  */
-async function actualizaclimabd(){
+async function actualizaclimabd(guardainfo){
     const conexion = require('./conexion.js');
     var fs = require('fs');
+    var fecha = new Date();
+
     let recuclim = conexion.consultaBD(process.env.base_datos,process.env.coleccion_clima,{});
     if(recuclim.length != 0){
-        fs.appendFile("./climaBD.json", JSON.stringify(recuclim), async function (err) {
+        fs.appendFile(guardainfo +"./climaBD"+fecha.getTime()+".json", JSON.stringify(recuclim), async function (err) {
             if (err) throw err;
             await conexion.vacia(process.env.base_datos,process.env.coleccion_clima,{});
         });
@@ -110,5 +114,10 @@ async function realizaPeticion(ciudad){
     let url = "https://api.openweathermap.org/data/2.5/forecast?lat="+ciudad.coordenadas.latitud+"&lon="+ciudad.coordenadas.longitud+"&lang=es&appid="+process.env.api_openweather;
     let respuesta = await fetch(url);
     return respuesta.status != 200 ? undefined : await respuesta.json();
+}
+
+module.exports = {
+    agregaInformacionCSV,
+    actualizaClimaBasedeDatos
 }
 
