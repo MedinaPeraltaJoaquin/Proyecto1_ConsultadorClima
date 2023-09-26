@@ -261,6 +261,7 @@ regresa climas.
 
 -Método petateate, recibe un entero que sera la duracion de dormir en segundos el programa.
 regresa una nueva promesa que dado el metodo timeout le dara la duracion del entero*1000 milisegundos para que siempre sean segundos. 
+
 -Método realizaPeticion, recibe una referencia String con el nombre de ciudad.
 variable url <- llamada de la api de openwether con la latitud y longitud de la ciudad y la apikey
 variable respuesta <- metodo fetch de url
