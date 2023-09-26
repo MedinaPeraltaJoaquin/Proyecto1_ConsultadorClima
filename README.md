@@ -270,6 +270,47 @@ regresa undefined
 } en otro caso
 regresa  el metodo.json de la respuesta.
 
+Pesudocodigo para métodos de controlador:
+
+- Método cargarClima, recibe una referencia String con nombre url.
+Método cargarClima(url)
+    Variable response <- método fetch(url)
+    
+    Si response.status != 200
+        Lanzar un Error("Error al consultar el clima")
+    
+    Variable data <- response.json()
+    Regresar data
+
+- Método remplazarDatos, recibe una referencia String con el nombre busqueda y una referencia JSON con el nombre climaData.
+Método remplazarDatos(busqueda, climaData)
+    Variable section <- document.querySelector('resultados')
+    Constante etiquetaHTML <- requiere paquete EtiquetasHTML.js
+    
+    section.insertAdjacentHTML('beforebegin', etiquetaHTML.cargarClima(climaData, busqueda))
+
+- Método cargarDatosTicket
+Método cargarDatosTicket()
+    Variable fecha <- new Date()
+    Variable form <- document.querySelector('.form')
+    
+    form.addEventListener('submit', Sub-Método(event)
+        event.preventDefault()
+        Variable ticket <- document.querySelector('#ticket').value
+        Variable url <- consulta colección ticket de mongo con variables ticket y fecha.getTime()
+        
+        Intentar
+            Variable climaData <- método cargarClima que recibe la variable url
+            Método remplazarDatos que recibe la variable climaData y el string "ticket"
+        Capturar Error
+            Ventana de alerta("Mensaje de error")
+
+- Método cargarDatosCiudad
+Método cargarDatosCiudad()
+    Variable form <- document.querySelector('.form')
+
+
+
 # Requisitos funcionales y no funcionales:
 -Funcionales: Se espera que el programa sea capaz de buscar el clima de una ciudad por su nombre, codiago IATA o ticket,
 el programa podra consultar el clima tato de la ciudad de origen como el de la ciudad de destino.
