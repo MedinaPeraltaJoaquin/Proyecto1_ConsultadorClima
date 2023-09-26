@@ -63,11 +63,11 @@ form.addEventListener('sumbit', sub funcion(event){
 event.preventDefault()
 variable ticket <- document.querySelecto('#ticket').value
 variable url <- consulta coleccion ticket de mongo con variables ticket y fecha.getTime()
-try{
+Intentar{
 variable climaDAta <- metodo cargarClima que recibe la variable url
 metodo remplazarDatos que recibe la variable climaData y string "ticket"
 }
-catch{ 
+Capturar{ 
 window.alert("mensaje de errror")
 }
 })
@@ -119,11 +119,11 @@ creador.nieve<-nuevaL.list[i].snow en  3 horas
 registro.clima[nuevaL.list[i].dt]<- creador
 }
 variable insertado <- false
-try{
+Intentar{
 esperar conexion de cliente
 insertado <- insertar(cliente,baseDatos,coleccion,registro)
-} catch{ error }
-finally{
+} Capturar{ error }
+Finalmente{
 espera cerrar la conexion con el cliente
 }
 regresa el insertado.
@@ -132,11 +132,11 @@ regresa el insertado.
 constante uri <- uri de la abse de datos
 costante cliente <- nuevo cliente de mongo
 variable insertado <- false
-try{
+Intentar{
 espera conexion de cliente
 insertado <- insertar(cliente,baseDatos,coleccion,ticketciudad)
-} catch{ error}
-finally{
+} Capturar{ error}
+Finalmente{
 espera que el cliente cierre
 }
 regresa insertado.
@@ -145,11 +145,11 @@ regresa insertado.
 constante uri <- uri de la abse de datos.
 costante cliente <- nuevo cliente de mongo
 variable consulta []
-try{
+Intentar{
 espera conexion de cliente
 consulta <- busquedadeconsultaBD(cliente,base de datos, coleccion, busqueda).
-} catch{error}
-finally{
+} Capturar{error}
+Finalmente{
 espera cierre de conexion del cliente
 }
 regresa consulta.
@@ -158,11 +158,11 @@ regresa consulta.
 constante uri <- uri de la abse de datos.
 costante cliente <- nuevo cliente de mongo
 variable eliminar <- false
-try{
+Intentar{
 espera conexion de cliente
 metodo deleteMany de mongo con el filtro
-} catch{error}
-finally{
+} Capturar{error}
+Finalmente{
 espera cierre de conexion del cliente
 }
 regresa elminar.
@@ -171,15 +171,15 @@ regresa elminar.
 constante uri <- uri de la base de datos de mongo
 constante cliente <- nuevo cliente de mongo
 variable consulta <- []
-try{
+Intentar{
 espera conecion de cliente
 constante consultado <- busquedadeconsultaBD(cliente,base de datos, coleccion, busqueda)
 Si la longitud de consultado es diferente de 0{
 Para cada elementeo i=0 hasta i<longitud de temp i++
 agrega a consulta (objeto json con IATA <- i-esimo elemento de consultado con el valor del IATA 
 clima <- i-esmo elemento de consultado con el valor clima y su fecha unix
-}catch{error}
-finally{
+}Capturar{error}
+Finalmente{
 espera cierre de conecion de cliente
 }
 regresa consulta.
@@ -188,11 +188,11 @@ regresa consulta.
 constante uri <- uri de la base de datos de mongo
 costante cliente <- nuevo cliente de mongo
 variable insertado <- false
-try{
+Intentar{
 espera conexion de cliente
 insertado<- metodo inserMany de mongo
-}catch{error
-}finally{
+}Capturar{error
+}Finalmente{
 espera cierre de conexion de cliente
 }
 regresa insertado.
