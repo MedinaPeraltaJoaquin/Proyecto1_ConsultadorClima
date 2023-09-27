@@ -185,7 +185,7 @@
     form.addEventListener('submit',async function(event){
         event.preventDefault();
         let ticket = document.querySelector('#ticket').value;
-        let url = 'http://localhost:8003/consulta-ticket/?ticket='+ticket+'&date='+fecha.getTime();
+        let url = 'http://localhost:8000/consulta-ticket/?ticket='+ticket+'&date='+fecha;
 
         try {
             let climaData = await cargarClima(url);

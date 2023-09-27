@@ -32,7 +32,7 @@ function encabezadoCiudad(titulado,direccionImagen,estado,animacion){
  * @returns una cadena que representa una cadena html
  */
 function cargarSeccion(encabezado,informacion) {
-    seccion ='<div class="container text-center">\n';;
+    seccion ='<div class="container text-center">\n';
     seccion += '<div class="col" data-aos="fade-right">\n';
     seccion +='<div class="row">\n';
     seccion += '<h3>'+encabezado+'</h3>\n'

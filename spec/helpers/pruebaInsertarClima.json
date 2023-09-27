@@ -1,0 +1,243 @@
+[{
+    "cod": "200",
+    "message": 0,
+    "cnt": 40,
+    "list": [
+      {
+        "dt": 1695578400,
+        "main": {
+          "temp": 303.58,
+          "feels_like": 306.18,
+          "temp_min": 303.58,
+          "temp_max": 308.74,
+          "pressure": 1013,
+          "sea_level": 1013,
+          "grnd_level": 968,
+          "humidity": 57,
+          "temp_kf": -5.16
+        },
+        "weather": [
+          {
+            "id": 801,
+            "main": "Clouds",
+            "description": "algo de nubes",
+            "icon": "02d"
+          }
+        ],
+        "clouds": {
+          "all": 13
+        },
+        "wind": {
+          "speed": 3.07,
+          "deg": 132,
+          "gust": 3.4
+        },
+        "visibility": 10000,
+        "pop": 0,
+        "sys": {
+          "pod": "d"
+        },
+        "dt_txt": "2023-09-24 18:00:00"
+      },
+      {
+        "dt": 1695589200,
+        "main": {
+          "temp": 308.71,
+          "feels_like": 311.11,
+          "temp_min": 308.71,
+          "temp_max": 312.57,
+          "pressure": 1009,
+          "sea_level": 1009,
+          "grnd_level": 966,
+          "humidity": 39,
+          "temp_kf": -3.86
+        },
+        "weather": [
+          {
+            "id": 800,
+            "main": "Clear",
+            "description": "cielo claro",
+            "icon": "01d"
+          }
+        ],
+        "clouds": {
+          "all": 7
+        },
+        "wind": {
+          "speed": 4.98,
+          "deg": 122,
+          "gust": 4.41
+        },
+        "visibility": 10000,
+        "pop": 0,
+        "sys": {
+          "pod": "d"
+        },
+        "dt_txt": "2023-09-24 21:00:00"
+      }
+    ],
+    "city": {
+      "id": 3999707,
+      "name": "Las Ladrilleras",
+      "coord": {
+        "lat": 25.7785,
+        "lon": -100.107
+      },
+      "country": "MX",
+      "population": 0,
+      "timezone": -21600,
+      "sunrise": 1695558581,
+      "sunset": 1695602120
+    }
+  },
+  {
+    "IATA" : "MTY",
+    "clima" :{
+        "1695578400": {
+          "dt": 1695578400,
+        "main": {
+          "temperatura": 303.58,
+          "presion": 1013,
+          "humedad": 57
+        },
+        "estado": "Clouds",
+        "descripcion": "algo de nubes",
+        "viento": {
+          "velocidad": 3.07,
+          "direccion": 132,
+          "fuerza": 3.4
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0,
+        "lluvia" : -1,
+        "nieve" : -1,
+        "dt_txt": "2023-09-24 18:00:00"
+        },
+        "1695589200" : {
+          "dt": 1695589200,
+        "main": {
+          "temperatura": 308.71,
+          "presion": 1009,
+          "humedad": 39
+        },
+        "estado": "Clear",
+        "descripcion": "cielo claro",
+        "viento": {
+          "velocidad": 4.98,
+          "direccion": 122,
+          "fuerza": 4.41
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0,
+        "lluvia" : -1,
+        "nieve" : -1,
+        "dt_txt": "2023-09-24 21:00:00"
+      }}
+  },{
+    "IATA": "MEX",
+    "clima": {
+      "1695600000": {
+        "dt": 1695600000,
+        "main": {
+          "temperatura": 299.7,
+          "presion": 1020,
+          "humedad": 22
+        },
+        "estado": "Clouds",
+        "descripcion": "algo de nubes",
+        "viento": {
+          "velocidad": 6.43,
+          "direccion": 22,
+          "fuerza": 7.61
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0.05,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-25 00:00:00"
+      },
+      "1695610800": {
+        "dt": 1695610800,
+        "main": {
+          "temperatura": 295.17,
+          "presion": 1019,
+          "humedad": 38
+        },
+        "estado": "Clouds",
+        "descripcion": "algo de nubes",
+        "viento": {
+          "velocidad": 3.32,
+          "direccion": 22,
+          "fuerza": 6.52
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0.06,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-25 03:00:00"
+      },
+      "1695621600": {
+        "dt": 1695621600,
+        "main": {
+          "temperatura": 290.31,
+          "presion": 1018,
+          "humedad": 56
+        },
+        "estado": "Clear",
+        "descripcion": "cielo claro",
+        "viento": {
+          "velocidad": 1.87,
+          "direccion": 3,
+          "fuerza": 3.11
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0.06,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-25 06:00:00"
+      },
+      "1695632400": {
+        "dt": 1695632400,
+        "main": {
+          "temperatura": 288.82,
+          "presion": 1017,
+          "humedad": 63
+        },
+        "estado": "Clear",
+        "descripcion": "cielo claro",
+        "viento": {
+          "velocidad": 1.64,
+          "direccion": 17,
+          "fuerza": 2.34
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-25 09:00:00"
+      }
+    }
+  },{
+    "IATA": "MEX",
+    "clima":{
+      "dt": 1695621600,
+      "main": {
+        "temperatura": 290.31,
+        "presion": 1018,
+        "humedad": 56
+      },
+      "estado": "Clear",
+      "descripcion": "cielo claro",
+      "viento": {
+        "velocidad": 1.87,
+        "direccion": 3,
+        "fuerza": 3.11
+      },
+      "visibilidad": 10000,
+      "precipitacion": 0.06,
+      "lluvia": -1,
+      "nieve": -1,
+      "dt_txt": "2023-09-25 06:00:00"
+    }
+  }
+]

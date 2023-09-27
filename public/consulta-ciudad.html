@@ -178,16 +178,15 @@ async function cargarClima(url){
  */
  async function remplazarDatos(climaData,busqueda){
     let section = document.querySelector('.resultados');
-    //const etiquetaHTML = await require('./EtiquetasHTML.js');
     section.innerHTML = cargarHTML(climaData,busqueda);  
 }
 
-    let fecha = new Date();
+    let fecha = new Date().toISOString();
     let form = document.querySelector('.form');
     form.addEventListener('submit',async function(event){
         event.preventDefault();
         let ciudad = document.querySelector('#ciudad').value;
-        let url = 'http://localhost:8003/consulta-ciudad/?ciudad='+ciudad+'&date='+fecha.getTime();
+        let url = 'http://localhost:8000/consulta-ciudad/?ciudad='+ciudad+'&date='+fecha;
 
         try {
             let climaData = await cargarClima(url);

@@ -46,7 +46,7 @@ describe('Prueba para la creacion de una seccion', () => {
     informacion.push(codigoHTML.pruebaSeccion.informacion[1]['Caracteristicas de Viento']);
     informacion.push(codigoHTML.pruebaSeccion.informacion[2]['Otras Caracteristicas']);
 
-    let esperado_datosGenerales ='<div class="container text-center">\n<div class="col" data-aos="fade-right">\n<div class="row">\n<h3>Datos generales</h3>\n';
+    let esperado_datosGenerales ='<div class="container text-center">\n<div class="col" data-aos="fade-right">\n<div class="row">\n<h3>Datos Generales</h3>\n';
     esperado_datosGenerales += llenaDivSeccion(codigoHTML.pruebaSeccion.informacion[0]['Datos Generales'][0]);
     esperado_datosGenerales += llenaDivSeccion(codigoHTML.pruebaSeccion.informacion[0]['Datos Generales'][1]);
     esperado_datosGenerales += llenaDivSeccion(codigoHTML.pruebaSeccion.informacion[0]['Datos Generales'][2]);
@@ -62,9 +62,9 @@ describe('Prueba para la creacion de una seccion', () => {
     esperado_otrasCaracteristicas += llenaDivSeccion(codigoHTML.pruebaSeccion.informacion[2]['Otras Caracteristicas'][0]);
     esperado_otrasCaracteristicas += llenaDivSeccion(codigoHTML.pruebaSeccion.informacion[2]['Otras Caracteristicas'][1]);
     esperado_otrasCaracteristicas += llenaDivSeccion(codigoHTML.pruebaSeccion.informacion[2]['Otras Caracteristicas'][2]);
-    esperado_otrasCaracteristicas += '</div>\n<div class="row">'+llenaDivSeccion(codigoHTML.pruebaSeccion.informacion[2]['Otras Caracteristicas'][3]);
+    esperado_otrasCaracteristicas += '</div>\n<div class="row">\n'+llenaDivSeccion(codigoHTML.pruebaSeccion.informacion[2]['Otras Caracteristicas'][3]);
     esperado_otrasCaracteristicas += '</div>\n</div>\n</div>\n';
-
+    
     let esperado = [esperado_datosGenerales,esperado_caracteristicasViento,esperado_otrasCaracteristicas];
     
     for (let i = 0; i < encabezado.length; i++) {

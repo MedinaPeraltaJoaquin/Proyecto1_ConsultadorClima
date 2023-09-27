@@ -165,6 +165,7 @@ function cargarOtrosDatos(clima_elemento){
  * @returns un cadena en html que representa los datos del clima
  */
 function cargarHTML(climaData, busqueda){
+    console.log(climaData)
     let html = "";
     html += '<div class="container text-center">';
     html += '<div class="section-title" data-aos="zoom-out" >\n<p>Resultado por '+busqueda+': </p>\n';
@@ -180,6 +181,8 @@ function cargarHTML(climaData, busqueda){
     for (let i = 0; i < climaData.clima.length; i++) {
         const elemento = climaData.clima[i];
         let imagenCiudad = cargarImagen(elemento.clima.estado);
+        console.log("Elemento: ")
+        console.log(JSON.stringify(climaData));
         let nombreCiudad = climaData.busqueda.ciudad[i].nombre;
         html += '<div class="col" data-aos="fade-right">';
         html += encabezadoCiudad('Ciudad '+ encabezado_ciudad[i] + '<br>' +nombreCiudad + '<br>',
