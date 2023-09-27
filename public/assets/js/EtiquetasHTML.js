@@ -175,14 +175,11 @@ function cargarHTML(climaData, busqueda){
     let encabezado_ciudad = climaData.clima.length > 1 ? ["de origen: ","de destino: "] : ["consultada: "];
     let avionAnimacion = climaData.clima.length > 1 ? "" : "assets/img/avionAnimacion.gif";
 
-    html += '<!--Inicio seccion-->'
     html += '<div class="container text-center">\n';
     html += '<div class="row mt-6">\n';
     for (let i = 0; i < climaData.clima.length; i++) {
         const elemento = climaData.clima[i];
         let imagenCiudad = cargarImagen(elemento.clima.estado);
-        console.log("Elemento: ")
-        console.log(JSON.stringify(climaData));
         let nombreCiudad = climaData.busqueda.ciudad[i].nombre;
         html += '<div class="col" data-aos="fade-right">';
         html += encabezadoCiudad('Ciudad '+ encabezado_ciudad[i] + '<br>' +nombreCiudad + '<br>',
@@ -193,7 +190,6 @@ function cargarHTML(climaData, busqueda){
         html += '</div>\n'
         html += '</div>\n'
         html+='</div>\n'
-        html += '<!--Fin seccion-->'   
     }    
     html += '</div>\n';
     html+='</div>\n'
