@@ -160,7 +160,8 @@ costante cliente <- nuevo cliente de mongo
 variable eliminar <- false
 Intentar{
 espera conexion de cliente
-metodo deleteMany de mongo con el filtro
+variable eliminado <- metodo deleteMany de mongo con el filtro
+eliminar <- verificar que eliminado sea true
 } Capturar{error}
 Finalmente{
 espera cierre de conexion del cliente
@@ -176,8 +177,9 @@ espera conecion de cliente
 constante consultado <- busquedadeconsultaBD(cliente,base de datos, coleccion, busqueda)
 Si la longitud de consultado es diferente de 0{
 Para cada elementeo i=0 hasta i<longitud de temp i++
+variable clima <- consultado[i].clima[fechaUnix]
 agrega a consulta (objeto json con IATA <- i-esimo elemento de consultado con el valor del IATA 
-clima <- i-esmo elemento de consultado con el valor clima y su fecha unix
+clima <- variable clima
 }Capturar{error}
 Finalmente{
 espera cierre de conecion de cliente
@@ -228,15 +230,17 @@ agregar elemento.destination a ciudades[1]["ciudades"]
 ciudades[elemento.destination] <- elelmento json con IATA<- elemento.destination
 conexion.insertarciudadticket(base de datos,ciudad,ciudad_destino);
 }
-conexion.insertarVariosBD(base de datos de mongo, coleccion ciudad de mongo, ciudades)
+conexion.insertarVariosBD(base de datos de mongo, coleccion ticket de mongo, ticketArreglo).
+conexion.insertarVariosBD(base de datos de mongo, coleccion ciudad de mongo, ciudades).
 regresa un objeto json con ticketsAlta <- ticketArreglo, ciudadesAlta <- ciudades.
 
--Método actualizaclimabd
+-Método actualizaclimabd, recibe una referencia String con nombre guardarinfo
 constante conexion <- requiere clase conecion
 variable fs <- requiere paquete fs
+variable fecha <- new Date()
 variable recuclim <- conexion.consultaBD(base de datos mongo,clima mongo,{})
 Si longitud de recuclim != 0{
-fs.appendFile("./climaBD.json", JSON.stringify(recuclim), async function (err) {
+fs.appendFile(guardainfo +"./climaBD"+fecha.getTime()+".json", JSON.stringify(recuclim), async function (err) {
             if (err) throw err)
 metodo vacia de conexion con la base de datos de mongo, la coleccion ciudad de mongo, {}
 }
