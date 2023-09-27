@@ -1,140 +1,160 @@
-const axios = require('axios');
+const cron = require('cron');
 const levenshtein = require('fast-levenshtein');
-const { MongoClient } = require('mongodb');
-require('dotenv').config();
+const conexion = require('../modelo_aplicacion/conexion.js');
+const actualizaBD = require('../modelo_aplicacion/actualizabd.js'); 
 
-// Importa los métodos desde conexion.js
-const { consultaBD, insertarclima } = require('../modelo_aplicacion/conexion');
+async function actualizarBaseDeDatos() {
+    try {
+        const csvData = await actualizaBD.agregaInformacionCSV('ruta_del_archivo.csv');
+        const climasActualizados = await actualizaBD.actualizaClimaBasedeDatos();
 
-const uri = process.env.uri;
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+        console.log('Base de datos actualizada con éxito.');
+        console.log('Tickets agregados:', csvData.ticketsAlta);
+        console.log('Ciudades actualizadas:', csvData.ciudadesAlta);
+        console.log('Climas actualizados:', climasActualizados);
+    } catch (error) {
+        console.error('Error al actualizar la base de datos:', error);
+    }
+}
 
+// Configura una tarea cron para ejecutar agregaInformacionCSV cada día a las 2 AM
+cron.schedule('0 2 * * *', async () => {
+    try {
+        const direccionCSV = 'ruta/al/archivo.csv';
+        const resultado = await actualizaBD.agregaInformacionCSV(direccionCSV);
+        console.log('Tarea cron: Actualización de base de datos realizada.');
+    } catch (error) {
+        console.error('Tarea cron: Error al actualizar la base de datos.', error);
+    }
+});
+
+// Configura otra tarea cron para ejecutar actualizaClimaBasedeDatos cada hora
+cron.schedule('0 * * * *', async () => {
+    try {
+        const climasActualizados = await actualizaBD.actualizaClimaBasedeDatos();
+        console.log('Tarea cron: Actualización de clima completada.');
+    } catch (error) {
+        console.error('Tarea cron: Error al actualizar el clima en la base de datos.', error);
+    }
+});
 // Función para obtener clima por ticket
 async function obtenerClimaPorTicket(req, res) {
-    const { ticket, city } = req.body;
+    const ticket = req.query.ticket;
+    const date = req.query.date;
 
     // Verifica si se proporcionó un número de ticket
     if (!ticket) {
         return res.status(400).json({ error: 'Por favor, ingrese el número de ticket.' });
     }
 
-    try {
-        await client.connect();
-        const db = client.db(process.env.base_datos);
-        const ticketsCollection = db.collection(process.env.coleccion_ticket);
-
-        const ticketData = await ticketsCollection.findOne({ ticket: ticket });
-
-        // Verifica si se encontró el ticket en la base de datos
-        if (!ticketData) {
-            return res.status(400).json({ error: 'El ticket no se encontró en la base de datos.' });
-        }
-
-        const apiKey = process.env.api_openweather;
-        const url = `https://api.openweathermap.org/data/2.5/weather?iata=${ticketData.iata}&appid=${apiKey}`;
-
-        const response = await axios.get(url);
-        const data = response.data;
-
-        const horaActual = new Date().getHours();
-        let lapso = '';
-
-        if (horaActual >= 6 && horaActual < 12) {
-            lapso = 'de 6 a 12';
-        } else if (horaActual >= 12 && horaActual < 19) {
-            lapso = 'de 12 a 19';
-        } else {
-            lapso = 'de 19 a 24';
-        }
-
-        data['lapso_de_tiempo'] = lapso;
-
-        // Consulta el clima desde la base de datos usando la función de conexion.js
-        const climaData = await consultaBD(process.env.base_datos, process.env.coleccion_clima, {
-            IATA: ticketData.iata,
-            /* Agrega aquí cualquier otro filtro que necesites */
-        });
-
-        // Envia una respuesta JSON
-        res.status(200).json({ climaData, city });
-
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Ocurrió un error al procesar su solicitud. Por favor, inténtelo de nuevo más tarde.' });
-    } finally {
-        await client.close();
+    // Verifica si se proporcionó una fecha
+    if (!date) {
+        return res.status(400).json({ error: 'Por favor, ingrese la fecha.' });
     }
+        
+    let ticketData = await conexion.consultaBD(process.env.base_datos, process.env.coleccion_ticket, {"ticket" : ticket})
+    const ciudades = await conexion.consultaBD(process.env.base_datos, process.env.coleccion_ciudad, {});
+
+
+    // Verifica si se encontró el ticket en la base de datos
+    if (ticketData.length == 0) {
+        return res.status(400).json({ error: 'El ticket no se encontró en la base de datos.' });
+    }
+
+    let ciudad_origen = ticketData[0].ciudad_origen;
+    let ciudad_destino = ticketData[0].ciudad_destino;
+    let fecha = new Date(date);
+    let horas = fecha.getHours();
+    let consulta = new Date(fecha.setHours(horas - (horas % 3)));
+    consulta.setSeconds(0);
+    consulta.setMinutes(0);
+    consulta.setMilliseconds(0);
+    let fechaUnix = (''+consulta.getTime()).substring(0,10);
+
+    const climas = await conexion.consultaClima(process.env.base_datos, process.env.coleccion_clima, 
+        {$or : [{"IATA" : ciudad_origen}, {"IATA" : ciudad_destino}]},fechaUnix);
+    
+    // Verifica si se encontró el clima en la base de datos
+    if (climas.length == 0) {
+        return res.status(400).json({ error: 'El clima no se encontró en la base de datos.' });
+    }
+
+    let busqueda = {
+        "ciudad" : [
+            {
+                "nombre" : ciudades[0][ciudad_origen].ciudad,
+            },
+            {
+                "nombre" : ciudades[0][ciudad_destino].ciudad,
+            }
+        ]
+    }
+
+    console.log(console.log(JSON.stringify({ "busqueda" : busqueda, "clima" : climas})));
+    return res.status(200).json({ "busqueda" : busqueda, "clima" : climas});
 }
 
 // Función para obtener clima por ciudad
 async function obtenerClimaPorCiudad(req, res) {
-    const { city } = req.body;
-
+    const ciudad = req.query.ciudad;
+    const date = req.query.date;
     // Verifica si se proporcionó el nombre de la ciudad
-    if (!city) {
+    if (!ciudad) {
         return res.status(400).json({ error: 'Por favor, ingrese la ciudad.' });
     }
 
-    try {
-        await client.connect();
-        const db = client.db(process.env.base_datos);
-        const collection = db.collection(process.env.coleccion_ciudad);
+    const ciudades = await conexion.consultaBD(process.env.base_datos, process.env.coleccion_ciudad, {});
+    
+    let mejorCoincidencia = "";
+    let distanciaMinima = Number.MAX_VALUE;
+    let ciudadIATA = "";
 
-        let mejorCoincidencia = null;
-        let distanciaMinima = Number.MAX_VALUE;
+    ciudades[1].ciudades.forEach(elemento => {
+        const distancia = levenshtein.get(ciudad.toLowerCase(), ciudades[0][elemento].ciudad.toLowerCase());
 
-        const ciudades = await collection.find({}).toArray();
-
-        ciudades.forEach((ciudad) => {
-            const distancia = levenshtein.get(city.toLowerCase(), ciudad.origin.toLowerCase());
-
-            if (distancia < distanciaMinima) {
-                distanciaMinima = distancia;
-                mejorCoincidencia = ciudad;
+        if (distancia < distanciaMinima) {
+            distanciaMinima = distancia;
+            if(distancia < 4){
+                mejorCoincidencia = ciudades[0][elemento].ciudad;
+                ciudadIATA = ciudades[0][elemento].IATA;
             }
-        });
-
-        // Verifica si se encontró una ciudad coincidente
-        if (!mejorCoincidencia) {
-            return res.status(400).json({ error: 'No se encontró una ciudad coincidente.' });
         }
+    });
 
-        const apiKey = process.env.api_openweather;
-        const url = `https://api.openweathermap.org/data/2.5/weather?iata=${mejorCoincidencia.iata}&appid=${apiKey}`;
-
-        const response = await axios.get(url);
-        const data = response.data;
-
-        const horaActual = new Date().getHours();
-        let lapso = '';
-
-        if (horaActual >= 6 && horaActual < 12) {
-            lapso = 'de 6 a 12';
-        } else if (horaActual >= 12 && horaActual < 19) {
-            lapso = 'de 12 a 19';
-        } else {
-            lapso = 'de 19 a 24';
-        }
-
-        data['lapso_de_tiempo'] = lapso;
-
-        // Consulta el clima desde la base de datos usando la función de conexion.js
-        const climaData = await consultaBD(process.env.base_datos, process.env.coleccion_clima, {
-            IATA: mejorCoincidencia.iata,
-        });
-
-        // Envia una respuesta JSON
-        res.status(200).json({ climaData, city });
-
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Ocurrió un error al procesar su solicitud. Por favor, inténtelo de nuevo más tarde.' });
-    } finally {
-        await client.close();
+    // Verifica si se encontró una ciudad coincidente
+    if (mejorCoincidencia == "") {
+        return res.status(400).json({ error: 'No se encontró una ciudad que coincida'});
     }
+
+    let fecha = new Date(date);
+    let horas = fecha.getHours();
+    let consulta = new Date(fecha.setHours(horas - (horas % 3)));
+    consulta.setSeconds(0);
+    consulta.setMinutes(0);
+    consulta.setMilliseconds(0);
+    let fechaUnix = (''+consulta.getTime()).substring(0,10);
+    const climas = await conexion.consultaClima(process.env.base_datos, process.env.coleccion_clima, 
+        {"IATA" : ciudadIATA},fechaUnix);
+    
+    // Verifica si se encontró el clima en la base de datos
+    if (climas.length == 0) {
+        return res.status(400).json({ error: 'El clima no se encontró en la base de datos.' });
+    }
+
+    let busqueda = {
+        "ciudad" : [
+            {
+                "nombre" : mejorCoincidencia
+            }
+        ]
+    }
+    console.log(JSON.stringify({ "busqueda" : busqueda, "clima" : climas}))
+    return res.status(200).json({ "busqueda" : busqueda, "clima" : climas});
+
 }
 
 module.exports = {
+    actualizarBaseDeDatos,
     obtenerClimaPorTicket,
     obtenerClimaPorCiudad,
 };
