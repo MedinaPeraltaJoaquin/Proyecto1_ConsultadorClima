@@ -162,180 +162,193 @@ A continuacion se presenta el pseudocodigo de la aplicacion enfocandose en las p
       regresa el valor de seccion;
 
 
-  Pseudocodigo para metodos de modelo.
-Clase conexion:
--Método insertar, recibe cliente de mongo, referencia en string de base de datos referencia a coleccion en string y un JSON llamado nuevo listado.
-constante resultado <- metodo insertOne de mongo
-regresar resultado
+### Pseudocodigo para metodos de modelo.
 
--Método busquedadeconsultaBD recibe cliente de mongo, referencia en string de base de datos referencia a coleccion en string y un JSON llamado busqueda
-constante resultado <- metodo find de mongo con la busqueda
-constante doc[]
-Para cada constate indice de resultado{
-agrega indice a doc
-}
-regresa doc
+#### Clase conexion:
 
+-  Método insertar, recibe cliente de mongo, referencia en string de base de datos referencia a coleccion en string y un JSON llamado nuevo listado.
 
+        constante resultado <- metodo insertOne de mongo
+        regresar resultado
 
--Método insertaclima, recibe referencia en string de base de datos, referencia a coleccion en string, referencia en string a un codigo IATA y un JSON llamado nuevaL(el forecast de openweather).
-constante uri<- uri de la base de datos de mongoDB
-constante cliente <- nuevo cliente de mongo
-variable registro <- json que contiene IATA y un sub json de nombre clima
-para cada elemento i=0; i<longitud de nuevaL; i++{
-variable creador <- un json con la informacion requerida sacada de nueva list(dt, main, temperatura,presion,humedad,estado,descripccion,viento,velocidad,direccion,fuerza,visibilidad,precipitacion,lluvia,nieve,fecha)
-Si nuevaL.list[i].rain !== undefined{
-creador.lluvia<-nuevaL.list[i].rain en  3 horas
-}
-Si nuevaL.list[i].snow !== undefined{
-creador.nieve<-nuevaL.list[i].snow en  3 horas
-}
-registro.clima[nuevaL.list[i].dt]<- creador
-}
-variable insertado <- false
-Intentar{
-esperar conexion de cliente
-insertado <- insertar(cliente,baseDatos,coleccion,registro)
-} Capturar{ error }
-Finalmente{
-espera cerrar la conexion con el cliente
-}
-regresa el insertado.
+- Método busquedadeconsultaBD recibe cliente de mongo, referencia en string de base de datos referencia a coleccion en string y un JSON llamado busqueda
 
--Método consultaBD, recibe  referencia en string de base de datos, referencia a coleccion en string y un JSON llamado busqueda.
-constante uri <- uri de la abse de datos.
-costante cliente <- nuevo cliente de mongo
-variable consulta []
-Intentar{
-espera conexion de cliente
-consulta <- busquedadeconsultaBD(cliente,base de datos, coleccion, busqueda).
-} Capturar{error}
-Finalmente{
-espera cierre de conexion del cliente
-}
-regresa consulta.
+      constante resultado <- metodo find de mongo con la busqueda
+      constante doc[]
+      Para cada constate indice de resultado{
+      agrega indice a doc
+      }
+      regresa doc
 
--Método vacia, recibe  referencia en string de base de datos, una referencia a coleccion en string y un json que sera el filtro.
-constante uri <- uri de la abse de datos.
-costante cliente <- nuevo cliente de mongo
-variable eliminar <- false
-Intentar{
-espera conexion de cliente
-variable eliminado <- metodo deleteMany de mongo con el filtro
-eliminar <- verificar que eliminado sea true
-} Capturar{error}
-Finalmente{
-espera cierre de conexion del cliente
-}
-regresa elminar.
+- Método insertaclima, recibe referencia en string de base de datos, referencia a coleccion en string, referencia en string a un codigo IATA y un JSON llamado nuevaL(el forecast de openweather).
 
--Método consultaClima, recibe  referencia en string de base de datos, referencia a coleccion en string , un JSON llamado busqueda y la fecha unix en string.
-constante uri <- uri de la base de datos de mongo
-constante cliente <- nuevo cliente de mongo
-variable consulta <- []
-Intentar{
-espera conecion de cliente
-constante consultado <- busquedadeconsultaBD(cliente,base de datos, coleccion, busqueda)
-Si la longitud de consultado es diferente de 0{
-Para cada elementeo i=0 hasta i<longitud de temp i++
-variable clima <- consultado[i].clima[fechaUnix]
-agrega a consulta (objeto json con IATA <- i-esimo elemento de consultado con el valor del IATA 
-clima <- variable clima
-}Capturar{error}
-Finalmente{
-espera cierre de conecion de cliente
-}
-regresa consulta.
+      constante uri<- uri de la base de datos de mongoDB
+      constante cliente <- nuevo cliente de mongo
+      variable registro <- json que contiene IATA y un sub json de nombre clima
+      para cada elemento i=0; i<longitud de nuevaL; i++{
+      variable creador <- un json con la informacion requerida sacada de nueva list(dt, main,
+        temperatura,presion,humedad,estado,descripccion,viento,velocidad,direccion,fuerza,visibilidad,precipitacion,lluvia,nieve,fecha)
+      Si nuevaL.list[i].rain !== undefined{
+      creador.lluvia<-nuevaL.list[i].rain en  3 horas
+      }
+      Si nuevaL.list[i].snow !== undefined{
+      creador.nieve<-nuevaL.list[i].snow en  3 horas
+      }
+      registro.clima[nuevaL.list[i].dt]<- creador
+      }
+      variable insertado <- false
+      Intentar{
+      esperar conexion de cliente
+      insertado <- insertar(cliente,baseDatos,coleccion,registro)
+      } Capturar{ error }
+      Finalmente{
+      espera cerrar la conexion con el cliente
+      }
+      regresa el insertado.
 
--Método insetarVariosBD, recibe  referencia en string de base de datos, una referencia a coleccion en string y un json que sera el nuevoListado. 
-constante uri <- uri de la base de datos de mongo
-costante cliente <- nuevo cliente de mongo
-variable insertado <- false
-Intentar{
-espera conexion de cliente
-insertado<- metodo inserMany de mongo
-}Capturar{error
-}Finalmente{
-espera cierre de conexion de cliente
-}
-regresa insertado.
+- Método consultaBD, recibe  referencia en string de base de datos, referencia a coleccion en string y un JSON llamado busqueda.
 
-Clase actualizabd:
+      constante uri <- uri de la abse de datos.
+      costante cliente <- nuevo cliente de mongo
+      variable consulta []
+      Intentar{
+      espera conexion de cliente
+      consulta <- busquedadeconsultaBD(cliente,base de datos, coleccion, busqueda).
+      } Capturar{error}
+      Finalmente{
+      espera cierre de conexion del cliente
+      }
+      regresa consulta.
 
--Método obtenerTicketsCiudades, recibe dos JSON llamados datosCSV y ciudades.
-variable ticketarreglo = []
-Para cada ellemento i=0 hasta i<longitud de datosCSV; i++{
-variable tickets = {}
-constante elemento <- datosCSV[i]
-tickets = elemento json que contiene ticket <- num_ticket del elemento, ciudad_origen <- origien del elemento, ciudad destino <- destino del elemento.
-agregar tickets en ticketArreglo
-Si ciudades[0][elemento.origin]== undefined {
-ciudades[0][elemento.origin] <- elemento json con ciudad teniendo una string vacia, cordenadas latitud, longitud y IATA extraidos del elemento.origin
-agregar elemento.origin a ciudades[1]["ciudades"]
-}
-Si ciudades[0][elemento.destination]== undefined {
-ciudades[0][elemento.destination] <- elemento json con ciudad teniendo una string vacia, cordenadas latitud, longitud y IATA extraidos del elemento.destinaton
-agregar elemento.destination a ciudades[1]["ciudades"]
-}
-}
-regresa un objeto json con ticketsAlta <- ticketArreglo, ciudadesAlta <- ciudades.
+- Método vacia, recibe  referencia en string de base de datos, una referencia a coleccion en string y un json que sera el filtro.
 
--Método agregaInformacionCSV, recibe una  referencia string llamada direccionCSV.
-variable csvToJson <- requiere el paquete 'convert csv to json'
-constante conexion <- requiere clase conexion
-constante datosCSV <- csvToJson.metodos de converttojson para direccionCSV
-variable ciudades <-metodo consultaBD de conexion con la base de datos de mongo, la coleccion ciudad de mongo y un json vacio{}
-metodo de conexion vacia con la base de datos de mongo, la coleccion ciudad de mongo y un json vacio{}
-Si ciudades[0] == undefined{
-ciudades[0]= {}
-}
-Si ciudades[1] == undefined{
-ciudades[1]= {"ciudades":[]}
-}
-variable resultadp <- obtenerTicketsCiudades(datosCSV,ciudades)
-conexion.insertarVariosBD(base de datos de mongo, coleccion ticket de mongo, ticketArreglo).
-conexion.insertarVariosBD(base de datos de mongo, coleccion ciudad de mongo, ciudades).
-regresar resultado.
+      constante uri <- uri de la abse de datos.
+      costante cliente <- nuevo cliente de mongo
+      variable eliminar <- false
+      Intentar{
+      espera conexion de cliente
+      variable eliminado <- metodo deleteMany de mongo con el filtro
+      eliminar <- verificar que eliminado sea true
+      } Capturar{error}
+      Finalmente{
+      espera cierre de conexion del cliente
+      }
+      regresa elminar.
 
--Método actualizaclimabd, recibe una referencia String con nombre guardarinfo
-constante conexion <- requiere clase conecion
-variable fs <- requiere paquete fs
-variable fecha <- new Date()
-variable recuclim <- conexion.consultaBD(base de datos mongo,clima mongo,{})
-Si longitud de recuclim != 0{
-fs.appendFile(guardainfo +"./climaBD"+fecha.getTime()+".json", JSON.stringify(recuclim), async function (err) {
-            if (err) throw err)
-metodo vacia de conexion con la base de datos de mongo, la coleccion ciudad de mongo, {}
-}
-variable climas <- []
-variable ciudades <- conexion.consultaBD con base de datos de mongo, coleccion ciudad de mongo, {}.
-Si longitud de ciudades == 0{
-ciudades <- [{},{"ciudades":[]}]
-}
-Para cada elemento i=0 hasta i< longitud de ciudades[1]["ciudades"] i++{
-constante referencia <-ciudades[1]["ciudades"][i];
-constante ciudad <-ciudades[0][referencia];;
- constante clima <- metodo realizaPeticion con ciudad;
-Si clima != undefined{
-variable verificadoInsetar <- metodo instertar clima de conexion con base de datos de mongo, coleccion clima de mongo,clima,ciudad.IATA
-Si verificadoInsertar{
-agrega clima a climas
-}
-}
-metodo petateate(4)
-}
-regresa climas.
+- Método consultaClima, recibe  referencia en string de base de datos, referencia a coleccion en string , un JSON llamado busqueda y la fecha unix en string.
+      
+      constante uri <- uri de la base de datos de mongo
+      constante cliente <- nuevo cliente de mongo
+      variable consulta <- []
+      Intentar{
+      espera conecion de cliente
+      constante consultado <- busquedadeconsultaBD(cliente,base de datos, coleccion, busqueda)
+      Si la longitud de consultado es diferente de 0{
+      Para cada elementeo i=0 hasta i<longitud de temp i++
+      variable clima <- consultado[i].clima[fechaUnix]
+      agrega a consulta (objeto json con IATA <- i-esimo elemento de consultado con el valor del IATA 
+      clima <- variable clima
+      }Capturar{error}
+      Finalmente{
+      espera cierre de conecion de cliente
+      }
+      regresa consulta.
+
+- Método insetarVariosBD, recibe  referencia en string de base de datos, una referencia a coleccion en string y un json que sera el nuevoListado. 
+
+      constante uri <- uri de la base de datos de mongo
+      costante cliente <- nuevo cliente de mongo
+      variable insertado <- false
+      Intentar{
+      espera conexion de cliente
+      insertado<- metodo inserMany de mongo
+      }Capturar{error
+      }Finalmente{
+      espera cierre de conexion de cliente
+      }
+      regresa insertado.
+
+#### Clase actualizabd:
+
+- Método obtenerTicketsCiudades, recibe dos JSON llamados datosCSV y ciudades.
+
+      variable ticketarreglo = []
+      Para cada ellemento i=0 hasta i<longitud de datosCSV; i++{
+      variable tickets = {}
+      constante elemento <- datosCSV[i]
+      tickets = elemento json que contiene ticket <- num_ticket del elemento, ciudad_origen <- origien del elemento, ciudad destino <- destino del elemento.
+      agregar tickets en ticketArreglo
+      Si ciudades[0][elemento.origin]== undefined {
+      ciudades[0][elemento.origin] <- elemento json con ciudad teniendo una string vacia, cordenadas latitud, longitud y IATA extraidos del elemento.origin
+      agregar elemento.origin a ciudades[1]["ciudades"]
+      }
+      Si ciudades[0][elemento.destination]== undefined {
+      ciudades[0][elemento.destination] <- elemento json con ciudad teniendo una string vacia, cordenadas latitud, longitud y IATA extraidos del elemento.destinaton
+      agregar elemento.destination a ciudades[1]["ciudades"]
+      }
+      }
+      regresa un objeto json con ticketsAlta <- ticketArreglo, ciudadesAlta <- ciudades.
+
+- Método agregaInformacionCSV, recibe una  referencia string llamada direccionCSV.
+
+      variable csvToJson <- requiere el paquete 'convert csv to json'
+      constante conexion <- requiere clase conexion
+      constante datosCSV <- csvToJson.metodos de converttojson para direccionCSV
+      variable ciudades <-metodo consultaBD de conexion con la base de datos de mongo, la coleccion ciudad de mongo y un json vacio{}
+      metodo de conexion vacia con la base de datos de mongo, la coleccion ciudad de mongo y un json vacio{}
+      Si ciudades[0] == undefined{
+      ciudades[0]= {}
+      }
+      Si ciudades[1] == undefined{
+      ciudades[1]= {"ciudades":[]}
+      }
+      variable resultadp <- obtenerTicketsCiudades(datosCSV,ciudades)
+      conexion.insertarVariosBD(base de datos de mongo, coleccion ticket de mongo, ticketArreglo).
+      conexion.insertarVariosBD(base de datos de mongo, coleccion ciudad de mongo, ciudades).
+      regresar resultado.
+
+- Método actualizaclimabd, recibe una referencia String con nombre guardarinfo
+
+      constante conexion <- requiere clase conecion
+      variable fs <- requiere paquete fs
+      variable fecha <- new Date()
+      variable recuclim <- conexion.consultaBD(base de datos mongo,clima mongo,{})
+      Si longitud de recuclim != 0{
+      fs.appendFile(guardainfo +"./climaBD"+fecha.getTime()+".json", JSON.stringify(recuclim), async function (err) {
+                  if (err) throw err)
+      metodo vacia de conexion con la base de datos de mongo, la coleccion ciudad de mongo, {}
+      }
+      variable climas <- []
+      variable ciudades <- conexion.consultaBD con base de datos de mongo, coleccion ciudad de mongo, {}.
+      Si longitud de ciudades == 0{
+      ciudades <- [{},{"ciudades":[]}]
+      }
+      Para cada elemento i=0 hasta i< longitud de ciudades[1]["ciudades"] i++{
+      constante referencia <-ciudades[1]["ciudades"][i];
+      constante ciudad <-ciudades[0][referencia];;
+       constante clima <- metodo realizaPeticion con ciudad;
+      Si clima != undefined{
+      variable verificadoInsetar <- metodo instertar clima de conexion con base de datos de mongo, coleccion clima de mongo,clima,ciudad.IATA
+      Si verificadoInsertar{
+      agrega clima a climas
+      }
+      }
+      metodo petateate(4)
+      }
+      regresa climas.
 
 -Método petateate, recibe un entero que sera la duracion de dormir en segundos el programa.
-regresa una nueva promesa que dado el metodo timeout le dara la duracion del entero*1000 milisegundos para que siempre sean segundos. 
+
+    regresa una nueva promesa que dado el metodo timeout le dara la duracion del entero*1000 milisegundos para que siempre sean segundos. 
 
 -Método realizaPeticion, recibe una referencia String con el nombre de ciudad.
-variable url <- llamada de la api de openwether con la latitud y longitud de la ciudad y la apikey
-variable respuesta <- metodo fetch de url
-Si respuesta.status != 200{
-regresa undefined
-} en otro caso
-regresa  el metodo.json de la respuesta.
+    
+    variable url <- llamada de la api de openwether con la latitud y longitud de la ciudad y la apikey
+    variable respuesta <- metodo fetch de url
+    Si respuesta.status != 200{
+    regresa undefined
+    } en otro caso
+    regresa  el metodo.json de la respuesta.
 
 ### Pesudocodigo para métodos de controlador:
 
