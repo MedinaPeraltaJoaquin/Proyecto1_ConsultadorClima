@@ -5,8 +5,8 @@ const actualizaBD = require('../modelo_aplicacion/actualizabd.js');
 
 async function actualizarBaseDeDatos() {
     try {
-        const csvData = await actualizaBD.agregaInformacionCSV('ruta_del_archivo.csv');
-        const climasActualizados = await actualizaBD.actualizaClimaBasedeDatos();
+        const csvData = await actualizaBD.agregaInformacionCSV(process.env.PATH_CSV);
+        const climasActualizados = await actualizaBD.actualizaClimaBasedeDatos(process.env.PATH_guardar);
  } catch (error) {
         console.error('Error al actualizar la base de datos:', error);
     }
