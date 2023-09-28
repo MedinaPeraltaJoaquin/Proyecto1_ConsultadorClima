@@ -24,10 +24,11 @@ async function insertar(cliente,baseDatos,coleccion,nuevoListado){
  * @param {String} baseDatos 
  * @param {String} coleccion 
  * @param {JSON} busqueda 
- *
+ * @returns un arreglo con todos los elementos que cumplen por el filtro, regresa un arreglo
+ * vacio si no se encontro nada
  */
 async function busquedadeconsultaBD(cliente,baseDatos,coleccion,busqueda){
-    const resultado = cliente.db(baseDatos).collection(coleccion).find(busqueda);
+    const resultado = await cliente.db(baseDatos).collection(coleccion).find(busqueda);
     const doc=[];
     for await (const indice of resultado){
             doc.push(indice);
@@ -103,9 +104,11 @@ async function insertarclima(baseDatos,coleccion,nuevaL,IATA){
  * 
  * @param {String} baseDatos 
  * @param {JSON} busqueda
+ * @returns un JSON con todos los certificados encontrados por medio del filtro
  */
 async function consultaBD(baseDatos,coleccion,busqueda){
-    const uri = proces.env.uri;
+    const uri = process.env.uri;
+    //const uri = "mongodb+srv://pruebaIGEF:IGEF2024@cluster0.mejzlcy.mongodb.net/?retryWrites=true&w=majority";
     const cliente = new MongoClient(uri);
     let consulta = [];
 
@@ -124,7 +127,7 @@ async function consultaBD(baseDatos,coleccion,busqueda){
 }
 
 /**
- * Método que elimina una coleccion de la base de datos.
+ * Método que elimina informacion de una coleccion de la base de datos.
  * @param {String} baseDatos
  * @param {String} coleccion
  * @param {JSON} filtro
@@ -163,10 +166,9 @@ async function consultaClima(baseDatos,coleccion,busqueda,fechaUnix){
         const consultado = await busquedadeconsultaBD(cliente,baseDatos,coleccion,busqueda);
         if(consultado.length != 0){
             for(let i=0; i< consultado.length; i++){
-                let clima = consultado[i].clima[fechaUnix];
                 consulta.push({
                     "IATA": consultado[i].IATA,
-                    "clima": clima
+                    "clima": consultado[i].clima[fechaUnix]
 
                 })
             }
@@ -188,6 +190,7 @@ async function consultaClima(baseDatos,coleccion,busqueda,fechaUnix){
  * @param {String} baseDatos 
  * @param {String} coleccion 
  * @param {JSON} nuevoListado 
+ * @returns un booleano que indica si se inserto o no
  */
 
 async function insertarVariosBD(baseDatos,coleccion,nuevoListado){
@@ -211,4 +214,3 @@ module.exports = {
     consultaClima,insertarclima, consultaBD, vacia, insertarVariosBD
 
 }
-

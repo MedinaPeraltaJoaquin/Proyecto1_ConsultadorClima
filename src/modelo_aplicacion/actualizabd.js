@@ -90,6 +90,7 @@ async function actualizaclimabd(guardainfo){
             await conexion.vacia(process.env.base_datos,process.env.coleccion_clima,{});
         });
     }
+
     let climas = [];
     let ciudades = await conexion.consultaBD(process.env.base_datos,process.env.coleccion_ciudad,{});
     if(ciudades.length == 0){
@@ -108,6 +109,7 @@ async function actualizaclimabd(guardainfo){
         await petateate(4);
     }
     return climas;
+
 }
 
 /**

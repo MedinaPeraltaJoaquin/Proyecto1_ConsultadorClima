@@ -1,0 +1,79 @@
+{
+        "ticketsAlta" : [
+            {
+                "ticket" : "kw9f0kwvZJmsukQy",
+                "ciudad_origen" : "TLC",
+                "ciudad_destino" : "MTY"
+            },
+            {
+                "ticket" : "zYJ0eNPqoypT9KBV",
+                "ciudad_origen" : "MTY",
+                "ciudad_destino" : "TLC"
+            },
+            {
+                "ticket" : "PheImPzc32OUR8pL",
+                "ciudad_origen" : "MEX",
+                "ciudad_destino" : "MTY"
+            },
+            {
+                "ticket" : "OXedr2FpCM7064xJ",
+                "ciudad_origen" : "MTY",
+                "ciudad_destino" : "MEX"
+            },
+            {
+                "ticket" : "dl801YRyK6BEK8mU",
+                "ciudad_origen" : "MEX",
+                "ciudad_destino" : "MTY"
+            },
+            {
+                "ticket" : "JB1dRWESoeauaWVq",
+                "ciudad_origen" : "MEX",
+                "ciudad_destino" : "MTY"
+            },
+            {
+                "ticket" : "bHN36hCimwE4OW4h",
+                "ciudad_origen" : "MEX",
+                "ciudad_destino" : "MTY"
+            },{
+                "ticket" : "XQuBO6I88QDDi7JK",
+                "ciudad_origen" : "MEX",
+                "ciudad_destino" : "MTY"
+            },
+            {
+                "ticket" : "zNmdVByJnH3ahxSK",
+                "ciudad_origen" : "MEX",
+                "ciudad_destino" : "MTY"
+            }
+        ],
+        "ciudadesAlta" : [
+            {
+                "TLC" : {
+                    "ciudad" : "",
+                    "IATA" : "TLC",
+                    "coordenadas" : {
+                        "latitud" : 19.3371,
+                        "longitud" : -99.566
+                    }
+                },
+                "MTY" :{
+                    "ciudad" : "",
+                    "IATA" : "MTY",
+                    "coordenadas" : {
+                        "latitud" : 25.7785,
+                        "longitud" : -100.107
+                    }
+                },
+                "MEX" :{
+                    "ciudad" : "",
+                    "IATA" : "MEX",
+                    "coordenadas" : {
+                        "latitud" : 19.4363,
+                        "longitud" : -99.0721
+                    }
+                }
+            },
+            {
+                "ciudades" : ["TLC", "MTY", "MEX"]
+            }
+        ]
+    }
