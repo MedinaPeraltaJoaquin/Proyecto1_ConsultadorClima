@@ -44,7 +44,7 @@ async function busquedadeconsultaBD(cliente,baseDatos,coleccion,busqueda){
  * @param {String} IATA
  */
 async function insertarclima(baseDatos,coleccion,nuevaL,IATA){
-    const uri = proces.env.uri;
+    const uri = process.env.uri;
     const cliente = new MongoClient(uri);
    
     let registro = {
@@ -132,7 +132,7 @@ async function consultaBD(baseDatos,coleccion,busqueda){
  * @param {JSON} filtro
  */
 async function vacia(baseDatos,coleccion,filtro){
-    const uri = proces.env.uri;
+    const uri = process.env.uri;
     const cliente = new MongoClient(uri);
     let eliminar = false;
     try {
@@ -156,7 +156,7 @@ async function vacia(baseDatos,coleccion,filtro){
  * @returns 
  */
 async function consultaClima(baseDatos,coleccion,busqueda,fechaUnix){
-    const uri = proces.env.uri;
+    const uri = process.env.uri;
     const cliente = new MongoClient(uri);
     let consulta = [];
 
