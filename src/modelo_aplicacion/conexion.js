@@ -1,10 +1,5 @@
-require('dotenv').config();
 const { MongoClient } = require('mongodb');
-process.env.base_datos = "prueba_consultaClima"
-process.env.coleccion_clima = "clima"
-process.envcoleccion_ciudad = "ciudad"
-process.env.coleccion_ticket = "ticket"
-process.env.uri = "mongodb+srv://pruebaIGEF:IGEF2024@cluster0.mejzlcy.mongodb.net/?retryWrites=true&w=majority"
+require('dotenv').config();
 
 /**
  * Método que inserta un elemento a una coleccion por medio de un cliente de mongoDB
@@ -38,9 +33,6 @@ async function busquedadeconsultaBD(cliente,baseDatos,coleccion,busqueda){
     for await (const indice of resultado){
             doc.push(indice);
     }
-    if(doc.length == 0){'mongodb'
-        console.log("No se ha encontrado elementos");
-    }
     return doc;
 }
 
@@ -52,8 +44,7 @@ async function busquedadeconsultaBD(cliente,baseDatos,coleccion,busqueda){
  * @param {String} IATA
  */
 async function insertarclima(baseDatos,coleccion,nuevaL,IATA){
-    const uri = process.env.uri;
-    //const uri = "mongodb+srv://pruebaIGEF:IGEF2024@cluster0.mejzlcy.mongodb.net/?retryWrites=true&w=majority";
+    const uri = proces.env.uri;
     const cliente = new MongoClient(uri);
    
     let registro = {
@@ -90,7 +81,7 @@ async function insertarclima(baseDatos,coleccion,nuevaL,IATA){
         if(nuevaL.list[i].snow !== undefined){
             creador.nieve = nuevaL.list[i].snow['3h'];
         }
-        registro.clima[nuevaL.list[i].dt] = creador;
+        registro.clima[nuevaL.list[i].dt]= creador;
     }
     let insertado = false;
     try {
@@ -108,30 +99,6 @@ async function insertarclima(baseDatos,coleccion,nuevaL,IATA){
 }
 
 /**
- * Método que inserta las ciudades y tickes como clecciones de la base de datos.
- * 
- * @param {String} baseDatos 
- * @param {String} coleccion
- * @param {JSON} ticketciudad
- */
-async function insertarciudadticket(baseDatos,coleccion,ticketciudad){
-    const uri = process.env.uri;
-    //const uri = "mongodb+srv://pruebaIGEF:IGEF2024@cluster0.mejzlcy.mongodb.net/?retryWrites=true&w=majority";
-    const cliente = new MongoClient(uri);
-    let insertado = false;
-        try {
-            await cliente.connect();
-            insertado = await insertar(cliente,baseDatos,coleccion,ticketciudad);
-    
-        } catch (e) {
-            console.error(e);
-        } finally {
-            await cliente.close();
-        }
-        return insertado;
-}
-
-/**
  * 
  * Método que busca un certificado por medio de un filtro en una base de datos de mongoDB
  * 
@@ -141,7 +108,6 @@ async function insertarciudadticket(baseDatos,coleccion,ticketciudad){
  */
 async function consultaBD(baseDatos,coleccion,busqueda){
     const uri = process.env.uri;
-    //const uri = "mongodb+srv://pruebaIGEF:IGEF2024@cluster0.mejzlcy.mongodb.net/?retryWrites=true&w=majority";
     const cliente = new MongoClient(uri);
     let consulta = [];
 
@@ -166,20 +132,18 @@ async function consultaBD(baseDatos,coleccion,busqueda){
  * @param {JSON} filtro
  */
 async function vacia(baseDatos,coleccion,filtro){
-    const uri = process.env.uri;
-    //const uri = "mongodb+srv://pruebaIGEF:IGEF2024@cluster0.mejzlcy.mongodb.net/?retryWrites=true&w=majority";
+    const uri = proces.env.uri;
     const cliente = new MongoClient(uri);
     let eliminar = false;
     try {
         await cliente.connect();
         let eliminado = await cliente.db(baseDatos).collection(coleccion).deleteMany(filtro);
-        elminar = eliminado.acknowledged;
+        elmiminar = eliminado.acknowledged;
     } catch (e) {
         console.error(e);
     } finally {
         await cliente.close();
     }
-
     return eliminar;
 }
 
@@ -188,11 +152,11 @@ async function vacia(baseDatos,coleccion,filtro){
  * @param {String} baseDatos 
  * @param {String} coleccion 
  * @param {JSON} busqueda 
+ * @param {String} fechaUnix
  * @returns 
  */
 async function consultaClima(baseDatos,coleccion,busqueda,fechaUnix){
-    const uri = process.env.uri;
-    //const uri = "mongodb+srv://pruebaIGEF:IGEF2024@cluster0.mejzlcy.mongodb.net/?retryWrites=true&w=majority";
+    const uri = proces.env.uri;
     const cliente = new MongoClient(uri);
     let consulta = [];
 
@@ -246,6 +210,6 @@ async function insertarVariosBD(baseDatos,coleccion,nuevoListado){
 }
 
 module.exports = {
-    consultaClima,insertarclima, insertarciudadticket, consultaBD, vacia, insertarVariosBD
+    consultaClima,insertarclima, consultaBD, vacia, insertarVariosBD
 
 }

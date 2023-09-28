@@ -1,7 +1,3 @@
-/**
- * Clase de pruebas unitarias para la vista
- */
-
 function llenaDivSeccion(llenado) {
     return'<div class="col">\n<div class="icon-box" data-aos="zoom-in-left">\n<h4 class="title">'+llenado+'</h4>\n</div>\n</div>\n';
 }
