@@ -108,7 +108,6 @@ async function insertarclima(baseDatos,coleccion,nuevaL,IATA){
  */
 async function consultaBD(baseDatos,coleccion,busqueda){
     const uri = process.env.uri;
-    //const uri = "mongodb+srv://pruebaIGEF:IGEF2024@cluster0.mejzlcy.mongodb.net/?retryWrites=true&w=majority";
     const cliente = new MongoClient(uri);
     let consulta = [];
 
