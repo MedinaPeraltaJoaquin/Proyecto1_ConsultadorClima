@@ -7,12 +7,7 @@ async function actualizarBaseDeDatos() {
     try {
         const csvData = await actualizaBD.agregaInformacionCSV('ruta_del_archivo.csv');
         const climasActualizados = await actualizaBD.actualizaClimaBasedeDatos();
-
-        console.log('Base de datos actualizada con éxito.');
-        console.log('Tickets agregados:', csvData.ticketsAlta);
-        console.log('Ciudades actualizadas:', csvData.ciudadesAlta);
-        console.log('Climas actualizados:', climasActualizados);
-    } catch (error) {
+ } catch (error) {
         console.error('Error al actualizar la base de datos:', error);
     }
 }
@@ -70,8 +65,7 @@ async function obtenerClimaPorTicket(req, res) {
         ]
     }
 
-    console.log(console.log(JSON.stringify({ "busqueda" : busqueda, "clima" : climas})));
-    return res.status(200).json({ "busqueda" : busqueda, "clima" : climas});
+        return res.status(200).json({ "busqueda" : busqueda, "clima" : climas});
 }
 
 // Función para obtener clima por ciudad
@@ -128,8 +122,7 @@ async function obtenerClimaPorCiudad(req, res) {
             }
         ]
     }
-    console.log(JSON.stringify({ "busqueda" : busqueda, "clima" : climas}))
-    return res.status(200).json({ "busqueda" : busqueda, "clima" : climas});
+        return res.status(200).json({ "busqueda" : busqueda, "clima" : climas});
 
 }
 
