@@ -85,7 +85,7 @@ async function actualizaclimabd(guardainfo){
 
     let recuclim = await conexion.consultaBD(process.env.base_datos,process.env.coleccion_clima,{});
     if(recuclim.length != 0){
-        fs.appendFile(guardainfo +"./climaBD"+fecha.getTime()+".json", JSON.stringify(recuclim), async function (err) {
+        fs.appendFile(guardainfo +"/climaBD"+fecha.getTime()+".json", JSON.stringify(recuclim), async function (err) {
             if (err) throw err;
             await conexion.vacia(process.env.base_datos,process.env.coleccion_clima,{});
         });
@@ -133,7 +133,6 @@ async function realizaPeticion(ciudad){
 
 module.exports = {
     agregaInformacionCSV,
-    actualizaClimaBasedeDatos,
+    actualizaclimabd,
     obtenerTicketsCiudades
 }
-
