@@ -1,4 +1,4 @@
-const cron = require('cron');
+const cron = require('node-cron');
 const levenshtein = require('fast-levenshtein');
 const conexion = require('../modelo_aplicacion/conexion.js');
 const actualizaBD = require('../modelo_aplicacion/actualizabd.js'); 
@@ -17,26 +17,6 @@ async function actualizarBaseDeDatos() {
     }
 }
 
-// Configura una tarea cron para ejecutar agregaInformacionCSV cada día a las 2 AM
-cron.schedule('0 2 * * *', async () => {
-    try {
-        const direccionCSV = 'ruta/al/archivo.csv';
-        const resultado = await actualizaBD.agregaInformacionCSV(direccionCSV);
-        console.log('Tarea cron: Actualización de base de datos realizada.');
-    } catch (error) {
-        console.error('Tarea cron: Error al actualizar la base de datos.', error);
-    }
-});
-
-// Configura otra tarea cron para ejecutar actualizaClimaBasedeDatos cada hora
-cron.schedule('0 * * * *', async () => {
-    try {
-        const climasActualizados = await actualizaBD.actualizaClimaBasedeDatos();
-        console.log('Tarea cron: Actualización de clima completada.');
-    } catch (error) {
-        console.error('Tarea cron: Error al actualizar el clima en la base de datos.', error);
-    }
-});
 // Función para obtener clima por ticket
 async function obtenerClimaPorTicket(req, res) {
     const ticket = req.query.ticket;
