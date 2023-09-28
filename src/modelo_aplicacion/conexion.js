@@ -27,13 +27,10 @@ async function insertar(cliente,baseDatos,coleccion,nuevoListado){
  *
  */
 async function busquedadeconsultaBD(cliente,baseDatos,coleccion,busqueda){
-    const resultado = await cliente.db(baseDatos).collection(coleccion).find(busqueda);
+    const resultado = cliente.db(baseDatos).collection(coleccion).find(busqueda);
     const doc=[];
     for await (const indice of resultado){
             doc.push(indice);
-    }
-    if(doc.length == 0){'mongodb'
-        throw new Error("No se ha encontrado elementos");
     }
     return doc;
 }
@@ -98,29 +95,6 @@ async function insertarclima(baseDatos,coleccion,nuevaL,IATA){
     }
     return insertado;
 
-}
-
-/**
- * Método que inserta las ciudades y tickets como clecciones de la base de datos.
- * 
- * @param {String} baseDatos 
- * @param {String} coleccion
- * @param {JSON} ticketciudad
- */
-async function insertarciudadticket(baseDatos,coleccion,ticketciudad){
-    const uri = proces.env.uri;
-    const cliente = new MongoClient(uri);
-    let insertado = false;
-        try {
-            await cliente.connect();
-            insertado = await insertar(cliente,baseDatos,coleccion,ticketciudad);
-    
-        } catch (e) {
-            console.error(e);
-        } finally {
-            await cliente.close();
-        }
-        return insertado;
 }
 
 /**
@@ -234,7 +208,7 @@ async function insertarVariosBD(baseDatos,coleccion,nuevoListado){
 }
 
 module.exports = {
-    consultaClima,insertarclima, insertarciudadticket, consultaBD, vacia, insertarVariosBD
+    consultaClima,insertarclima, consultaBD, vacia, insertarVariosBD
 
 }
 

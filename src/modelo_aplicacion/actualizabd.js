@@ -2,26 +2,14 @@ require('dotenv').config();
 
 /**
  * Método que añade los datos de ticket y ciudad en la base datos desde un csv.
- * @param {String} direccionCSV en donde se encuentra la informacion de los tickets.
+ * @param {JSON} datosCSV un documento json en donde se encuentra la informacion de ciudades y tickets.
+ * @param {JSON} ciudades un documento json con la informacion de ciudades.
  */
-async function agregaInformacionCSV(direccionCSV){
-    let csvToJson = requiere('convert-csv-to-json');
-    const conexion = require('./conexion');
-    const json = csvToJson.formatValueByType().fieldDelimiter(',').getJsonFromCsv(direccionCSV);
-    let ciudades = await conexion.consultaBD(process.env.base_datos,process.env.coleccion_ciudad,{});
-    await conexion.vacia(process.env.base_datos,process.env.coleccion_ciudad,{});
-    if(ciudades[0] == undefined){
-        ciudades[0] = {};
-    }
-
-    if(ciudades[1] == undefined){
-        ciudades[1] = {"ciudades":[]};
-    }
+async function obtenerTicketsCiudades(datosCSV,ciudades){
     let  ticketArreglo = [];
-    let tickets = {};
-
-    for(let i=0; i<json.length; i++){
-        const elemento = json[i];
+    for(let i=0; i<datosCSV.length; i++){
+        let tickets ={};
+        const elemento = datosCSV[i];
         tickets ={
             "ticket" : elemento.num_ticket,
             "ciudad_origen" : elemento.origin,
@@ -51,15 +39,40 @@ async function agregaInformacionCSV(direccionCSV){
         ciudades[1]["ciudades"].push(elemento.destination);
         }
     }
-    await conexion.insertarVariosBD(process.env.base_datos,process.env.coleccion_ticket,ticketArreglo);
-    await conexion.insertarVariosBD(process.env.base_datos,process.env.coleccion_ciudad,ciudades);
     return {
         "ticketsAlta": ticketArreglo,
         "ciudadesAlta": ciudades
     };
 }
 
+/**
+ * Método que añade los datos de ticket y ciudad en la base datos desde un csv.
+ * 
+ * @param {String} direccionCSV un document JSON en donde se encuentra la informacion de los tickets.
+ */
+async function agregaInformacionCSV(direccionCSV){
+    let csvToJson = require('convert-csv-to-json');
+    const conexion = require('./conexion.js');
 
+
+    const datosCSV = csvToJson.formatValueByType().fieldDelimiter(',').getJsonFromCsv(direccionCSV);
+    let ciudades = await conexion.consultaBD(process.env.base_datos,process.env.coleccion_ciudad,{});
+    await conexion.vacia(process.env.base_datos,process.env.coleccion_ciudad,{});
+    if(ciudades[0] == undefined){
+        ciudades[0] = {};
+    }
+
+    if(ciudades[1] == undefined){
+        ciudades[1] = {"ciudades":[]};
+    }
+    
+    let resultado = obtenerTicketsCiudades(datosCSV,ciudades);
+
+    await conexion.insertarVariosBD(process.env.base_datos,process.env.coleccion_ticket,resultado.ticketsAlta);
+    await conexion.insertarVariosBD(process.env.base_datos,process.env.coleccion_ciudad,resultado.ciudadesAlta);
+    
+    return resultado;
+}
 
 /**
  * Método que actuliza los climas de la base de datos.
@@ -70,7 +83,7 @@ async function actualizaclimabd(guardainfo){
     var fs = require('fs');
     var fecha = new Date();
 
-    let recuclim = conexion.consultaBD(process.env.base_datos,process.env.coleccion_clima,{});
+    let recuclim = await conexion.consultaBD(process.env.base_datos,process.env.coleccion_clima,{});
     if(recuclim.length != 0){
         fs.appendFile(guardainfo +"./climaBD"+fecha.getTime()+".json", JSON.stringify(recuclim), async function (err) {
             if (err) throw err;
@@ -108,7 +121,7 @@ async function petateate(duracion){
 
 /**
  * Método auxiliar que realiza la peticion a la api de openweather.
- * @param {String} ciudad.
+ * @param {JSON} ciudad a buscar en openweather.
  */
 async function realizaPeticion(ciudad){
     let url = "https://api.openweathermap.org/data/2.5/forecast?lat="+ciudad.coordenadas.latitud+"&lon="+ciudad.coordenadas.longitud+"&lang=es&appid="+process.env.api_openweather;
@@ -118,6 +131,7 @@ async function realizaPeticion(ciudad){
 
 module.exports = {
     agregaInformacionCSV,
-    actualizaClimaBasedeDatos
+    actualizaClimaBasedeDatos,
+    obtenerTicketsCiudades
 }
 
