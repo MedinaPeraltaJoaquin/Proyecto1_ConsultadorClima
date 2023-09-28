@@ -1,4 +1,4 @@
-
+/*
  * 
  * Clase para las pruebas unitarias del modelo, en especifico
  * en la conexion a la base de datos.
