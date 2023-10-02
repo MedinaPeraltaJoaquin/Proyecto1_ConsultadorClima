@@ -6,8 +6,8 @@
     "test": "jasmine",
     "start": "node app.js"
   },
-  "author": "",
-  "license": "",
+  "author": "Comas Castañeda Mauricio Santiago, Eslava Mendoza Fernando, Medina Peralta Joaquin",
+  "license": "MIT",
   "dependencies": {
     "axios": "^0.21.1",
     "convert-csv-to-json": "^2.0.0",
