@@ -5,15 +5,30 @@ const actualizaBD = require('../modelo_aplicacion/actualizabd.js');
 
 async function actualizarBaseDeDatos() {
     try {
-        const csvData = await actualizaBD.agregaInformacionCSV(process.env.PATH_CSV);
-        const climasActualizados = await actualizaBD.actualizaClimaBasedeDatos(process.env.PATH_guardar);
- } catch (error) {
+        //const csvData = await actualizaBD.agregaInformacionCSV(process.env.PATH_CSV);
+        const climasActualizados = await actualizaBD.actualizaclimabd(process.env.PATH_guardar);
+        for(let i=0; i < climasActualizados.length; i++){
+            const clima = climasActualizados[i];
+            if(clima.error != undefined){
+                console.log(clima.error);
+            }
+        }
+    } catch (error) {
+        console.error('Error al actualizar la base de datos:', error);
+    }
+}
+
+async function actualizaTickets() {
+    try {
+        const direccionCSV = process.env.PATH_CSV;
+        const ticketsActualizados = await actualizaBD.agregaInformacionCSV(direccionCSV);
+    } catch (error) {
         console.error('Error al actualizar la base de datos:', error);
     }
 }
 
 // Función para obtener clima por ticket
-async function obtenerClimaPorTicket(req, res) {
+async function obtenerClimaPorTicket(req, res,base_datos) {
     const ticket = req.query.ticket;
     const date = req.query.date;
 
@@ -27,8 +42,8 @@ async function obtenerClimaPorTicket(req, res) {
         return res.status(400).json({ error: 'Por favor, ingrese la fecha.' });
     }
         
-    let ticketData = await conexion.consultaBD(process.env.base_datos, process.env.coleccion_ticket, {"ticket" : ticket})
-    const ciudades = await conexion.consultaBD(process.env.base_datos, process.env.coleccion_ciudad, {});
+    let ticketData = await conexion.consultaBD(base_datos, process.env.coleccion_ticket, {"ticket" : ticket})
+    const ciudades = await conexion.consultaBD(base_datos, process.env.coleccion_ciudad, {});
 
 
     // Verifica si se encontró el ticket en la base de datos
@@ -46,7 +61,7 @@ async function obtenerClimaPorTicket(req, res) {
     consulta.setMilliseconds(0);
     let fechaUnix = (''+consulta.getTime()).substring(0,10);
 
-    const climas = await conexion.consultaClima(process.env.base_datos, process.env.coleccion_clima, 
+    const climas = await conexion.consultaClima(base_datos, process.env.coleccion_clima, 
         {$or : [{"IATA" : ciudad_origen}, {"IATA" : ciudad_destino}]},fechaUnix);
     
     // Verifica si se encontró el clima en la base de datos
@@ -69,7 +84,7 @@ async function obtenerClimaPorTicket(req, res) {
 }
 
 // Función para obtener clima por ciudad
-async function obtenerClimaPorCiudad(req, res) {
+async function obtenerClimaPorCiudad(req, res,base_datos) {
     const ciudad = req.query.ciudad;
     const date = req.query.date;
     // Verifica si se proporcionó el nombre de la ciudad
@@ -77,7 +92,7 @@ async function obtenerClimaPorCiudad(req, res) {
         return res.status(400).json({ error: 'Por favor, ingrese la ciudad.' });
     }
 
-    const ciudades = await conexion.consultaBD(process.env.base_datos, process.env.coleccion_ciudad, {});
+    const ciudades = await conexion.consultaBD(base_datos, process.env.coleccion_ciudad, {});
     
     let mejorCoincidencia = "";
     let distanciaMinima = Number.MAX_VALUE;
@@ -107,7 +122,7 @@ async function obtenerClimaPorCiudad(req, res) {
     consulta.setMinutes(0);
     consulta.setMilliseconds(0);
     let fechaUnix = (''+consulta.getTime()).substring(0,10);
-    const climas = await conexion.consultaClima(process.env.base_datos, process.env.coleccion_clima, 
+    const climas = await conexion.consultaClima(base_datos, process.env.coleccion_clima, 
         {"IATA" : ciudadIATA},fechaUnix);
     
     // Verifica si se encontró el clima en la base de datos
@@ -130,4 +145,5 @@ module.exports = {
     actualizarBaseDeDatos,
     obtenerClimaPorTicket,
     obtenerClimaPorCiudad,
+    actualizaTickets
 };

@@ -1,0 +1,1614 @@
+[
+    {
+        
+        "IATA": "JFK",
+        "clima": {
+          "1695600000": {
+            "dt": 1695600000,
+            "main": {
+              "temperatura": 290.93,
+              "presion": 1014,
+              "humedad": 95
+            },
+            "estado": "Rain",
+            "descripcion": "lluvia ligera",
+            "viento": {
+              "velocidad": 9.89,
+              "direccion": 68,
+              "fuerza": 14.98
+            },
+            "visibilidad": 10000,
+            "precipitacion": 1,
+            "lluvia": 2.32,
+            "nieve": -1,
+            "dt_txt": "2023-09-25 00:00:00"
+          },
+          "1695610800": {
+            "dt": 1695610800,
+            "main": {
+              "temperatura": 290.97,
+              "presion": 1014,
+              "humedad": 95
+            },
+            "estado": "Rain",
+            "descripcion": "lluvia moderada",
+            "viento": {
+              "velocidad": 8.92,
+              "direccion": 76,
+              "fuerza": 14.26
+            },
+            "visibilidad": 5458,
+            "precipitacion": 0.97,
+            "lluvia": 4.11,
+            "nieve": -1,
+            "dt_txt": "2023-09-25 03:00:00"
+          },
+          "1695621600": {
+            "dt": 1695621600,
+            "main": {
+              "temperatura": 291.13,
+              "presion": 1014,
+              "humedad": 95
+            },
+            "estado": "Rain",
+            "descripcion": "lluvia moderada",
+            "viento": {
+              "velocidad": 6.86,
+              "direccion": 72,
+              "fuerza": 10.77
+            },
+            "visibilidad": 6534,
+            "precipitacion": 0.93,
+            "lluvia": 11.89,
+            "nieve": -1,
+            "dt_txt": "2023-09-25 06:00:00"
+          },
+          "1695632400": {
+            "dt": 1695632400,
+            "main": {
+              "temperatura": 291.09,
+              "presion": 1014,
+              "humedad": 93
+            },
+            "estado": "Rain",
+            "descripcion": "lluvia moderada",
+            "viento": {
+              "velocidad": 5.31,
+              "direccion": 72,
+              "fuerza": 9.51
+            },
+            "visibilidad": 10000,
+            "precipitacion": 0.98,
+            "lluvia": 3.45,
+            "nieve": -1,
+            "dt_txt": "2023-09-25 09:00:00"
+          },
+          "1695643200": {
+            "dt": 1695643200,
+            "main": {
+              "temperatura": 290.55,
+              "presion": 1016,
+              "humedad": 92
+            },
+            "estado": "Rain",
+            "descripcion": "lluvia moderada",
+            "viento": {
+              "velocidad": 8.05,
+              "direccion": 53,
+              "fuerza": 11.95
+            },
+            "visibilidad": 10000,
+            "precipitacion": 0.98,
+            "lluvia": 4.31,
+            "nieve": -1,
+            "dt_txt": "2023-09-25 12:00:00"
+          },
+          "1695654000": {
+            "dt": 1695654000,
+            "main": {
+              "temperatura": 289.48,
+              "presion": 1018,
+              "humedad": 90
+            },
+            "estado": "Rain",
+            "descripcion": "lluvia ligera",
+            "viento": {
+              "velocidad": 10.13,
+              "direccion": 53,
+              "fuerza": 15.39
+            },
+            "visibilidad": 10000,
+            "precipitacion": 1,
+            "lluvia": 3,
+            "nieve": -1,
+            "dt_txt": "2023-09-25 15:00:00"
+          },
+          "1695664800": {
+            "dt": 1695664800,
+            "main": {
+              "temperatura": 288.62,
+              "presion": 1019,
+              "humedad": 88
+            },
+            "estado": "Rain",
+            "descripcion": "lluvia moderada",
+            "viento": {
+              "velocidad": 10.53,
+              "direccion": 56,
+              "fuerza": 16.02
+            },
+            "visibilidad": 10000,
+            "precipitacion": 1,
+            "lluvia": 3.42,
+            "nieve": -1,
+            "dt_txt": "2023-09-25 18:00:00"
+          },
+          "1695675600": {
+            "dt": 1695675600,
+            "main": {
+              "temperatura": 289.36,
+              "presion": 1020,
+              "humedad": 87
+            },
+            "estado": "Rain",
+            "descripcion": "lluvia ligera",
+            "viento": {
+              "velocidad": 9.86,
+              "direccion": 55,
+              "fuerza": 14.9
+            },
+            "visibilidad": 10000,
+            "precipitacion": 0.97,
+            "lluvia": 2.59,
+            "nieve": -1,
+            "dt_txt": "2023-09-25 21:00:00"
+          },
+          "1695686400": {
+            "dt": 1695686400,
+            "main": {
+              "temperatura": 288.82,
+              "presion": 1022,
+              "humedad": 85
+            },
+            "estado": "Rain",
+            "descripcion": "lluvia ligera",
+            "viento": {
+              "velocidad": 9.43,
+              "direccion": 50,
+              "fuerza": 13.45
+            },
+            "visibilidad": 10000,
+            "precipitacion": 0.9,
+            "lluvia": 1.41,
+            "nieve": -1,
+            "dt_txt": "2023-09-26 00:00:00"
+          },
+          "1695697200": {
+            "dt": 1695697200,
+            "main": {
+              "temperatura": 288.7,
+              "presion": 1024,
+              "humedad": 85
+            },
+            "estado": "Rain",
+            "descripcion": "lluvia ligera",
+            "viento": {
+              "velocidad": 9.25,
+              "direccion": 53,
+              "fuerza": 13.18
+            },
+            "visibilidad": 10000,
+            "precipitacion": 0.77,
+            "lluvia": 0.88,
+            "nieve": -1,
+            "dt_txt": "2023-09-26 03:00:00"
+          },
+          "1695708000": {
+            "dt": 1695708000,
+            "main": {
+              "temperatura": 288.94,
+              "presion": 1024,
+              "humedad": 83
+            },
+            "estado": "Rain",
+            "descripcion": "lluvia ligera",
+            "viento": {
+              "velocidad": 9.14,
+              "direccion": 57,
+              "fuerza": 13.41
+            },
+            "visibilidad": 10000,
+            "precipitacion": 0.71,
+            "lluvia": 0.45,
+            "nieve": -1,
+            "dt_txt": "2023-09-26 06:00:00"
+          },
+          "1695718800": {
+            "dt": 1695718800,
+            "main": {
+              "temperatura": 288.51,
+              "presion": 1024,
+              "humedad": 82
+            },
+            "estado": "Rain",
+            "descripcion": "lluvia ligera",
+            "viento": {
+              "velocidad": 8.99,
+              "direccion": 46,
+              "fuerza": 12.77
+            },
+            "visibilidad": 10000,
+            "precipitacion": 0.67,
+            "lluvia": 0.53,
+            "nieve": -1,
+            "dt_txt": "2023-09-26 09:00:00"
+          },
+          "1695729600": {
+            "dt": 1695729600,
+            "main": {
+              "temperatura": 288.1,
+              "presion": 1026,
+              "humedad": 82
+            },
+            "estado": "Rain",
+            "descripcion": "lluvia ligera",
+            "viento": {
+              "velocidad": 8.72,
+              "direccion": 42,
+              "fuerza": 12.8
+            },
+            "visibilidad": 10000,
+            "precipitacion": 0.55,
+            "lluvia": 0.35,
+            "nieve": -1,
+            "dt_txt": "2023-09-26 12:00:00"
+          },
+          "1695740400": {
+            "dt": 1695740400,
+            "main": {
+              "temperatura": 289.01,
+              "presion": 1027,
+              "humedad": 74
+            },
+            "estado": "Rain",
+            "descripcion": "lluvia ligera",
+            "viento": {
+              "velocidad": 9.19,
+              "direccion": 49,
+              "fuerza": 12.07
+            },
+            "visibilidad": 10000,
+            "precipitacion": 0.52,
+            "lluvia": 0.44,
+            "nieve": -1,
+            "dt_txt": "2023-09-26 15:00:00"
+          },
+          "1695751200": {
+            "dt": 1695751200,
+            "main": {
+              "temperatura": 290.27,
+              "presion": 1027,
+              "humedad": 58
+            },
+            "estado": "Clouds",
+            "descripcion": "nubes",
+            "viento": {
+              "velocidad": 8.93,
+              "direccion": 60,
+              "fuerza": 10.19
+            },
+            "visibilidad": 10000,
+            "precipitacion": 0.48,
+            "lluvia": -1,
+            "nieve": -1,
+            "dt_txt": "2023-09-26 18:00:00"
+          },
+          "1695762000": {
+            "dt": 1695762000,
+            "main": {
+              "temperatura": 290.23,
+              "presion": 1026,
+              "humedad": 57
+            },
+            "estado": "Clouds",
+            "descripcion": "nubes",
+            "viento": {
+              "velocidad": 7.48,
+              "direccion": 62,
+              "fuerza": 9.1
+            },
+            "visibilidad": 10000,
+            "precipitacion": 0.13,
+            "lluvia": -1,
+            "nieve": -1,
+            "dt_txt": "2023-09-26 21:00:00"
+          },
+          "1695772800": {
+            "dt": 1695772800,
+            "main": {
+              "temperatura": 289.62,
+              "presion": 1027,
+              "humedad": 59
+            },
+            "estado": "Clouds",
+            "descripcion": "muy nuboso",
+            "viento": {
+              "velocidad": 6.54,
+              "direccion": 63,
+              "fuerza": 8.83
+            },
+            "visibilidad": 10000,
+            "precipitacion": 0.07,
+            "lluvia": -1,
+            "nieve": -1,
+            "dt_txt": "2023-09-27 00:00:00"
+          },
+          "1695783600": {
+            "dt": 1695783600,
+            "main": {
+              "temperatura": 288.34,
+              "presion": 1027,
+              "humedad": 65
+            },
+            "estado": "Clear",
+            "descripcion": "cielo claro",
+            "viento": {
+              "velocidad": 6.07,
+              "direccion": 54,
+              "fuerza": 7.54
+            },
+            "visibilidad": 10000,
+            "precipitacion": 0,
+            "lluvia": -1,
+            "nieve": -1,
+            "dt_txt": "2023-09-27 03:00:00"
+          },
+          "1695794400": {
+            "dt": 1695794400,
+            "main": {
+              "temperatura": 287.3,
+              "presion": 1027,
+              "humedad": 70
+            },
+            "estado": "Clear",
+            "descripcion": "cielo claro",
+            "viento": {
+              "velocidad": 5.75,
+              "direccion": 39,
+              "fuerza": 7.16
+            },
+            "visibilidad": 10000,
+            "precipitacion": 0,
+            "lluvia": -1,
+            "nieve": -1,
+            "dt_txt": "2023-09-27 06:00:00"
+          },
+          "1695805200": {
+            "dt": 1695805200,
+            "main": {
+              "temperatura": 286.47,
+              "presion": 1026,
+              "humedad": 72
+            },
+            "estado": "Clouds",
+            "descripcion": "algo de nubes",
+            "viento": {
+              "velocidad": 5.78,
+              "direccion": 33,
+              "fuerza": 7.49
+            },
+            "visibilidad": 10000,
+            "precipitacion": 0,
+            "lluvia": -1,
+            "nieve": -1,
+            "dt_txt": "2023-09-27 09:00:00"
+          },
+          "1695816000": {
+            "dt": 1695816000,
+            "main": {
+              "temperatura": 285.89,
+              "presion": 1027,
+              "humedad": 67
+            },
+            "estado": "Clouds",
+            "descripcion": "nubes dispersas",
+            "viento": {
+              "velocidad": 6.15,
+              "direccion": 36,
+              "fuerza": 8.1
+            },
+            "visibilidad": 10000,
+            "precipitacion": 0,
+            "lluvia": -1,
+            "nieve": -1,
+            "dt_txt": "2023-09-27 12:00:00"
+          },
+          "1695826800": {
+            "dt": 1695826800,
+            "main": {
+              "temperatura": 288.88,
+              "presion": 1027,
+              "humedad": 53
+            },
+            "estado": "Clear",
+            "descripcion": "cielo claro",
+            "viento": {
+              "velocidad": 5.93,
+              "direccion": 56,
+              "fuerza": 7.36
+            },
+            "visibilidad": 10000,
+            "precipitacion": 0,
+            "lluvia": -1,
+            "nieve": -1,
+            "dt_txt": "2023-09-27 15:00:00"
+          },
+          "1695837600": {
+            "dt": 1695837600,
+            "main": {
+              "temperatura": 291.34,
+              "presion": 1026,
+              "humedad": 45
+            },
+            "estado": "Clear",
+            "descripcion": "cielo claro",
+            "viento": {
+              "velocidad": 5.51,
+              "direccion": 69,
+              "fuerza": 6.84
+            },
+            "visibilidad": 10000,
+            "precipitacion": 0,
+            "lluvia": -1,
+            "nieve": -1,
+            "dt_txt": "2023-09-27 18:00:00"
+          },
+          "1695848400": {
+            "dt": 1695848400,
+            "main": {
+              "temperatura": 292.15,
+              "presion": 1025,
+              "humedad": 44
+            },
+            "estado": "Clear",
+            "descripcion": "cielo claro",
+            "viento": {
+              "velocidad": 5.89,
+              "direccion": 78,
+              "fuerza": 7.27
+            },
+            "visibilidad": 10000,
+            "precipitacion": 0,
+            "lluvia": -1,
+            "nieve": -1,
+            "dt_txt": "2023-09-27 21:00:00"
+          },
+          "1695859200": {
+            "dt": 1695859200,
+            "main": {
+              "temperatura": 290.94,
+              "presion": 1026,
+              "humedad": 54
+            },
+            "estado": "Clear",
+            "descripcion": "cielo claro",
+            "viento": {
+              "velocidad": 5.92,
+              "direccion": 79,
+              "fuerza": 7.69
+            },
+            "visibilidad": 10000,
+            "precipitacion": 0,
+            "lluvia": -1,
+            "nieve": -1,
+            "dt_txt": "2023-09-28 00:00:00"
+          },
+          "1695870000": {
+            "dt": 1695870000,
+            "main": {
+              "temperatura": 289.97,
+              "presion": 1026,
+              "humedad": 59
+            },
+            "estado": "Clouds",
+            "descripcion": "muy nuboso",
+            "viento": {
+              "velocidad": 5.11,
+              "direccion": 76,
+              "fuerza": 7.59
+            },
+            "visibilidad": 10000,
+            "precipitacion": 0,
+            "lluvia": -1,
+            "nieve": -1,
+            "dt_txt": "2023-09-28 03:00:00"
+          },
+          "1695880800": {
+            "dt": 1695880800,
+            "main": {
+              "temperatura": 289.16,
+              "presion": 1026,
+              "humedad": 64
+            },
+            "estado": "Clouds",
+            "descripcion": "nubes",
+            "viento": {
+              "velocidad": 5.28,
+              "direccion": 63,
+              "fuerza": 7.06
+            },
+            "visibilidad": 10000,
+            "precipitacion": 0,
+            "lluvia": -1,
+            "nieve": -1,
+            "dt_txt": "2023-09-28 06:00:00"
+          },
+          "1695891600": {
+            "dt": 1695891600,
+            "main": {
+              "temperatura": 288.18,
+              "presion": 1026,
+              "humedad": 73
+            },
+            "estado": "Clouds",
+            "descripcion": "nubes",
+            "viento": {
+              "velocidad": 5.08,
+              "direccion": 48,
+              "fuerza": 6.93
+            },
+            "visibilidad": 10000,
+            "precipitacion": 0,
+            "lluvia": -1,
+            "nieve": -1,
+            "dt_txt": "2023-09-28 09:00:00"
+          },
+          "1695902400": {
+            "dt": 1695902400,
+            "main": {
+              "temperatura": 287.65,
+              "presion": 1026,
+              "humedad": 76
+            },
+            "estado": "Clouds",
+            "descripcion": "muy nuboso",
+            "viento": {
+              "velocidad": 5.95,
+              "direccion": 47,
+              "fuerza": 7.79
+            },
+            "visibilidad": 10000,
+            "precipitacion": 0,
+            "lluvia": -1,
+            "nieve": -1,
+            "dt_txt": "2023-09-28 12:00:00"
+          },
+          "1695913200": {
+            "dt": 1695913200,
+            "main": {
+              "temperatura": 290.16,
+              "presion": 1027,
+              "humedad": 62
+            },
+            "estado": "Clouds",
+            "descripcion": "algo de nubes",
+            "viento": {
+              "velocidad": 5.29,
+              "direccion": 58,
+              "fuerza": 6.32
+            },
+            "visibilidad": 10000,
+            "precipitacion": 0,
+            "lluvia": -1,
+            "nieve": -1,
+            "dt_txt": "2023-09-28 15:00:00"
+          },
+          "1695924000": {
+            "dt": 1695924000,
+            "main": {
+              "temperatura": 292.36,
+              "presion": 1025,
+              "humedad": 54
+            },
+            "estado": "Clouds",
+            "descripcion": "algo de nubes",
+            "viento": {
+              "velocidad": 5.44,
+              "direccion": 75,
+              "fuerza": 6.54
+            },
+            "visibilidad": 10000,
+            "precipitacion": 0,
+            "lluvia": -1,
+            "nieve": -1,
+            "dt_txt": "2023-09-28 18:00:00"
+          },
+          "1695934800": {
+            "dt": 1695934800,
+            "main": {
+              "temperatura": 292.42,
+              "presion": 1024,
+              "humedad": 55
+            },
+            "estado": "Clouds",
+            "descripcion": "algo de nubes",
+            "viento": {
+              "velocidad": 5.75,
+              "direccion": 90,
+              "fuerza": 6.77
+            },
+            "visibilidad": 10000,
+            "precipitacion": 0,
+            "lluvia": -1,
+            "nieve": -1,
+            "dt_txt": "2023-09-28 21:00:00"
+          },
+          "1695945600": {
+            "dt": 1695945600,
+            "main": {
+              "temperatura": 291.22,
+              "presion": 1025,
+              "humedad": 61
+            },
+            "estado": "Clear",
+            "descripcion": "cielo claro",
+            "viento": {
+              "velocidad": 5.33,
+              "direccion": 95,
+              "fuerza": 6.91
+            },
+            "visibilidad": 10000,
+            "precipitacion": 0,
+            "lluvia": -1,
+            "nieve": -1,
+            "dt_txt": "2023-09-29 00:00:00"
+          },
+          "1695956400": {
+            "dt": 1695956400,
+            "main": {
+              "temperatura": 290.35,
+              "presion": 1025,
+              "humedad": 68
+            },
+            "estado": "Clouds",
+            "descripcion": "algo de nubes",
+            "viento": {
+              "velocidad": 5.34,
+              "direccion": 77,
+              "fuerza": 8.02
+            },
+            "visibilidad": 10000,
+            "precipitacion": 0,
+            "lluvia": -1,
+            "nieve": -1,
+            "dt_txt": "2023-09-29 03:00:00"
+          },
+          "1695967200": {
+            "dt": 1695967200,
+            "main": {
+              "temperatura": 289.73,
+              "presion": 1025,
+              "humedad": 70
+            },
+            "estado": "Clouds",
+            "descripcion": "nubes dispersas",
+            "viento": {
+              "velocidad": 4.81,
+              "direccion": 69,
+              "fuerza": 7.1
+            },
+            "visibilidad": 10000,
+            "precipitacion": 0,
+            "lluvia": -1,
+            "nieve": -1,
+            "dt_txt": "2023-09-29 06:00:00"
+          },
+          "1695978000": {
+            "dt": 1695978000,
+            "main": {
+              "temperatura": 289.01,
+              "presion": 1025,
+              "humedad": 74
+            },
+            "estado": "Clouds",
+            "descripcion": "nubes",
+            "viento": {
+              "velocidad": 4.84,
+              "direccion": 52,
+              "fuerza": 6.53
+            },
+            "visibilidad": 10000,
+            "precipitacion": 0,
+            "lluvia": -1,
+            "nieve": -1,
+            "dt_txt": "2023-09-29 09:00:00"
+          },
+          "1695988800": {
+            "dt": 1695988800,
+            "main": {
+              "temperatura": 288.54,
+              "presion": 1025,
+              "humedad": 77
+            },
+            "estado": "Clouds",
+            "descripcion": "nubes",
+            "viento": {
+              "velocidad": 5.49,
+              "direccion": 51,
+              "fuerza": 6.64
+            },
+            "visibilidad": 10000,
+            "precipitacion": 0,
+            "lluvia": -1,
+            "nieve": -1,
+            "dt_txt": "2023-09-29 12:00:00"
+          },
+          "1695999600": {
+            "dt": 1695999600,
+            "main": {
+              "temperatura": 290.4,
+              "presion": 1026,
+              "humedad": 66
+            },
+            "estado": "Clouds",
+            "descripcion": "nubes",
+            "viento": {
+              "velocidad": 5.13,
+              "direccion": 60,
+              "fuerza": 5.81
+            },
+            "visibilidad": 10000,
+            "precipitacion": 0,
+            "lluvia": -1,
+            "nieve": -1,
+            "dt_txt": "2023-09-29 15:00:00"
+          },
+          "1696010400": {
+            "dt": 1696010400,
+            "main": {
+              "temperatura": 292.49,
+              "presion": 1025,
+              "humedad": 56
+            },
+            "estado": "Clouds",
+            "descripcion": "muy nuboso",
+            "viento": {
+              "velocidad": 4.54,
+              "direccion": 79,
+              "fuerza": 5.04
+            },
+            "visibilidad": 10000,
+            "precipitacion": 0,
+            "lluvia": -1,
+            "nieve": -1,
+            "dt_txt": "2023-09-29 18:00:00"
+          },
+          "1696021200": {
+            "dt": 1696021200,
+            "main": {
+              "temperatura": 292.23,
+              "presion": 1024,
+              "humedad": 59
+            },
+            "estado": "Clear",
+            "descripcion": "cielo claro",
+            "viento": {
+              "velocidad": 4.75,
+              "direccion": 88,
+              "fuerza": 5.47
+            },
+            "visibilidad": 10000,
+            "precipitacion": 0,
+            "lluvia": -1,
+            "nieve": -1,
+            "dt_txt": "2023-09-29 21:00:00"
+          }
+        }
+      },
+    {
+    
+    "IATA": "TLC",
+    "clima": {
+        "1695600000": {
+        "dt": 1695600000,
+        "main": {
+            "temperatura": 294.68,
+            "presion": 1013,
+            "humedad": 35
+        },
+        "estado": "Clear",
+        "descripcion": "cielo claro",
+        "viento": {
+            "velocidad": 4.48,
+            "direccion": 33,
+            "fuerza": 10.09
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0.21,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-25 00:00:00"
+        },
+        "1695610800": {
+        "dt": 1695610800,
+        "main": {
+            "temperatura": 288.85,
+            "presion": 1017,
+            "humedad": 59
+        },
+        "estado": "Clear",
+        "descripcion": "cielo claro",
+        "viento": {
+            "velocidad": 1.28,
+            "direccion": 35,
+            "fuerza": 1.79
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0.23,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-25 03:00:00"
+        },
+        "1695621600": {
+        "dt": 1695621600,
+        "main": {
+            "temperatura": 283.44,
+            "presion": 1021,
+            "humedad": 79
+        },
+        "estado": "Clear",
+        "descripcion": "cielo claro",
+        "viento": {
+            "velocidad": 1.02,
+            "direccion": 19,
+            "fuerza": 1.31
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0.19,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-25 06:00:00"
+        },
+        "1695632400": {
+        "dt": 1695632400,
+        "main": {
+            "temperatura": 282.31,
+            "presion": 1020,
+            "humedad": 76
+        },
+        "estado": "Clear",
+        "descripcion": "cielo claro",
+        "viento": {
+            "velocidad": 1.11,
+            "direccion": 39,
+            "fuerza": 1.19
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-25 09:00:00"
+        },
+        "1695643200": {
+        "dt": 1695643200,
+        "main": {
+            "temperatura": 281.52,
+            "presion": 1021,
+            "humedad": 77
+        },
+        "estado": "Clear",
+        "descripcion": "cielo claro",
+        "viento": {
+            "velocidad": 1.06,
+            "direccion": 47,
+            "fuerza": 1.15
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-25 12:00:00"
+        },
+        "1695654000": {
+        "dt": 1695654000,
+        "main": {
+            "temperatura": 289.31,
+            "presion": 1020,
+            "humedad": 44
+        },
+        "estado": "Clear",
+        "descripcion": "cielo claro",
+        "viento": {
+            "velocidad": 1.94,
+            "direccion": 37,
+            "fuerza": 5
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-25 15:00:00"
+        },
+        "1695664800": {
+        "dt": 1695664800,
+        "main": {
+            "temperatura": 294.41,
+            "presion": 1017,
+            "humedad": 27
+        },
+        "estado": "Clear",
+        "descripcion": "cielo claro",
+        "viento": {
+            "velocidad": 4.1,
+            "direccion": 45,
+            "fuerza": 7.18
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-25 18:00:00"
+        },
+        "1695675600": {
+        "dt": 1695675600,
+        "main": {
+            "temperatura": 295.3,
+            "presion": 1013,
+            "humedad": 27
+        },
+        "estado": "Clear",
+        "descripcion": "cielo claro",
+        "viento": {
+            "velocidad": 5.26,
+            "direccion": 33,
+            "fuerza": 7.65
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0.07,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-25 21:00:00"
+        },
+        "1695686400": {
+        "dt": 1695686400,
+        "main": {
+            "temperatura": 289.65,
+            "presion": 1016,
+            "humedad": 47
+        },
+        "estado": "Clear",
+        "descripcion": "cielo claro",
+        "viento": {
+            "velocidad": 5.15,
+            "direccion": 25,
+            "fuerza": 10.6
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0.07,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-26 00:00:00"
+        },
+        "1695697200": {
+        "dt": 1695697200,
+        "main": {
+            "temperatura": 283.53,
+            "presion": 1021,
+            "humedad": 80
+        },
+        "estado": "Clouds",
+        "descripcion": "algo de nubes",
+        "viento": {
+            "velocidad": 1.77,
+            "direccion": 22,
+            "fuerza": 2.1
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0.11,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-26 03:00:00"
+        },
+        "1695708000": {
+        "dt": 1695708000,
+        "main": {
+            "temperatura": 282.61,
+            "presion": 1022,
+            "humedad": 90
+        },
+        "estado": "Clear",
+        "descripcion": "cielo claro",
+        "viento": {
+            "velocidad": 1.34,
+            "direccion": 35,
+            "fuerza": 1.42
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0.11,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-26 06:00:00"
+        },
+        "1695718800": {
+        "dt": 1695718800,
+        "main": {
+            "temperatura": 282.03,
+            "presion": 1021,
+            "humedad": 90
+        },
+        "estado": "Clouds",
+        "descripcion": "nubes dispersas",
+        "viento": {
+            "velocidad": 1.37,
+            "direccion": 30,
+            "fuerza": 1.42
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0.01,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-26 09:00:00"
+        },
+        "1695729600": {
+        "dt": 1695729600,
+        "main": {
+            "temperatura": 281.39,
+            "presion": 1023,
+            "humedad": 90
+        },
+        "estado": "Clouds",
+        "descripcion": "nubes dispersas",
+        "viento": {
+            "velocidad": 1.29,
+            "direccion": 40,
+            "fuerza": 1.44
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0.01,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-26 12:00:00"
+        },
+        "1695740400": {
+        "dt": 1695740400,
+        "main": {
+            "temperatura": 288.59,
+            "presion": 1021,
+            "humedad": 53
+        },
+        "estado": "Clear",
+        "descripcion": "cielo claro",
+        "viento": {
+            "velocidad": 2.36,
+            "direccion": 38,
+            "fuerza": 6.01
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-26 15:00:00"
+        },
+        "1695751200": {
+        "dt": 1695751200,
+        "main": {
+            "temperatura": 293.5,
+            "presion": 1017,
+            "humedad": 38
+        },
+        "estado": "Clear",
+        "descripcion": "cielo claro",
+        "viento": {
+            "velocidad": 3.98,
+            "direccion": 57,
+            "fuerza": 6.19
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-26 18:00:00"
+        },
+        "1695762000": {
+        "dt": 1695762000,
+        "main": {
+            "temperatura": 294.92,
+            "presion": 1013,
+            "humedad": 35
+        },
+        "estado": "Clear",
+        "descripcion": "cielo claro",
+        "viento": {
+            "velocidad": 4.19,
+            "direccion": 33,
+            "fuerza": 5.55
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0.07,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-26 21:00:00"
+        },
+        "1695772800": {
+        "dt": 1695772800,
+        "main": {
+            "temperatura": 289.8,
+            "presion": 1015,
+            "humedad": 57
+        },
+        "estado": "Clouds",
+        "descripcion": "nubes dispersas",
+        "viento": {
+            "velocidad": 4.64,
+            "direccion": 30,
+            "fuerza": 9.39
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0.07,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-27 00:00:00"
+        },
+        "1695783600": {
+        "dt": 1695783600,
+        "main": {
+            "temperatura": 283.82,
+            "presion": 1021,
+            "humedad": 83
+        },
+        "estado": "Clear",
+        "descripcion": "cielo claro",
+        "viento": {
+            "velocidad": 1.76,
+            "direccion": 39,
+            "fuerza": 2.19
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0.11,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-27 03:00:00"
+        },
+        "1695794400": {
+        "dt": 1695794400,
+        "main": {
+            "temperatura": 282.27,
+            "presion": 1022,
+            "humedad": 92
+        },
+        "estado": "Clear",
+        "descripcion": "cielo claro",
+        "viento": {
+            "velocidad": 1.47,
+            "direccion": 30,
+            "fuerza": 1.46
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0.11,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-27 06:00:00"
+        },
+        "1695805200": {
+        "dt": 1695805200,
+        "main": {
+            "temperatura": 281.56,
+            "presion": 1021,
+            "humedad": 93
+        },
+        "estado": "Clear",
+        "descripcion": "cielo claro",
+        "viento": {
+            "velocidad": 1.23,
+            "direccion": 44,
+            "fuerza": 1.19
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0.01,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-27 09:00:00"
+        },
+        "1695816000": {
+        "dt": 1695816000,
+        "main": {
+            "temperatura": 281.18,
+            "presion": 1021,
+            "humedad": 93
+        },
+        "estado": "Clear",
+        "descripcion": "cielo claro",
+        "viento": {
+            "velocidad": 0.84,
+            "direccion": 71,
+            "fuerza": 1.01
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0.01,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-27 12:00:00"
+        },
+        "1695826800": {
+        "dt": 1695826800,
+        "main": {
+            "temperatura": 289.1,
+            "presion": 1020,
+            "humedad": 59
+        },
+        "estado": "Clear",
+        "descripcion": "cielo claro",
+        "viento": {
+            "velocidad": 1.06,
+            "direccion": 33,
+            "fuerza": 1.54
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-27 15:00:00"
+        },
+        "1695837600": {
+        "dt": 1695837600,
+        "main": {
+            "temperatura": 294.56,
+            "presion": 1016,
+            "humedad": 40
+        },
+        "estado": "Clear",
+        "descripcion": "cielo claro",
+        "viento": {
+            "velocidad": 1.56,
+            "direccion": 10,
+            "fuerza": 2.27
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-27 18:00:00"
+        },
+        "1695848400": {
+        "dt": 1695848400,
+        "main": {
+            "temperatura": 295.54,
+            "presion": 1012,
+            "humedad": 35
+        },
+        "estado": "Clouds",
+        "descripcion": "algo de nubes",
+        "viento": {
+            "velocidad": 2.68,
+            "direccion": 31,
+            "fuerza": 2.98
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0.21,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-27 21:00:00"
+        },
+        "1695859200": {
+        "dt": 1695859200,
+        "main": {
+            "temperatura": 289.87,
+            "presion": 1014,
+            "humedad": 61
+        },
+        "estado": "Rain",
+        "descripcion": "lluvia ligera",
+        "viento": {
+            "velocidad": 1.03,
+            "direccion": 28,
+            "fuerza": 3
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0.23,
+        "lluvia": 0.14,
+        "nieve": -1,
+        "dt_txt": "2023-09-28 00:00:00"
+        },
+        "1695870000": {
+        "dt": 1695870000,
+        "main": {
+            "temperatura": 284.92,
+            "presion": 1019,
+            "humedad": 80
+        },
+        "estado": "Clouds",
+        "descripcion": "nubes dispersas",
+        "viento": {
+            "velocidad": 1.44,
+            "direccion": 51,
+            "fuerza": 1.42
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0.15,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-28 03:00:00"
+        },
+        "1695880800": {
+        "dt": 1695880800,
+        "main": {
+            "temperatura": 283.43,
+            "presion": 1020,
+            "humedad": 84
+        },
+        "estado": "Clouds",
+        "descripcion": "algo de nubes",
+        "viento": {
+            "velocidad": 1.36,
+            "direccion": 60,
+            "fuerza": 1.37
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0.15,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-28 06:00:00"
+        },
+        "1695891600": {
+        "dt": 1695891600,
+        "main": {
+            "temperatura": 282.15,
+            "presion": 1019,
+            "humedad": 79
+        },
+        "estado": "Clear",
+        "descripcion": "cielo claro",
+        "viento": {
+            "velocidad": 0.97,
+            "direccion": 64,
+            "fuerza": 1.1
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0.06,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-28 09:00:00"
+        },
+        "1695902400": {
+        "dt": 1695902400,
+        "main": {
+            "temperatura": 281.25,
+            "presion": 1021,
+            "humedad": 78
+        },
+        "estado": "Clear",
+        "descripcion": "cielo claro",
+        "viento": {
+            "velocidad": 0.85,
+            "direccion": 63,
+            "fuerza": 1.05
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0.05,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-28 12:00:00"
+        },
+        "1695913200": {
+        "dt": 1695913200,
+        "main": {
+            "temperatura": 289.66,
+            "presion": 1019,
+            "humedad": 49
+        },
+        "estado": "Clouds",
+        "descripcion": "algo de nubes",
+        "viento": {
+            "velocidad": 0.92,
+            "direccion": 39,
+            "fuerza": 1.37
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-28 15:00:00"
+        },
+        "1695924000": {
+        "dt": 1695924000,
+        "main": {
+            "temperatura": 294.95,
+            "presion": 1015,
+            "humedad": 31
+        },
+        "estado": "Clouds",
+        "descripcion": "algo de nubes",
+        "viento": {
+            "velocidad": 2,
+            "direccion": 15,
+            "fuerza": 2.87
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0.03,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-28 18:00:00"
+        },
+        "1695934800": {
+        "dt": 1695934800,
+        "main": {
+            "temperatura": 295.64,
+            "presion": 1011,
+            "humedad": 30
+        },
+        "estado": "Clouds",
+        "descripcion": "algo de nubes",
+        "viento": {
+            "velocidad": 3.37,
+            "direccion": 36,
+            "fuerza": 3.05
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0.13,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-28 21:00:00"
+        },
+        "1695945600": {
+        "dt": 1695945600,
+        "main": {
+            "temperatura": 290.2,
+            "presion": 1013,
+            "humedad": 56
+        },
+        "estado": "Clouds",
+        "descripcion": "algo de nubes",
+        "viento": {
+            "velocidad": 1.47,
+            "direccion": 35,
+            "fuerza": 3.14
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0.17,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-29 00:00:00"
+        },
+        "1695956400": {
+        "dt": 1695956400,
+        "main": {
+            "temperatura": 284.86,
+            "presion": 1018,
+            "humedad": 78
+        },
+        "estado": "Clouds",
+        "descripcion": "algo de nubes",
+        "viento": {
+            "velocidad": 1.09,
+            "direccion": 58,
+            "fuerza": 1.33
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0.29,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-29 03:00:00"
+        },
+        "1695967200": {
+        "dt": 1695967200,
+        "main": {
+            "temperatura": 283.61,
+            "presion": 1019,
+            "humedad": 85
+        },
+        "estado": "Clouds",
+        "descripcion": "algo de nubes",
+        "viento": {
+            "velocidad": 1.07,
+            "direccion": 64,
+            "fuerza": 1.16
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0.25,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-29 06:00:00"
+        },
+        "1695978000": {
+        "dt": 1695978000,
+        "main": {
+            "temperatura": 282.68,
+            "presion": 1019,
+            "humedad": 87
+        },
+        "estado": "Clouds",
+        "descripcion": "algo de nubes",
+        "viento": {
+            "velocidad": 1.1,
+            "direccion": 61,
+            "fuerza": 1.25
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-29 09:00:00"
+        },
+        "1695988800": {
+        "dt": 1695988800,
+        "main": {
+            "temperatura": 282.01,
+            "presion": 1020,
+            "humedad": 88
+        },
+        "estado": "Clouds",
+        "descripcion": "algo de nubes",
+        "viento": {
+            "velocidad": 1.25,
+            "direccion": 63,
+            "fuerza": 1.29
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0.01,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-29 12:00:00"
+        },
+        "1695999600": {
+        "dt": 1695999600,
+        "main": {
+            "temperatura": 289.84,
+            "presion": 1018,
+            "humedad": 55
+        },
+        "estado": "Clouds",
+        "descripcion": "nubes dispersas",
+        "viento": {
+            "velocidad": 1.32,
+            "direccion": 41,
+            "fuerza": 1.7
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-29 15:00:00"
+        },
+        "1696010400": {
+        "dt": 1696010400,
+        "main": {
+            "temperatura": 295.05,
+            "presion": 1014,
+            "humedad": 39
+        },
+        "estado": "Clouds",
+        "descripcion": "muy nuboso",
+        "viento": {
+            "velocidad": 2.04,
+            "direccion": 29,
+            "fuerza": 2.76
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-29 18:00:00"
+        },
+        "1696021200": {
+        "dt": 1696021200,
+        "main": {
+            "temperatura": 295.62,
+            "presion": 1011,
+            "humedad": 34
+        },
+        "estado": "Clouds",
+        "descripcion": "nubes dispersas",
+        "viento": {
+            "velocidad": 3.45,
+            "direccion": 58,
+            "fuerza": 2.78
+        },
+        "visibilidad": 10000,
+        "precipitacion": 0.18,
+        "lluvia": -1,
+        "nieve": -1,
+        "dt_txt": "2023-09-29 21:00:00"
+        }
+    }
+    }
+]
