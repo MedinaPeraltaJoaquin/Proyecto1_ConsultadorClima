@@ -13,12 +13,10 @@
 function encabezadoCiudad(titulado,direccionImagen,estado,animacion){
     encabezado = '<div class="container text center">\n';
         encabezado += '<h1>'+titulado+'</h1>\n';
-        encabezado += '<h3>Actualmente: '+estado+'</h3>\n';
+        encabezado += '<h3>Actualmente esta el '+estado+'</h3>\n';
         encabezado += '<div class="col">\n';
             encabezado += '<img src="'+direccionImagen+'" width="200">\n'
-            if(animacion != ""){
-                encabezado += '<img src="'+animacion+'" width="200">\n'
-            }
+            encabezado += '<img src="'+animacion+'" width="200">\n'
         encabezado += '</div>\n'
     encabezado += '</div>\n' 
     return encabezado;
@@ -39,8 +37,8 @@ function cargarSeccion(encabezado,informacion) {
     cantidadDiv = 1;
     for (let i = 0; i < informacion.length; i++) {
         const elemento = informacion[i];
-        if((i+1) % 4 == 0){
-            seccion += '</div>\n<div class="row">\n';
+        if((i+1) % 3 == 0){
+            seccion += '<div class="row">\n';
             seccion += iconoCaracteristica(elemento);
         }else{
             seccion += iconoCaracteristica(elemento);
@@ -48,7 +46,9 @@ function cargarSeccion(encabezado,informacion) {
         
     }
 
-    seccion += '</div>\n'
+    for(let i = 0; i < cantidadDiv; i++){
+        seccion += '</div>\n'
+    }
     seccion += '</div>\n'
     seccion += '</div>\n'
 
@@ -174,7 +174,6 @@ function cargarHTML(climaData, busqueda){
     let encabezado_ciudad = climaData.clima.length > 1 ? ["de origen: ","de destino: "] : ["consultada: "];
     let avionAnimacion = climaData.clima.length > 1 ? "" : "assets/img/avionAnimacion.gif";
 
-    html += '<!--Inicio seccion-->'
     html += '<div class="container text-center">\n';
     html += '<div class="row mt-6">\n';
     for (let i = 0; i < climaData.clima.length; i++) {
@@ -190,7 +189,6 @@ function cargarHTML(climaData, busqueda){
         html += '</div>\n'
         html += '</div>\n'
         html+='</div>\n'
-        html += '<!--Fin seccion-->'   
     }    
     html += '</div>\n';
     html+='</div>\n'
@@ -198,6 +196,7 @@ function cargarHTML(climaData, busqueda){
 
     return html;
 }
+
 
 module.exports = {
     cargarSeccion,
