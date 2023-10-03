@@ -1,0 +1,24 @@
+[{
+	"TLC": {
+		"ciudad": "Toluca",
+		"coordenadas": {
+			"latitud": 19.3371,
+			"longitud": -99.566
+		},
+		"IATA": "TLC"
+	},
+	"JFK": {
+		"ciudad": "New York",
+		"coordenadas": {
+			"latitud": 40.6398,
+			"longitud": -73.7789
+		},
+		"IATA": "JFK"
+	}
+},
+{
+	"ciudades": [
+		"TLC",
+		"JFK"
+	]
+}]
