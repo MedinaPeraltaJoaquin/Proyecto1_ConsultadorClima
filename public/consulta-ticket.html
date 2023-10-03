@@ -160,10 +160,11 @@
                   'Access-Control-Allow-Origin': '*',
               }),
             });
-        if(response.status != 200){
-            throw new Error("Error al consultar el clima");
-        }
+
         let data = await response.json();
+        if(response.status != 200){
+            throw new Error(data.error);
+        }
         return data;
     }
 
@@ -176,7 +177,9 @@
      */
     async function remplazarDatos(climaData,busqueda){
         let section = document.querySelector('.resultados');
-        section.innerHTML = cargarHTML(climaData,busqueda);  
+        let html = cargarHTML(climaData,busqueda);
+        console.log(html);
+        section.innerHTML = html;  
     }
 
     let fecha = new Date();
@@ -190,7 +193,7 @@
             let climaData = await cargarClima(url);
             await remplazarDatos(climaData,"ticket");
         } catch (error) {
-            window.alert(error.message + " " + error.stack);
+            window.alert("Ha sucedido lo siguiente:" + error.message);
         }
     })
   </script>

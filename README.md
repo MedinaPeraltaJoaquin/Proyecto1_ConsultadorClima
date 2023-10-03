@@ -76,6 +76,68 @@ En este proyecto, se trabajara con MERN stack, el cual esta pensado para aplicac
 - Seguridad : es necesario que la informacion de los tickets no sea visible ante el usuario debido a la importancia
   de estos, ya que se puede encontrar toda la informacion de cada vuelo.
 
+## Para la ejecucion del programa
+### Especificaciones técnicas de la aplicación:
+
+En esta aplicacion se utilizo las siguientes paqueterias:
+
+- Dependencias de npm:
+    - axios : 0.21.1
+    - convert-csv-to-json : 2.0.0
+    - dotenv : 16.3.1
+    - express : 4.18.2
+    - fast.levenshtein : 3.0.0
+    - mongodb : 6.1.0
+    - node-cron : 3.0.2
+
+- Dependencias de desarrollo de npm
+    - dotenv : 16.3.1
+    - jasmine : 3.0.2
+
+- Aplicacion para correr el servidor
+    - Node.js : 20.6.1
+
+### Para la ejecucion del programa:
+
+Esta guia se divide en dos secciones la cual se enfocara en la compilacion del
+servidor de la aplicacion y de la visualizacion de la página web.
+
+#### Para la compilacion del servidor:
+
+Es necesario descargar el programa Node JS en el cual, las instrucciones de
+instalacion son distintos dependiendo del sistema operativo. En este caso se 
+trabajo en Linux.
+
+Para su descarga e instalacion consultar la página de Node JS en el siguiente enlace:
+https://nodejs.dev/en/download/package-manager/
+
+Teniendo ya instalado node JS y haber descargado la carpeta desde el repositorio
+en la terminal del sistema colocado en la carpeta, realizar lo siguiente:
+
+        npm install jasmine
+
+Con esto tendria descargado la paqueteria para realizar las pruebas y ya no es
+necesario descargar algo más manualmente.
+
+Para realizar las pruebas del programa es necesario lo siguiente en la terminal
+
+        npm test
+
+Para inicializar el servidor debera de ejecutar el siguiente comando sobre la carpeta
+del proyecto:
+
+        npm start
+
+### Para la visualizacion de la pagina web
+
+Es necesario haber inicializado el servidor según las indicaciones anteriores,
+debera de ingresar a un navegador web y colocar en la url la siguiente direccion
+
+        localhost:8000/
+
+Con esto se desplegara la pagina web y de ahi podra ver los resultados del programa.
+
+
 ## Mantenimiento a futuro de la aplicacion
 
 Debido a que se diseño la aplicacion con MERN stack, contamos con la ventaja de que es un lenjuage de programacion
