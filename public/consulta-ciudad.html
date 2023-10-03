@@ -71,7 +71,7 @@
       <div class="d-flex justify-content-between align-items-center">
         <h2>Consulta por ciudad</h2>
         <ol>
-          <li><a href="./index.html">Inicio</a></li>
+          <li><a href="./">Inicio</a></li>
           <li>Consulta por ciudad</li>
         </ol>
       </div>
@@ -161,10 +161,11 @@ async function cargarClima(url){
               'Access-Control-Allow-Origin': '*',
           }),
         });
-    if(response.status != 200){
-        throw new Error("Error al consultar el clima");
-    }
+    
     let data = await response.json();
+    if(response.status != 200){
+        throw new Error(data.error);
+    }
     return data;
 }
 
@@ -191,7 +192,7 @@ async function cargarClima(url){
             let climaData = await cargarClima(url);
             await remplazarDatos(climaData,"ciudad");
         } catch (error) {
-            window.alert(error.message + " " + error.stack);
+            window.alert("Ha sucedido lo siguiente:" + error.message);
         }
     })
   </script>
