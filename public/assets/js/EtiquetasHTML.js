@@ -165,7 +165,6 @@ function cargarOtrosDatos(clima_elemento){
  * @returns un cadena en html que representa los datos del clima
  */
 function cargarHTML(climaData, busqueda){
-    console.log(climaData)
     let html = "";
     html += '<div class="container text-center">';
     html += '<div class="section-title" data-aos="zoom-out" >\n<p>Resultado por '+busqueda+': </p>\n';
