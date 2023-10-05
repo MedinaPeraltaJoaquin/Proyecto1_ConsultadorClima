@@ -7,7 +7,8 @@ require('dotenv').config();
  * @param {MongoClient} cliente 
  * @param {String} baseDatos 
  * @param {String} coleccion 
- * @param {JSON} nuevoListado 
+ * @param {JSON} nuevoListado
+ * @returns la verificacion de la busqueda.
  */
 async function insertar(cliente,baseDatos,coleccion,nuevoListado){
     const resultado = await cliente.db(baseDatos).collection(coleccion).insertOne(nuevoListado);
@@ -42,6 +43,7 @@ async function busquedadeconsultaBD(cliente,baseDatos,coleccion,busqueda){
  * @param {JSON} nuevaL 
  * @param {String} coleccion 
  * @param {String} IATA
+ * @returns la verificacion de que se inserto el clima pormedio del metodo insertado
  */
 async function insertarclima(baseDatos,coleccion,nuevaL,IATA){
     const uri = process.env.uri;
@@ -130,6 +132,7 @@ async function consultaBD(baseDatos,coleccion,busqueda){
  * @param {String} baseDatos
  * @param {String} coleccion
  * @param {JSON} filtro
+ * @returns verificacion de que se elimino el filtro de la base de datos
  */
 async function vacia(baseDatos,coleccion,filtro){
     const uri = process.env.uri;
@@ -153,7 +156,7 @@ async function vacia(baseDatos,coleccion,filtro){
  * @param {String} coleccion 
  * @param {JSON} busqueda 
  * @param {String} fechaUnix
- * @returns 
+ * @returns un arreglo con el IATA, fecha y clima consultados
  */
 async function consultaClima(baseDatos,coleccion,busqueda,fechaUnix){
     const uri = process.env.uri;
@@ -189,7 +192,7 @@ async function consultaClima(baseDatos,coleccion,busqueda,fechaUnix){
  * @param {String} baseDatos 
  * @param {String} coleccion 
  * @param {JSON} nuevoListado 
- * @returns un booleano que indica si se inserto o no
+ * @returns verificacion de que se inserto correctamente en la base de datos
  */
 
 async function insertarVariosBD(baseDatos,coleccion,nuevoListado){
