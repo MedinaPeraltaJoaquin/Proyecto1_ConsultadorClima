@@ -4,6 +4,7 @@ require('dotenv').config();
  * Método que añade los datos de ticket y ciudad en la base datos desde un csv.
  * @param {JSON} datosCSV un documento json en donde se encuentra la informacion de ciudades y tickets.
  * @param {JSON} ciudades un documento json con la informacion de ciudades.
+ * @returns un JSON que contendra la informacion del arreglo de tickets y el origen y destino de las ciudades.
  */
 async function obtenerTicketsCiudades(datosCSV,ciudades){
     let  ticketArreglo = [];
@@ -49,6 +50,7 @@ async function obtenerTicketsCiudades(datosCSV,ciudades){
  * Método que añade los datos de ticket y ciudad en la base datos desde un csv.
  * 
  * @param {String} direccionCSV un document JSON en donde se encuentra la informacion de los tickets.
+ * @returns un JSON con la informacion de los tickets y las ciudades desde el CSV.
  */
 async function agregaInformacionCSV(direccionCSV){
     let csvToJson = require('convert-csv-to-json');
@@ -77,6 +79,7 @@ async function agregaInformacionCSV(direccionCSV){
 /**
  * Método que actuliza los climas de la base de datos.
  * @param {String} guardainfo
+ * @returns un arreglo de los climas en JSON consultados con la api.
  */
 async function actualizaclimabd(guardainfo){
     const conexion = require('./conexion.js');
@@ -116,6 +119,7 @@ async function actualizaclimabd(guardainfo){
  * Metodo que por medio de una funcion y timeout imita un sleep para no saturar la API en cada llamada.
  * Recibe un entero que seran los segundos que dormira el programa.
  * @param {Integer} duracion 
+ * @returns una nueva Promesa que se encarga de aplicar el metodo tiemout multiplicando el entero recibido por 1000 para que trabaje en segundos.
  */
 async function petateate(duracion){
     return new Promise(resolve =>{setTimeout(()=>{resolve()},duracion*1000)});
@@ -124,6 +128,7 @@ async function petateate(duracion){
 /**
  * Método auxiliar que realiza la peticion a la api de openweather.
  * @param {JSON} ciudad a buscar en openweather.
+ * @returns Un JSON que contiene los datos brindados por la api.
  */
 async function realizaPeticion(ciudad){
     let url = "https://api.openweathermap.org/data/2.5/forecast?lat="+ciudad.coordenadas.latitud+"&lon="+ciudad.coordenadas.longitud+"&lang=es&appid="+process.env.api_openweather;
