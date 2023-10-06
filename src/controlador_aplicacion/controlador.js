@@ -3,9 +3,12 @@ const levenshtein = require('fast-levenshtein');
 const conexion = require('../modelo_aplicacion/conexion.js');
 const actualizaBD = require('../modelo_aplicacion/actualizabd.js'); 
 
+/**
+ * Actualiza la base de datos con información de clima desde archivos CSV.
+ * @returns {Promise<void>}
+ */
 async function actualizarBaseDeDatos() {
     try {
-        //const csvData = await actualizaBD.agregaInformacionCSV(process.env.PATH_CSV);
         const climasActualizados = await actualizaBD.actualizaclimabd(process.env.PATH_guardar);
         for(let i=0; i < climasActualizados.length; i++){
             const clima = climasActualizados[i];
@@ -18,6 +21,10 @@ async function actualizarBaseDeDatos() {
     }
 }
 
+/**
+ * Actualiza los tickets en la base de datos desde un archivo CSV.
+ * @returns {Promise<void>}
+ */
 async function actualizaTickets() {
     try {
         const direccionCSV = process.env.PATH_CSV;
@@ -27,26 +34,27 @@ async function actualizaTickets() {
     }
 }
 
-// Función para obtener clima por ticket
+/**
+ * Obtiene información de clima por número de ticket y fecha.
+ * @param {Object} req - Objeto de solicitud HTTP.
+ * @param {Object} res - Objeto de respuesta HTTP.
+ * @param {String} base_datos - Nombre de la base de datos.
+ * @returns {Promise<void>}
+ */
 async function obtenerClimaPorTicket(req, res,base_datos) {
     const ticket = req.query.ticket;
     const date = req.query.date;
 
-    // Verifica si se proporcionó un número de ticket
     if (!ticket) {
         return res.status(400).json({ error: 'Por favor, ingrese el número de ticket.' });
     }
-
-    // Verifica si se proporcionó una fecha
     if (!date) {
         return res.status(400).json({ error: 'Por favor, ingrese la fecha.' });
     }
         
     let ticketData = await conexion.consultaBD(base_datos, process.env.coleccion_ticket, {"ticket" : ticket})
     const ciudades = await conexion.consultaBD(base_datos, process.env.coleccion_ciudad, {});
-
-
-    // Verifica si se encontró el ticket en la base de datos
+    
     if (ticketData.length == 0) {
         return res.status(400).json({ error: 'El ticket no se encontró en la base de datos.' });
     }
@@ -63,8 +71,6 @@ async function obtenerClimaPorTicket(req, res,base_datos) {
 
     const climas = await conexion.consultaClima(base_datos, process.env.coleccion_clima, 
         {$or : [{"IATA" : ciudad_origen}, {"IATA" : ciudad_destino}]},fechaUnix);
-    
-    // Verifica si se encontró el clima en la base de datos
     if (climas.length == 0) {
         return res.status(400).json({ error: 'El clima no se encontró en la base de datos.' });
     }
@@ -83,11 +89,17 @@ async function obtenerClimaPorTicket(req, res,base_datos) {
         return res.status(200).json({ "busqueda" : busqueda, "clima" : climas});
 }
 
-// Función para obtener clima por ciudad
+/**
+ * Obtiene información de clima por nombre de ciudad y fecha.
+ * @param {Object} req - Objeto de solicitud HTTP.
+ * @param {Object} res - Objeto de respuesta HTTP.
+ * @param {String} base_datos - Nombre de la base de datos.
+ * @returns {Promise<void>}
+ */
 async function obtenerClimaPorCiudad(req, res,base_datos) {
     const ciudad = req.query.ciudad;
     const date = req.query.date;
-    // Verifica si se proporcionó el nombre de la ciudad
+    
     if (!ciudad) {
         return res.status(400).json({ error: 'Por favor, ingrese la ciudad.' });
     }
@@ -109,8 +121,6 @@ async function obtenerClimaPorCiudad(req, res,base_datos) {
             }
         }
     });
-
-    // Verifica si se encontró una ciudad coincidente
     if (mejorCoincidencia == "") {
         return res.status(400).json({ error: 'No se encontró una ciudad que coincida'});
     }
@@ -125,7 +135,6 @@ async function obtenerClimaPorCiudad(req, res,base_datos) {
     const climas = await conexion.consultaClima(base_datos, process.env.coleccion_clima, 
         {"IATA" : ciudadIATA},fechaUnix);
     
-    // Verifica si se encontró el clima en la base de datos
     if (climas.length == 0) {
         return res.status(400).json({ error: 'El clima no se encontró en la base de datos.' });
     }
