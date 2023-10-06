@@ -4,10 +4,10 @@ require('dotenv').config();
 /**
  * Método que inserta un elemento a una coleccion por medio de un cliente de mongoDB
  * 
- * @param {MongoClient} cliente 
- * @param {String} baseDatos 
- * @param {String} coleccion 
- * @param {JSON} nuevoListado
+ * @param {MongoClient} cliente, el cliente que se conecta a la base de datos.
+ * @param {String} baseDatos, la base de datos de MongoDB.
+ * @param {String} coleccion, la coleccion dentro de la base de datos de mongoDB. 
+ * @param {JSON} nuevoListado, el JSON que se insertara a la base de datos.
  * @returns la verificacion de la busqueda.
  */
 async function insertar(cliente,baseDatos,coleccion,nuevoListado){
@@ -21,10 +21,10 @@ async function insertar(cliente,baseDatos,coleccion,nuevoListado){
  * Método que busca por medio de un filtro un objeto en una coleccion por medio de un 
  * cliente de mongoDB
  * 
- * @param {MongoClient} cliente 
- * @param {String} baseDatos 
- * @param {String} coleccion 
- * @param {JSON} busqueda 
+ * @param {MongoClient} cliente, el cliente que se conecta a la base de datos.
+ * @param {String} baseDatos, la base de datos de MongoDB. 
+ * @param {String} coleccion, la coleccion dentro de la base de datos de mongoDB. 
+ * @param {JSON} busqueda, el elemento JSON que se desea encontrar en la base de datos. 
  * @returns un arreglo con todos los elementos que cumplen por el filtro, regresa un arreglo
  * vacio si no se encontro nada
  */
@@ -39,9 +39,9 @@ async function busquedadeconsultaBD(cliente,baseDatos,coleccion,busqueda){
 
 /**
  * Método que inserta en la base de datos un archivo JSON limpio sobre datos del clima 
- * @param {String} baseDatos 
- * @param {JSON} nuevaL 
- * @param {String} coleccion 
+ * @param {String} baseDatos, la base de datos de MongoDB. 
+ * @param {JSON} nuevaL, el JSON de donde se sacaran los datos para el clima. 
+ * @param {String} coleccion, la coleccion dentro de la base de datos de mongoDB. 
  * @param {String} IATA
  * @returns la verificacion de que se inserto el clima pormedio del metodo insertado
  */
@@ -104,9 +104,10 @@ async function insertarclima(baseDatos,coleccion,nuevaL,IATA){
  * 
  * Método que busca un certificado por medio de un filtro en una base de datos de mongoDB
  * 
- * @param {String} baseDatos 
- * @param {JSON} busqueda
- * @returns un JSON con todos los certificados encontrados por medio del filtro
+ * @param {String} baseDatos, la base de datos de MongoDB.
+ * @param {String} coleccion, la coleccion dentro de la base de datos de mongoDB.
+ * @param {JSON} busqueda, el JSON consultado en la base de datos.
+ * @returns un JSON con todos los certificados encontrados por medio del filtro.
  */
 async function consultaBD(baseDatos,coleccion,busqueda){
     const uri = process.env.uri;
@@ -129,9 +130,9 @@ async function consultaBD(baseDatos,coleccion,busqueda){
 
 /**
  * Método que elimina informacion de una coleccion de la base de datos.
- * @param {String} baseDatos
- * @param {String} coleccion
- * @param {JSON} filtro
+ * @param {String} baseDatos, la base de datos de MongoDB.
+ * @param {String} coleccion, la coleccion dentro de la base de datos de mongoDB.
+ * @param {JSON} filtro, el JSON que contendra los elementos especificos a eliminar.
  * @returns verificacion de que se elimino el filtro de la base de datos
  */
 async function vacia(baseDatos,coleccion,filtro){
@@ -152,11 +153,11 @@ async function vacia(baseDatos,coleccion,filtro){
 
 /**
  *  Método que devuelve el clima y IATA de la ciudad.
- * @param {String} baseDatos 
- * @param {String} coleccion 
- * @param {JSON} busqueda 
- * @param {String} fechaUnix
- * @returns un arreglo con el IATA, fecha y clima consultados
+ * @param {String} baseDatos, la base de datos de MongoDB.
+ * @param {String} coleccion, la coleccion dentro de la base de datos de mongoDB. 
+ * @param {JSON} busqueda, el JSON que tendra la informacion de lo que se desea consultar en la base de datos. 
+ * @param {String} fechaUnix, la fecha del dia.
+ * @returns un arreglo con el IATA, fecha y clima consultados.
  */
 async function consultaClima(baseDatos,coleccion,busqueda,fechaUnix){
     const uri = process.env.uri;
@@ -189,9 +190,9 @@ async function consultaClima(baseDatos,coleccion,busqueda,fechaUnix){
 /**
  * Método que inserta varios elementos a la base de datos 
  * 
- * @param {String} baseDatos 
- * @param {String} coleccion 
- * @param {JSON} nuevoListado 
+ * @param {String} baseDatos, la base de datos de MongoDB. 
+ * @param {String} coleccion, la coleccion dentro de la base de datos de mongoDB. 
+ * @param {JSON} nuevoListado, el JSON que contiene las colecciones que se insertaran en la base de datos. 
  * @returns verificacion de que se inserto correctamente en la base de datos
  */
 
