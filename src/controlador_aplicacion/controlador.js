@@ -5,7 +5,7 @@ const actualizaBD = require('../modelo_aplicacion/actualizabd.js');
 
 /**
  * Actualiza la base de datos con información de clima desde archivos CSV.
- * @returns {Promise<void>}
+ * @returns {Promise<void>}  Promesa que indica que la actualización ha finalizado.
  */
 async function actualizarBaseDeDatos() {
     try {
@@ -23,7 +23,7 @@ async function actualizarBaseDeDatos() {
 
 /**
  * Actualiza los tickets en la base de datos desde un archivo CSV.
- * @returns {Promise<void>}
+ * @returns {Promise<void>} Promesa que indica que la actualización ha finalizado.
  */
 async function actualizaTickets() {
     try {
@@ -36,10 +36,10 @@ async function actualizaTickets() {
 
 /**
  * Obtiene información de clima por número de ticket y fecha.
- * @param {Object} req - Objeto de solicitud HTTP.
- * @param {Object} res - Objeto de respuesta HTTP.
+ * @param {Object} req - Objeto de solicitud HTTP con datos del ticket y la fecha.
+ * @param {Object} res - Objeto de respuesta HTTP para enviar la respuesta.
  * @param {String} base_datos - Nombre de la base de datos.
- * @returns {Promise<void>}
+ * @returns {Promise<void>}  Promesa que resuelve con los datos del clima.
  */
 async function obtenerClimaPorTicket(req, res,base_datos) {
     const ticket = req.query.ticket;
@@ -91,10 +91,10 @@ async function obtenerClimaPorTicket(req, res,base_datos) {
 
 /**
  * Obtiene información de clima por nombre de ciudad y fecha.
- * @param {Object} req - Objeto de solicitud HTTP.
- * @param {Object} res - Objeto de respuesta HTTP.
+ * @param {Object} req - Objeto de solicitud HTTP con el nombre de la ciudad y la fecha.
+ * @param {Object} res - Objeto de respuesta HTTP para enviar la respuesta.
  * @param {String} base_datos - Nombre de la base de datos.
- * @returns {Promise<void>}
+ * @returns {Promise<void>}  Promesa que resuelve con los datos del clima.
  */
 async function obtenerClimaPorCiudad(req, res,base_datos) {
     const ciudad = req.query.ciudad;
