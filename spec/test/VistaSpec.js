@@ -25,7 +25,7 @@ function llenaDivSeccion(llenado) {
 function llenaIcono(llenado){
     icono = "";
     icono += '<div class="col">\n';
-        icono += '<div class="icon-box" data-aspec os="zoom-in-left">\n';
+        icono += '<div class="icon-box" data-aos="zoom-in-left">\n';
         icono += '<h4 class="title">'+llenado+'</h4>\n';
         icono += '</div>\n';
     icono += '</div>\n';
