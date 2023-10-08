@@ -103,9 +103,9 @@ function cargarImagen(estadoClima){
  */
 function cargarDatosGenerales(clima_elemento){
     datosGenerales = "";
-    temperatura = "Temperatura: " + clima_elemento.main.temperatura;
-    presion = "Presion: " + clima_elemento.main.presion;
-    humedad = "Humedad: " + clima_elemento.main.humedad;
+    temperatura = "Temperatura: " + clima_elemento.main.temperatura + " °C";
+    presion = "Presion: " + clima_elemento.main.presion + " hPa";
+    humedad = "Humedad: " + clima_elemento.main.humedad + " %";
     informacion = [temperatura,presion,humedad];
     datosGenerales = cargarSeccion("Datos generales: ", informacion);
 
@@ -121,9 +121,9 @@ function cargarDatosGenerales(clima_elemento){
  */
 function cargarCaracteristicasViento(clima_elemento){
     caracteristicas_viento = "";
-    viento_velocidad = "Velocidad: "+clima_elemento.viento.velocidad;
-    viento_direccion = "Direccion: "+clima_elemento.viento.direccion;
-    viento_fuerza = "Rafaga: "+clima_elemento.viento.fuerza;
+    viento_velocidad = "Velocidad: "+clima_elemento.viento.velocidad + " m/s";
+    viento_direccion = "Direccion: "+clima_elemento.viento.direccion + " °";
+    viento_fuerza = "Rafaga: "+clima_elemento.viento.fuerza + " m/s";
     informacion = [viento_velocidad,viento_direccion,viento_fuerza];
     caracteristicas_viento += cargarSeccion("Caracteristicas de viento: ",informacion);
     return caracteristicas_viento;
@@ -138,17 +138,17 @@ function cargarCaracteristicasViento(clima_elemento){
  */
 function cargarOtrosDatos(clima_elemento){
     otros_datos = "";
-    visibilidad = "visibilidad: "+clima_elemento.visibilidad;
+    visibilidad = "Visibilidad: "+clima_elemento.visibilidad + " m";
     informacion = [visibilidad];
-    precipitacion = "Precipitacion: "+clima_elemento.precipitacion;
+    precipitacion = "Precipitacion: "+clima_elemento.precipitacion + " mm";
     informacion.push(precipitacion);
     if(clima_elemento.lluvia != (-1)){
-        lluvia = "Nivel de lluvia: "+clima_elemento.lluvia;
+        lluvia = "Nivel de lluvia: "+clima_elemento.lluvia + " mm";
         informacion.push(lluvia);
     }
 
     if(clima_elemento.nieve != (-1)){
-        nieve = "Nivel de nieve: "+clima_elemento.nieve;
+        nieve = "Nivel de nieve: "+clima_elemento.nieve + " mm";
         informacion.push(nieve);
     }
     

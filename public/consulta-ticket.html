@@ -193,7 +193,7 @@
             let climaData = await cargarClima(url);
             await remplazarDatos(climaData,"ticket");
         } catch (error) {
-            window.alert("Ha sucedido lo siguiente:" + error.message);
+            window.alert("Ha sucedido lo siguiente: " + error.message + "\nPor favor intente de nuevo" + "\nSi el problema persiste contacte al administrador" + "\nGracias");
         }
     })
   </script>
