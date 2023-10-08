@@ -77,6 +77,7 @@ En este proyecto, se trabajara con MERN stack, el cual esta pensado para aplicac
   de estos, ya que se puede encontrar toda la informacion de cada vuelo.
 
 ## Para la ejecucion del programa
+
 ### Especificaciones técnicas de la aplicación:
 
 En esta aplicacion se utilizo las siguientes paqueterias:
@@ -143,26 +144,33 @@ El proyecto utiliza un archivo `.env` para gestionar las variables de entorno. D
 
 Aquí hay un ejemplo de cómo podría ser el contenido del archivo `.env`:
 
-# Puerto en el que se ejecutará el servidor
-PORT=8000
+- Puerto en el que se ejecutará el servidor
 
-# Ruta para los archivos CSV
-PATH_CSV=data/tickets.csv
+      PORT=8000
 
-# Ruta donde se guardarán los archivos CSV descargados
-PATH_guardar=data/
+- Ruta para los archivos CSV
 
-# Nombre de la base de datos MongoDB
-DB_NAME=clima_db
+      PATH_CSV=data/tickets.csv
 
-# Colecciones en la base de datos
-COLECCION_TICKET=tickets
-COLECCION_CIUDAD=ciudades
-COLECCION_CLIMA=clima
+- Ruta donde se guardarán los archivos CSV descargados
+
+      PATH_guardar=data/
+
+- Nombre de la base de datos MongoDB
+
+      DB_NAME=clima_db
+
+- Colecciones en la base de datos
+
+      COLECCION_TICKET=tickets
+      COLECCION_CIUDAD=ciudades
+      COLECCION_CLIMA=clima
 
 ### Posibles Errores
 
 Si encuentras problemas al ejecutar la aplicación y recibes un error relacionado con la falta del módulo `dotenv`, asegúrate de haber creado correctamente el archivo `.env` con las variables de entorno necesarias (como se muestra en el ejemplo anterior).
+
+Tambien otro posible error es a la conexion a la base de datos de mongodb, para la compilacion del código se utilizo una base de datos de ATLAS para su ejecucion, y de este modo requirio conexión a internet.
 
 ## Mantenimiento a futuro de la aplicacion
 
