@@ -9,20 +9,20 @@
         "encabezado" : ["Datos Generales","Caracteristicas de Viento","Otras Caracteristicas"],
         "informacion" : [
             {"Datos Generales" : [
-                "Temperatura: 20",
-                "Presion: 20",
-                "Humedad: 20"
+                "Temperatura: 20 °C",
+                "Presion: 20 hPa",
+                "Humedad: 20 %"
             ]},
             {"Caracteristicas de Viento" : [
-                "Velocidad: 20",
-                "Direccion: 20",
-                "Rafagas: 20"
+                "Velocidad: 20 m/s",
+                "Direccion: 20 °",
+                "Rafagas: 20 m/s"
             ]},
             {"Otras Caracteristicas" : [
-                "Precipitacion: 20",
-                "Nivel de lluvia: 20",
-                "Nivel de nieve: 20",
-                "Visibilidad: 20"
+                "Precipitacion: 20 mm",
+                "Nivel de lluvia: 20 mm",
+                "Nivel de nieve: 20 mm",
+                "Visibilidad: 20 km"
             ]}
         ]
     },
