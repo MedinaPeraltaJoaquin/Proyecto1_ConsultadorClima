@@ -63,7 +63,7 @@ async function obtenerClimaPorTicket(req, res,base_datos) {
     let ciudad_destino = ticketData[0].ciudad_destino;
     let fecha = new Date(date);
     let horas = fecha.getHours();
-    let consulta = new Date(fecha.setHours(horas - (horas % 3)));
+    let consulta = new Date(fecha.setHours(horas + (3- (horas % 3))));
     consulta.setSeconds(0);
     consulta.setMinutes(0);
     consulta.setMilliseconds(0);
@@ -110,24 +110,30 @@ async function obtenerClimaPorCiudad(req, res,base_datos) {
     let distanciaMinima = Number.MAX_VALUE;
     let ciudadIATA = "";
 
-    ciudades[1].ciudades.forEach(elemento => {
-        const distancia = levenshtein.get(ciudad.toLowerCase(), ciudades[0][elemento].ciudad.toLowerCase());
+    for(let i = 0; i < ciudades[1].ciudades.length; i++){
+        const elemento = ciudades[1].ciudades[i];
 
-        if (distancia < distanciaMinima) {
-            distanciaMinima = distancia;
-            if(distancia < 4){
-                mejorCoincidencia = ciudades[0][elemento].ciudad;
-                ciudadIATA = ciudades[0][elemento].IATA;
-            }
+        if(elemento == ciudad){
+            mejorCoincidencia = ciudades[0][elemento].ciudad;
+            ciudadIATA = ciudades[0][elemento].IATA;
+            break;
         }
-    });
+        
+        const distancia = levenshtein.get(ciudad.toLowerCase(), ciudades[0][elemento].ciudad.toLowerCase());
+        if (distancia < distanciaMinima && distancia < 4) {
+            distanciaMinima = distancia;
+            mejorCoincidencia = ciudades[0][elemento].ciudad;
+            ciudadIATA = ciudades[0][elemento].IATA;
+        }
+    }
+
     if (mejorCoincidencia == "") {
         return res.status(400).json({ error: 'No se encontró una ciudad que coincida'});
     }
 
     let fecha = new Date(date);
     let horas = fecha.getHours();
-    let consulta = new Date(fecha.setHours(horas - (horas % 3)));
+    let consulta = new Date(fecha.setHours(horas + (3- (horas % 3))));
     consulta.setSeconds(0);
     consulta.setMinutes(0);
     consulta.setMilliseconds(0);
