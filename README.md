@@ -137,6 +137,32 @@ debera de ingresar a un navegador web y colocar en la url la siguiente direccion
 
 Con esto se desplegara la pagina web y de ahi podra ver los resultados del programa.
 
+### Configuración de un archivo .env
+
+El proyecto utiliza un archivo `.env` para gestionar las variables de entorno. Debes crear este archivo en la raíz del proyecto y configurarlo con tus valores específicos. Puedes utilizar el archivo `.env.example` como guía.
+
+Aquí hay un ejemplo de cómo podría ser el contenido del archivo `.env`:
+
+# Puerto en el que se ejecutará el servidor
+PORT=8000
+
+# Ruta para los archivos CSV
+PATH_CSV=data/tickets.csv
+
+# Ruta donde se guardarán los archivos CSV descargados
+PATH_guardar=data/
+
+# Nombre de la base de datos MongoDB
+DB_NAME=clima_db
+
+# Colecciones en la base de datos
+COLECCION_TICKET=tickets
+COLECCION_CIUDAD=ciudades
+COLECCION_CLIMA=clima
+
+### Posibles Errores
+
+Si encuentras problemas al ejecutar la aplicación y recibes un error relacionado con la falta del módulo `dotenv`, asegúrate de haber creado correctamente el archivo `.env` con las variables de entorno necesarias (como se muestra en el ejemplo anterior).
 
 ## Mantenimiento a futuro de la aplicacion
 
