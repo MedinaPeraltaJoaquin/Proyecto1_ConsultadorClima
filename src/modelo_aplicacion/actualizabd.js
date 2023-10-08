@@ -131,7 +131,7 @@ async function petateate(duracion){
  * @returns Un JSON que contiene los datos brindados por la api.
  */
 async function realizaPeticion(ciudad){
-    let url = "https://api.openweathermap.org/data/2.5/forecast?lat="+ciudad.coordenadas.latitud+"&lon="+ciudad.coordenadas.longitud+"&lang=es&appid="+process.env.api_openweather;
+    let url = "https://api.openweathermap.org/data/2.5/forecast?lat="+ciudad.coordenadas.latitud+"&lon="+ciudad.coordenadas.longitud+"&units=metric&lang=es&appid="+process.env.api_openweather;
     let respuesta = await fetch(url);
     return respuesta.status != 200 ? undefined : await respuesta.json();
 }
