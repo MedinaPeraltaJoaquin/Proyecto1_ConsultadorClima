@@ -84,7 +84,7 @@
     <div class="container">
 
       <div class="section-title" data-aos="zoom-out">
-        <p>Ingrese el número de Ciudad</p>
+        <p>Ingrese el nombre de Ciudad o código IATA</p>
       </div>
 
       <div class="row mt-6">
@@ -192,7 +192,7 @@ async function cargarClima(url){
             let climaData = await cargarClima(url);
             await remplazarDatos(climaData,"ciudad");
         } catch (error) {
-            window.alert("Ha sucedido lo siguiente:" + error.message);
+            window.alert("Ha sucedido lo siguiente: " + error.message + "\nPor favor intente de nuevo" + "\nSi el problema persiste contacte al administrador" + "\nGracias");
         }
     })
   </script>
