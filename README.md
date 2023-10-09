@@ -19,7 +19,7 @@ Experiencia de Usuario Amigable: La interfaz de usuario está diseñada para ser
 
 En este proyecto, se trabajara con MERN stack, el cual esta pensado para aplicaciones web con las siguientes herramientas:
 
-- MongoDataBase: Es una aplicacion de base de datos no relacional, que guarda la informacion en archivos JSON y contine su propia sintaxis para realizar las consultas. Su filosofia consiste en la informacion guardadas en documentos, los cuales pueden ser consultados.
+- MongoDataBase: Es una aplicacion de base de datos no relacional, que guarda la informacion en archivos JSON y contiene su propia sintaxis para realizar las consultas. Su filosofia consiste en la informacion guardadas en documentos para su facil consulta.
 
 - Express: Es un frameworks para aplicaciones web para node js, el cual se encarga de construir una sólida infrastructura y con el se puede el manejo de rutas, webpack, errores y backend para el llamado a la aplicacion de node js. 
 
@@ -34,6 +34,8 @@ En este proyecto, se trabajara con MERN stack, el cual esta pensado para aplicac
 - Levenshtein: Un algoritmo que detecta y corrige errores tipográficos en las ciudades ingresadas por los usuarios y encuentra coincidencias cercanas cuando los nombres de las ciudades no son exactos. Esto garantiza que incluso con entradas de usuario con errores, la aplicación pueda proporcionar datos climáticos precisos.
 
 - Node-cron: Es una biblioteca utilizada para programar tareas periódicas (cron jobs) en la aplicación, como el registro de consultas y la actualización de datos climáticos.
+
+- OpenWeather : Una API de obtencion de informacion del clima de una ciudad.
 
 ## Entendiendo el problema:
 
@@ -76,11 +78,13 @@ En este proyecto, se trabajara con MERN stack, el cual esta pensado para aplicac
 - Seguridad : es necesario que la informacion de los tickets no sea visible ante el usuario debido a la importancia
   de estos, ya que se puede encontrar toda la informacion de cada vuelo.
 
+## Para ejecutar el programa 
+Las indicaciones para su compilacion como sus especificaciones se encuentran en el archivo README.txt
+
 ## Posibles Errores
 
-Si encuentras problemas al ejecutar la aplicación y recibes un error relacionado con la falta del módulo `dotenv`, asegúrate de haber creado correctamente el archivo `.env` con las variables de entorno necesarias (como se muestra en el ejemplo anterior).
-
-Tambien otro posible error es a la conexion a la base de datos de mongodb, para la compilacion del código se utilizo una base de datos de ATLAS para su ejecucion, y de este modo requirio conexión a internet.
+- Si encuentras problemas al ejecutar la aplicación y recibes un error relacionado con la falta del módulo `dotenv`, asegúrate de haber creado correctamente el archivo `.env` con las variables de entorno necesarias (para mayor detalles en el README.txt).
+- Un posible error es a la conexion a la base de datos de mongodb, para la compilacion del código se utilizo una base de datos de ATLAS para su ejecucion, y de   este modo requirio conexión a internet.
 
 ## Mantenimiento a futuro de la aplicacion
 
@@ -90,12 +94,12 @@ por Meta, de este modo no nos preocupariamos de problemas de mantenimiento a fut
 
 Los puntos a tocar sobre el mantenimiento futuro y propuestas de la aplicacion son las siguientes:
 
-- Implementar el framework de REACT para que pueda ser llevado de manera nativa con REACT native a aplicaciones de telefonos
-  , y de esta manera en un posible futuro proyecto, ser agregado a una aplicacion para telefonos y web ascerca del aereopuerto
+- Implementar el framework de REACT para que pueda ser llevado de manera nativa con REACT native y de este manera a aplicaciones de telefonos
+  y en un posible futuro proyecto, ser agregado a una aplicacion web o aplicacion de télefono con la información importante del aereopuerto
   de la ciudad de méxico y este al dia con los cambios de tecnología.
 
-- Una interfaz para el administrador de la base de datos de mongodb para ver posibles errores, datos del clima de los lugares dados de alta, actualizacion de la informacion de la ciudad, visualizar
-  informacion y actualizacion de los tickets, debido a que es informacion que nunca se mantiene igual entonces es necesario verificar su veracidad.
+- Una interfaz para el administrador de la base de datos de mongodb para ver posibles errores, datos del clima de los lugares dados de alta, actualizacion de la informacion
+  de la ciudad, visualizarinformacion y actualizacion de los tickets, debido a que es informacion que nunca se mantiene igual entonces es necesario verificar su veracidad.
 
 
 ## Proceso de solucion de problemas
@@ -115,56 +119,55 @@ A continuacion se presenta el pseudocodigo de la aplicacion enfocandose en las p
     
 - Funcion remplazarDatos, recibe una referencia String con el nombre busqueda y una referencia JSON con el nombre climaData.
     
-      variable section <- ddocument.querySelector('resultados')
-      constante eqtiquetaHTML <- requiere paquete EtiquetasHTML.js
-      section.insertAdjacentHTM('beforebegin',etiquetaHTML.cargarClima(climaData,busqueda))
+      variable section <- document.querySelector('resultados')
+      section.innerHTML(etiquetaHTML.cargarClima(climaData,busqueda))
 
 - Funcion cargarDatosTicket()
 
       variable fecha <- new Date()
       variable form <- document.querySelector('.form')
       form.addEventListener('sumbit', sub funcion(event){
-      event.preventDefault()
-      variable ticket <- document.querySelecto('#ticket').value
-      variable url <- consulta coleccion ticket de mongo con variables ticket y fecha.getTime()
-      Intentar{
-      variable climaDAta <- metodo cargarClima que recibe la variable url
-      metodo remplazarDatos que recibe la variable climaData y string "ticket"
-      }
-      Capturar{ 
-      window.alert("mensaje de errror")
-      }
+        event.preventDefault()
+        variable ticket <- document.querySelecto('#ticket').value
+        variable url <- consulta coleccion ticket de mongo con variables ticket y fecha.getTime()
+        Intentar{
+          variable climaDAta <- metodo cargarClima que recibe la variable url
+          metodo remplazarDatos que recibe la variable climaData y string "ticket"
+        }
+        Capturar{ 
+          window.alert("mensaje de errror")
+        }
       })
 
 - Funcion cargarDatosCiudad.
 
       variable form <- document.querySelector('.form')
       form.addEventListener('sumbit', sub funcion(event){
-      event.preventDefault()
-      variable ciudad <- document.querySelecto('#ciudad').value
-      variable url <- consulta coleccion ciudad de mongo con variables ciudad y fecha.getTime()
-      climaData <- metodo cargarClima que recibe la variable url
-      ClimaData.then(funcion datos => { funcion remplazarDatosTicket que recibe variable datos, string "ciudad")}).Error(async function(error producido de datos){
-      console.log(error)
-      window.alert("mensaje de error")
-      })
+        event.preventDefault()
+        variable ciudad <- document.querySelecto('#ciudad').value
+        variable url <- consulta coleccion ciudad de mongo con variables ciudad y fecha.getTime()
+        climaData <- metodo cargarClima que recibe la variable url
+        ClimaData.then(funcion datos => { funcion remplazarDatosTicket que recibe variable datos, string "ciudad")}).Error(async function(error producido de datos){
+          console.log(error)
+          window.alert("mensaje de error")
+        })
       })
 
 - Funcion cargarHTML(informacion del clima, busqueda)
 
       html <--- 'Cargar contenido del nombre de la seccion';
       Por cada elemento de climaData 
-      elemento <--- elemento de climaData;
-      nombreCiudad <--- el nombre asociado al elemento 
-      html <-- encabezadoCiudad(Titulo del encabezado, imagenClima, AnimacionAvion)
-      html <-- cargarSeccion(clima del elemento) //Se realiza para datos generales,caracteristicas del viento y otras caracteristicas.
+        elemento <--- elemento de climaData;
+        nombreCiudad <--- el nombre asociado al elemento 
+        html <-- encabezadoCiudad(Titulo del encabezado, imagenClima, AnimacionAvion)
+        html <-- cargarSeccion(clima del elemento) //Se realiza para datos generales,caracteristicas del viento y otras caracteristicas.
       regresa el valor de htlm
 
 - Funcion cargarSeccion(encabezado,informacion) 
 
       seccion <-- cargar nombre de seccion
       por cada elemento de informacion
-      seccion <-- cargarIcono(elemento) //Metodo que carga un icono en html
+        seccion <-- cargarIcono(elemento) //Metodo que carga un icono en html
       regresa el valor de seccion;
 
 
@@ -182,33 +185,35 @@ A continuacion se presenta el pseudocodigo de la aplicacion enfocandose en las p
       constante resultado <- metodo find de mongo con la busqueda
       constante doc[]
       Para cada constate indice de resultado{
-      agrega indice a doc
+        agrega indice a doc
       }
       regresa doc
 
-- Método insertaclima, recibe referencia en string de base de datos, referencia a coleccion en string, referencia en string a un codigo IATA y un JSON llamado nuevaL(el forecast de openweather).
+- Método insertaclima, recibe referencia en string de base de datos, referencia a coleccion en string, referencia en string a un codigo
+  IATA y un JSON llamado nuevaL(el forecast de openweather).
 
       constante uri<- uri de la base de datos de mongoDB
       constante cliente <- nuevo cliente de mongo
       variable registro <- json que contiene IATA y un sub json de nombre clima
       para cada elemento i=0; i<longitud de nuevaL; i++{
-      variable creador <- un json con la informacion requerida sacada de nueva list(dt, main,
+        variable creador <- un json con la informacion requerida sacada de nueva list(dt, main,
         temperatura,presion,humedad,estado,descripccion,viento,velocidad,direccion,fuerza,visibilidad,precipitacion,lluvia,nieve,fecha)
-      Si nuevaL.list[i].rain !== undefined{
-      creador.lluvia<-nuevaL.list[i].rain en  3 horas
-      }
-      Si nuevaL.list[i].snow !== undefined{
-      creador.nieve<-nuevaL.list[i].snow en  3 horas
-      }
-      registro.clima[nuevaL.list[i].dt]<- creador
+        Si nuevaL.list[i].rain !== undefined{
+          creador.lluvia<-nuevaL.list[i].rain en  3 horas
+        }
+        Si nuevaL.list[i].snow !== undefined{
+          creador.nieve<-nuevaL.list[i].snow en  3 horas
+        }
+        registro.clima[nuevaL.list[i].dt]<- creador
       }
       variable insertado <- false
       Intentar{
-      esperar conexion de cliente
-      insertado <- insertar(cliente,baseDatos,coleccion,registro)
-      } Capturar{ error }
-      Finalmente{
-      espera cerrar la conexion con el cliente
+        esperar conexion de cliente
+        insertado <- insertar(cliente,baseDatos,coleccion,registro)
+      } Capturar{
+        error
+      }Finalmente{
+        espera cerrar la conexion con el cliente
       }
       regresa el insertado.
 
@@ -218,11 +223,11 @@ A continuacion se presenta el pseudocodigo de la aplicacion enfocandose en las p
       costante cliente <- nuevo cliente de mongo
       variable consulta []
       Intentar{
-      espera conexion de cliente
-      consulta <- busquedadeconsultaBD(cliente,base de datos, coleccion, busqueda).
+        espera conexion de cliente
+        consulta <- busquedadeconsultaBD(cliente,base de datos, coleccion, busqueda).
       } Capturar{error}
       Finalmente{
-      espera cierre de conexion del cliente
+        espera cierre de conexion del cliente
       }
       regresa consulta.
 
@@ -232,12 +237,12 @@ A continuacion se presenta el pseudocodigo de la aplicacion enfocandose en las p
       costante cliente <- nuevo cliente de mongo
       variable eliminar <- false
       Intentar{
-      espera conexion de cliente
-      variable eliminado <- metodo deleteMany de mongo con el filtro
-      eliminar <- verificar que eliminado sea true
+        espera conexion de cliente
+        variable eliminado <- metodo deleteMany de mongo con el filtro
+        eliminar <- verificar que eliminado sea true
       } Capturar{error}
       Finalmente{
-      espera cierre de conexion del cliente
+        espera cierre de conexion del cliente
       }
       regresa elminar.
 
@@ -247,16 +252,17 @@ A continuacion se presenta el pseudocodigo de la aplicacion enfocandose en las p
       constante cliente <- nuevo cliente de mongo
       variable consulta <- []
       Intentar{
-      espera conecion de cliente
-      constante consultado <- busquedadeconsultaBD(cliente,base de datos, coleccion, busqueda)
-      Si la longitud de consultado es diferente de 0{
-      Para cada elementeo i=0 hasta i<longitud de temp i++
-      variable clima <- consultado[i].clima[fechaUnix]
-      agrega a consulta (objeto json con IATA <- i-esimo elemento de consultado con el valor del IATA 
-      clima <- variable clima
+        espera conecion de cliente
+        constante consultado <- busquedadeconsultaBD(cliente,base de datos, coleccion, busqueda)
+        Si la longitud de consultado es diferente de 0{
+          Para cada elementeo i=0 hasta i<longitud de temp i++
+            variable clima <- consultado[i].clima[fechaUnix]
+            agrega a consulta ({
+              objeto json con IATA <- i-esimo elemento de consultado con el valor del IATA 
+              clima <- variable clima})
       }Capturar{error}
       Finalmente{
-      espera cierre de conecion de cliente
+        espera cierre de conecion de cliente
       }
       regresa consulta.
 
@@ -266,8 +272,8 @@ A continuacion se presenta el pseudocodigo de la aplicacion enfocandose en las p
       costante cliente <- nuevo cliente de mongo
       variable insertado <- false
       Intentar{
-      espera conexion de cliente
-      insertado<- metodo inserMany de mongo
+        espera conexion de cliente
+        insertado<- metodo inserMany de mongo
       }Capturar{error
       }Finalmente{
       espera cierre de conexion de cliente
@@ -280,18 +286,18 @@ A continuacion se presenta el pseudocodigo de la aplicacion enfocandose en las p
 
       variable ticketarreglo = []
       Para cada ellemento i=0 hasta i<longitud de datosCSV; i++{
-      variable tickets = {}
-      constante elemento <- datosCSV[i]
-      tickets = elemento json que contiene ticket <- num_ticket del elemento, ciudad_origen <- origien del elemento, ciudad destino <- destino del elemento.
-      agregar tickets en ticketArreglo
-      Si ciudades[0][elemento.origin]== undefined {
-      ciudades[0][elemento.origin] <- elemento json con ciudad teniendo una string vacia, cordenadas latitud, longitud y IATA extraidos del elemento.origin
-      agregar elemento.origin a ciudades[1]["ciudades"]
-      }
-      Si ciudades[0][elemento.destination]== undefined {
-      ciudades[0][elemento.destination] <- elemento json con ciudad teniendo una string vacia, cordenadas latitud, longitud y IATA extraidos del elemento.destinaton
-      agregar elemento.destination a ciudades[1]["ciudades"]
-      }
+        variable tickets = {}
+        constante elemento <- datosCSV[i]
+        tickets = elemento json que contiene ticket <- num_ticket del elemento, ciudad_origen <- origien del elemento, ciudad destino <- destino del elemento.
+        agregar tickets en ticketArreglo
+        Si ciudades[0][elemento.origin]== undefined {
+          ciudades[0][elemento.origin] <- elemento json con ciudad teniendo una string vacia, cordenadas latitud, longitud y IATA extraidos del elemento.origin
+          agregar elemento.origin a ciudades[1]["ciudades"]
+        }
+        Si ciudades[0][elemento.destination]== undefined {
+          ciudades[0][elemento.destination] <- elemento json con ciudad teniendo una string vacia, cordenadas latitud, longitud y IATA extraidos del elemento.destinaton
+          agregar elemento.destination a ciudades[1]["ciudades"]
+        }
       }
       regresa un objeto json con ticketsAlta <- ticketArreglo, ciudadesAlta <- ciudades.
 
@@ -303,10 +309,10 @@ A continuacion se presenta el pseudocodigo de la aplicacion enfocandose en las p
       variable ciudades <-metodo consultaBD de conexion con la base de datos de mongo, la coleccion ciudad de mongo y un json vacio{}
       metodo de conexion vacia con la base de datos de mongo, la coleccion ciudad de mongo y un json vacio{}
       Si ciudades[0] == undefined{
-      ciudades[0]= {}
+        ciudades[0]= {}
       }
       Si ciudades[1] == undefined{
-      ciudades[1]= {"ciudades":[]}
+        ciudades[1]= {"ciudades":[]}
       }
       variable resultadp <- obtenerTicketsCiudades(datosCSV,ciudades)
       conexion.insertarVariosBD(base de datos de mongo, coleccion ticket de mongo, ticketArreglo).
@@ -320,26 +326,26 @@ A continuacion se presenta el pseudocodigo de la aplicacion enfocandose en las p
       variable fecha <- new Date()
       variable recuclim <- conexion.consultaBD(base de datos mongo,clima mongo,{})
       Si longitud de recuclim != 0{
-      fs.appendFile(guardainfo +"./climaBD"+fecha.getTime()+".json", JSON.stringify(recuclim), async function (err) {
-                  if (err) throw err)
-      metodo vacia de conexion con la base de datos de mongo, la coleccion ciudad de mongo, {}
+        fs.appendFile(guardainfo +"./climaBD"+fecha.getTime()+".json", JSON.stringify(recuclim), async function (err) {
+          if (err) throw err)
+          metodo vacia de conexion con la base de datos de mongo, la coleccion ciudad de mongo, {}
       }
       variable climas <- []
       variable ciudades <- conexion.consultaBD con base de datos de mongo, coleccion ciudad de mongo, {}.
       Si longitud de ciudades == 0{
-      ciudades <- [{},{"ciudades":[]}]
+        ciudades <- [{},{"ciudades":[]}]
       }
       Para cada elemento i=0 hasta i< longitud de ciudades[1]["ciudades"] i++{
-      constante referencia <-ciudades[1]["ciudades"][i];
-      constante ciudad <-ciudades[0][referencia];;
-       constante clima <- metodo realizaPeticion con ciudad;
-      Si clima != undefined{
-      variable verificadoInsetar <- metodo instertar clima de conexion con base de datos de mongo, coleccion clima de mongo,clima,ciudad.IATA
-      Si verificadoInsertar{
-      agrega clima a climas
-      }
-      }
-      metodo petateate(4)
+        constante referencia <-ciudades[1]["ciudades"][i];
+        constante ciudad <-ciudades[0][referencia];;
+        constante clima <- metodo realizaPeticion con ciudad;
+        Si clima != undefined{
+          variable verificadoInsetar <- metodo instertar clima de conexion con base de datos de mongo, coleccion clima de mongo,clima,ciudad.IATA
+          Si verificadoInsertar{
+            agrega clima a climas
+          }
+        }
+        metodo petateate(4)
       }
       regresa climas.
 
@@ -347,15 +353,16 @@ A continuacion se presenta el pseudocodigo de la aplicacion enfocandose en las p
 
     regresa una nueva promesa que dado el metodo timeout le dara la duracion del entero*1000 milisegundos para que siempre sean segundos. 
 
--Método realizaPeticion, recibe una referencia String con el nombre de ciudad.
+-Método realizaPeticion, recibe un JSON con la informacion de la ciudad a consultar.
     
     variable url <- llamada de la api de openwether con la latitud y longitud de la ciudad y la apikey
     variable respuesta <- metodo fetch de url
     Si respuesta.status != 200{
-    regresa undefined
-    } en otro caso
-    regresa  el metodo.json de la respuesta.
-
+      regresa undefined
+    } en otro caso {
+      regresa  el metodo.json de la respuesta.
+    }
+    
 ### Pesudocodigo para métodos de controlador:
 
 - Método cargarClima, recibe una referencia String con nombre url.
