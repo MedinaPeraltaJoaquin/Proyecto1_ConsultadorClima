@@ -370,41 +370,136 @@ A continuacion se presenta el pseudocodigo de la aplicacion enfocandose en las p
     
 ### Pesudocodigo para métodos de controlador:
 
-- Método cargarClima, recibe una referencia String con nombre url.
+- Método actualizarBaseDeDatos, actualiza la base de datos de climas llamando a los metodos de 
+la clase actualizabd
 
-      Método cargarClima(url)
-      Variable response <- método fetch(url)
-      Si response.status != 200
-          Lanzar un Error("Error al consultar el clima")
-      Variable data <- response.json()
-      Regresar data
+      actualizarBaseDeDatos() {
+          Intenta {
+              climasActualizados <- espera actualizaBD.actualizaclimabd(archivo a guardar);
+              Para (i<-0; i < logitud de climasActualizados; i++){
+                  clima = climasActualizados[i]
+                  if(clima.error != undefined){
+                      error del clima
+                  }
+              }
+          } atrapa (error) {
+             	Error al actualizar la base de datos
+          }
+      }
 
-- Método remplazarDatos, recibe una referencia String con el nombre busqueda y una referencia JSON con el nombre climaData.
+- Método actualizarBaseDeDatos, actualiza la base de datos  de tickets llamando a los metodos de
+la clase actualizabd
 
-      Método remplazarDatos(busqueda, climaData)
-      Variable section <- document.querySelector('resultados')
-      Constante etiquetaHTML <- requiere paquete EtiquetasHTML.js
-      section.insertAdjacentHTML('beforebegin', etiquetaHTML.cargarClima(climaData, busqueda))
+      actualizaTickets() {
+          Intenta {
+              direccionCSV <- direccion del archivo CSV
+              ticketsActualizados <- espera actualizaBD.agregaInformacionCSV(direccionCSV)
+          } atrapa (error) {
+              Error al actualizar la base de datos
+          }
+      }
 
-- Método cargarDatosTicket
 
-      Método cargarDatosTicket()
-      Variable fecha <- new Date()
-      Variable form <- document.querySelector('.form')
-      form.addEventListener('submit', Sub-Método(event)
-      event.preventDefault()
-      Variable ticket <- document.querySelector('#ticket').value
-      Variable url <- consulta colección ticket de mongo con variables ticket y fecha.getTime()
-      Intentar
-      Variable climaData <- método cargarClima que recibe la variable url
-      Método remplazarDatos que recibe la variable climaData y el string "ticket"
-      Capturar Error
-      Ventana de alerta("Mensaje de error")
+- Método obtenerClimaPorTicket, obtiene el clima de las ciudades de origen y destino de un ticket
+aceptando como parametros al request, response y la base de datos y regresa un json con el clima
 
-- Método cargarDatosCiudad
+      obtenerClimaPorTicket(req, res,base_datos) {
+          ticket <- req.query.ticket
+          date <- req.query.date
+              
+          ticketData <- espera conexion.consultaBD(base_datos, coleccion de ticket, {"ticket" : ticket})
+          ciudades <- espera conexion.consultaBD(base_datos, coleccion de ciudad, {})
+      
+          ciudad_origen <- ticketData[0].ciudad_origen
+          ciudad_destino <- ticketData[0].ciudad_destino
+          fecha <- nueva Date(date)
+          consulta <- nueva Fecha con hora multiplo de 3 a partir de fecha
+      
+          let fechaUnix <- (''+consulta.getTime()).substring(0,10)
+      
+          const climas <- espera conexion.consultaClima(base_datos, coleccion de clima, 
+              {$or : [{"IATA" : ciudad_origen}, {"IATA" : ciudad_destino}]},fechaUnix)
+      
+      
+          respuesta <- objeto JSON con los climas y busqueda
+      
+          regresa res.status(200).json(respuesta);
+      }
+      
+- Método obtenerClimaPorCiudad, obtiene el clima de una ciudad especifica aceptando como parametros
+al request, response y la base de datos y regresa un json con el clima
 
-      Método cargarDatosCiudad()
-      Variable form <- document.querySelector('.form')
+      obtenerClimaPorCiudad(req, res,base_datos) {
+          const ciudad <- req.query.ciudad
+          const date <- req.query.date
+      
+          const ciudades <- espera conexion.consultaBD(base_datos, process.env.coleccion_ciudad, {})
+          
+          let mejorCoincidencia <- ""
+          let distanciaMinima <- Number.MAX_VALUE
+          let ciudadIATA <- ""
+      
+          for(let i = 0; i < ciudades[1].ciudades.length; i++){
+              elemento <- ciudades[1].ciudades[i]
+      
+              if(elemento == ciudad){
+                  mejorCoincidencia <- ciudades[0][elemento].ciudad
+                  ciudadIATA <- ciudades[0][elemento].IATA
+                  break;
+              }
+              
+              distancia <- levenshtein.get(ciudad.toLowerCase(), ciudades[0][elemento].ciudad.toLowerCase());
+              if (distancia == distanciaMinima && distancia < 4) {
+                  distanciaMinima <- distancia
+                  mejorCoincidencia <- ciudades[0][elemento].ciudad
+                  ciudadIATA <- ciudades[0][elemento].IATA
+              }
+          }
+      
+      
+          fecha = nueva Date(date);
+          consulta <- nueva Fecha con hora multiplo de 3 a partir de fecha
+          
+          fechaUnix <- (''+consulta.getTime()).substring(0,10);
+      
+          climas <- espera conexion.consultaClima(base_datos, coleccion clima, 
+              {"IATA" : ciudadIATA},fechaUnix);
+          
+          respuesta <- objeto JSON con los climas y busqueda
+          
+          regresa res.status(200).json(respuesta);
+      }
+
+## Manuales y apoyo para la creacion del programa
+Se utilizo los manuales de cada dependencia de NPM ya que se daba una breve explicacion de como usar
+el código y de esta manera se nos facilito usarlo. A su vez, para el código de MongoDB, ExpressJS y 
+Jasmine se utilizo los manuales que se encuentran en sus páginas oficiales.
+En general se ocupo lo siguiente:
+  - Manual de dotenv de NPM //dotenv
+  - Manual de NPM de jasmine para su instalacion. //jasmine_npm
+  - Manual de Jasmine para el entendimiento del paquete. //jasmine_docs
+  - Manual de NodeJS para su instalacion. //nodejs
+
+### Ayuda de modelo:
+Para el modelo se ocupo lo siguiente:
+- Manual de NPM de mongodb. //mongodb_npm
+- Manual de NPM de convert-csv-to-json //convert-csv-to-json
+- Documentacion de Mongodb //Mongodb_docs
+- Articulo para hacer el método sleep en javascript //sleepJavaScript
+
+### Ayuda del controlador
+Para el controlador se utilizo lo siguiente:
+- Manula de NPM de expressJS //express_npm
+- Documentacion de ExpressJS //Express_docs
+- Manual de NPM para fast-levenstein //fast-levenshtein
+- Manual de NPM de node-cron //node-cron
+
+### Ayuda de la vista
+Para la vista se utilizo lo siguiente:
+- Manual de MDN para seleccion de elementos del DOM //mdn_seleccion
+- Manual de MDN para modificar elementos //mdn_element
+
+
 
 
 
