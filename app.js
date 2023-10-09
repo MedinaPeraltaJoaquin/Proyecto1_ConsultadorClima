@@ -8,11 +8,11 @@ const controlador = require('./src/controlador_aplicacion/controlador');
 app.use(express.static('public'));
 
 /**
- * Configura y ejecuta una tarea cron para actualizar la base de datos los lunes y jueves a las 3:30 horas.
+ * Configura y ejecuta una tarea cron para actualizar la base de datos los lunes y jueves a las 3:00 horas.
  * 
  * @returns {void}
  */
-cron.schedule('30 3 * * 1,4', async () => {
+cron.schedule('0 3 * * 1,4', async () => {
     console.log("-------------------------------------")
     try {
         await controlador.actualizarBaseDeDatos();
