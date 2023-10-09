@@ -1,0 +1,9 @@
+api_openweather = "########"
+PORT = 8000
+PATH_CSV = "./dataset2.csv"
+PATH_guardar = "."
+base_datos = "consultaClima" 
+coleccion_clima = "clima"
+coleccion_ciudad = "ciudad"
+coleccion_ticket = "ticket"
+uri = "mongodb+srv://<user>:<password>@cluster0.mejzlcy.mongodb.net/?retryWrites=true&w=majority"
