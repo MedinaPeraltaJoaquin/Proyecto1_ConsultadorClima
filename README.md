@@ -387,7 +387,7 @@ la clase actualizabd
           }
       }
 
-- Método actualizarBaseDeDatos, actualiza la base de datos  de tickets llamando a los metodos de
+- Método actualizaTickets(), actualiza la base de datos  de tickets llamando a los metodos de
 la clase actualizabd
 
       actualizaTickets() {
@@ -475,30 +475,77 @@ Se utilizo los manuales de cada dependencia de NPM ya que se daba una breve expl
 el código y de esta manera se nos facilito usarlo. A su vez, para el código de MongoDB, ExpressJS y 
 Jasmine se utilizo los manuales que se encuentran en sus páginas oficiales.
 En general se ocupo lo siguiente:
-  - Manual de dotenv de NPM //dotenv
-  - Manual de NPM de jasmine para su instalacion. //jasmine_npm
-  - Manual de Jasmine para el entendimiento del paquete. //jasmine_docs
-  - Manual de NodeJS para su instalacion. //nodejs
+  - Manual de dotenv de NPM [motdotla, 2023]
+  - Manual de NPM de jasmine para su instalacion. [jas, 2023]
+  - Manual de Jasmine para el entendimiento del paquete. [Jasmine, 2023]
+  - Manual de NodeJS para su instalacion. [nod, 2023]
 
 ### Ayuda de modelo:
 Para el modelo se ocupo lo siguiente:
-- Manual de NPM de mongodb. //mongodb_npm
-- Manual de NPM de convert-csv-to-json //convert-csv-to-json
-- Documentacion de Mongodb //Mongodb_docs
-- Articulo para hacer el método sleep en javascript //sleepJavaScript
+- Manual de NPM de mongodb. [MongoDB, 2023]
+- Manual de NPM de convert-csv-to-json [iuccio, 2023]
+- Documentacion de Mongodb [Mon, 2023]
+- Articulo para hacer el método sleep en javascript [Alarcon Jose Manuel, sf]
 
 ### Ayuda del controlador
 Para el controlador se utilizo lo siguiente:
-- Manula de NPM de expressJS //express_npm
-- Documentacion de ExpressJS //Express_docs
-- Manual de NPM para fast-levenstein //fast-levenshtein
-- Manual de NPM de node-cron //node-cron
+- Manula de NPM de expressJS [expressjs, 2023]
+- Documentacion de ExpressJS [Exp, 2023]
+- Manual de NPM para fast-levenstein [hiddentao, 2023]
+- Manual de NPM de node-cron [merencia, 2023]
 
 ### Ayuda de la vista
 Para la vista se utilizo lo siguiente:
-- Manual de MDN para seleccion de elementos del DOM //mdn_seleccion
-- Manual de MDN para modificar elementos //mdn_element
+- Manual de MDN para seleccion de elementos del DOM [mdn, 2023b] 
+- Manual de MDN para modificar elementos [mdn, 2023a]
+- Plantilla de Selecao de Bootstrap para la parte visual, con varias
+  modificaciones. [BootstrapMade,s.f]
 
+
+## Referencias
+- [jas, 2023] (2023). DOCS. Jasmine. Recuperado de https://jasmine.github.io/pages/docshome.html.
+
+- [mdn, 2023a] (2023a). Element. MDN. Recuperado de https://developer.mozilla.org/es/docs/Web/API/Element.
+
+- [Exp, 2023] (2023). Guia. ExpressJs. Recuperado de https://expressjs.com/es/guide/routing.html.
+
+- [mdn, 2023b] (2023b). Localizando elementos DOM usando selectores. MDN. Recuperado de
+  https://developer.mozilla.org/es/docs/Web/API/Documentobjectmodel/LocatingD OMelementsusingselectors.
+
+- [Mon, 2023] (2023). MongoDB Node Driver. MongoDB. Recuperado de
+  https://www.mongodb.com/docs/drivers/node/current/.
+
+- [nod, 2023] (2023). Node.js. Node.js. Recuperado de https://nodejs.org/es/.
+
+- [Alarcon Jose Manuel, sf] Alarcon Jose Manuel (s.f). Como hacer un sleep() en Javas-
+  cript: detener la ejecuci´on durante un tiempo. Infosecurity magazine. Recuperado de:
+  https://www.campusmvp.es/recursos/post/como-hacer-un-sleep-en-javascript-detener-la-ejecucion-
+  durante-un-tiempo.aspx.
+
+- [expressjs, 2023] expressjs (2023). express. NPM. Recuperado de
+  https://www.npmjs.com/package/express.
+
+
+- [hiddentao, 2023] hiddentao (2023). fast-levenshtein. NPM. Recuperado de
+  https://www.npmjs.com/package/fast-levenshtein.
+
+- [iuccio, 2023] iuccio (2023). CSVtoJSON. NPM. Recuperado de
+  https://www.npmjs.com/package/convert-csv-to-json.
+
+- [merencia, 2023] merencia (2023). Node Cron. NPM. Recuperado de[
+  https://www.npmjs.com/package/node-cron.
+
+- [Jasmine, 2023] Jasmine (2023). The Jasmine Module. NPM. Recuperado de
+  https://www.npmjs.com/package/jasmine.
+
+- [MongoDB, 2023] MongoDB (2023). MongoDB Node.js Driver. NPM. Recuperado de
+  https://www.npmjs.com/package/mongodb.
+
+- [motdotla, 2023] motdotla (2023). dotenv. NPM. Recuperado de
+  https://www.npmjs.com/package/dotenv.
+
+- [BootstrapMade,s.f] BootstrapMade (s.f). Selecao - Agency Bootstrap Template. BootStrapMade.
+  Recuperado de : https://bootstrapmade.com/selecao-bootstrap-template/
 
 
 
